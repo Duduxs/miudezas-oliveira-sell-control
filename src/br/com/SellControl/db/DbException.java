@@ -1,4 +1,4 @@
-package br.com.SellControll.db;
+package br.com.SellControl.db;
 
 public class DbException extends RuntimeException {
 

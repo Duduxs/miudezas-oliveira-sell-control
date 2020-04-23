@@ -1,4 +1,4 @@
-package br.com.SellControll.application;
+package br.com.SellControl.application;
 
 import java.io.IOException;
 
@@ -13,13 +13,10 @@ public class Program extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent parent;
-
-			parent = FXMLLoader.load(getClass().getResource("/gui/Registration.fxml"));
+			Parent parent = FXMLLoader.load(getClass().getResource("/br/com/SellControl/gui/Registration.fxml"));
 			Scene scene = new Scene(parent);
 			primaryStage.setScene(scene);
 			primaryStage.show();
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -28,6 +25,7 @@ public class Program extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+
 	}
 
 }

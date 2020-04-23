@@ -1,4 +1,4 @@
-package br.com.SellControll.application.gui.util;
+package br.com.SellControl.application.gui.util;
 
 import java.util.Optional;
 
