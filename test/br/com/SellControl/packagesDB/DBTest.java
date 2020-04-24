@@ -20,6 +20,7 @@ class DBTest {
 		assertEquals(url, "jdbc:mysql://localhost:3306/bdsell");
 		
 	}
+
 	
 	
 
