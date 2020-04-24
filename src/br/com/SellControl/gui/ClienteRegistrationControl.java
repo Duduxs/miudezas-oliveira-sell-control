@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import br.com.SellControl.dao.ClientDAO;
+import br.com.SellControl.dao.DaoFactory;
 import br.com.SellControl.model.entities.Client;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -57,30 +59,15 @@ public class ClienteRegistrationControl implements Initializable {
 	@FXML
 	private Button btnDelete;
 
+	
 	@FXML
 	public void onBtnSaveAction() {
-
-		Integer code = Integer.parseInt(txtCode.getText());
-		String name = txtName.getText();
-		String cpf = txtCPF.getText();
-		String email = txtEmail.getText();
-		String phone = txtPhone.getText();
-		String cellphone = txtCellphone.getText();
-		String cep = txtCEP.getText();
-		String address = txtAddress.getText();
-		Integer number = Integer.parseInt(txtNumber.getText());
-		String complement = txtComplement.getText();
-		String neighborhood = txtNeighborhood.getText();
-		String city = txtCity.getText();
-		String state = comboBoxUF.getSelectionModel().getSelectedItem();
-
-		List<Client> c = new ArrayList<>();
-		c.add(new Client(code, name, cpf, email, phone, cellphone, cep, address, number, complement, neighborhood, city,
-				state));
-
-		for (Client x : c) {
-			System.out.println(x);
-		}
+		//Create a client in model
+		Client c = makeClient();
+		// Create a client in Dao
+		ClientDAO client = DaoFactory.createClientDAO();
+		// Use SQL Command
+		client.insert(c);
 
 	}
 
@@ -94,6 +81,28 @@ public class ClienteRegistrationControl implements Initializable {
 		obsList = FXCollections.observableArrayList(test);
 		comboBoxUF.setItems(obsList);
 
+	}
+	
+	// Get the form and make client
+	public Client makeClient() {
+		
+		Integer code = Integer.parseInt(txtCode.getText());
+		String name = txtName.getText();
+		String cpf = txtCPF.getText();
+		String email = txtEmail.getText();
+		String phone = txtPhone.getText();
+		String cellphone = txtCellphone.getText();
+		String cep = txtCEP.getText();
+		String address = txtAddress.getText();
+		Integer number = Integer.parseInt(txtNumber.getText());
+		String complement = txtComplement.getText();
+		String neighborhood = txtNeighborhood.getText();
+		String city = txtCity.getText();
+		String state = comboBoxUF.getSelectionModel().getSelectedItem();
+		
+		return new Client(code, name, cpf, email, phone, cellphone, cep, address, number, complement, neighborhood, city,
+				state);
+		
 	}
 
 }
