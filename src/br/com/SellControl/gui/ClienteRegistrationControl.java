@@ -1,7 +1,7 @@
 package br.com.SellControl.gui;
 
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -59,10 +59,9 @@ public class ClienteRegistrationControl implements Initializable {
 	@FXML
 	private Button btnDelete;
 
-	
 	@FXML
 	public void onBtnSaveAction() {
-		//Create a client in model
+		// Create a client in model
 		Client c = makeClient();
 		// Create a client in Dao
 		ClientDAO client = DaoFactory.createClientDAO();
@@ -73,19 +72,18 @@ public class ClienteRegistrationControl implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		List<String> test = new ArrayList<>();
-		test.add("PE");
-		test.add("SP");
-		test.add("RJ");
+		// Include in my list all states from Brazil
+		List<String> test = Arrays.asList("AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG",
+				"PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO");
 
 		obsList = FXCollections.observableArrayList(test);
 		comboBoxUF.setItems(obsList);
 
 	}
-	
+
 	// Get the form and make client
 	public Client makeClient() {
-		
+
 		Integer code = Integer.parseInt(txtCode.getText());
 		String name = txtName.getText();
 		String cpf = txtCPF.getText();
@@ -99,10 +97,10 @@ public class ClienteRegistrationControl implements Initializable {
 		String neighborhood = txtNeighborhood.getText();
 		String city = txtCity.getText();
 		String state = comboBoxUF.getSelectionModel().getSelectedItem();
-		
-		return new Client(code, name, cpf, email, phone, cellphone, cep, address, number, complement, neighborhood, city,
-				state);
-		
+
+		return new Client(code, name, cpf, email, phone, cellphone, cep, address, number, complement, neighborhood,
+				city, state);
+
 	}
 
 }
