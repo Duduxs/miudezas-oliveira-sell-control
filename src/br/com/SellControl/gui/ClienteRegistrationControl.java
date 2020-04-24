@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import br.com.SellControl.dao.ClientDAO;
 import br.com.SellControl.dao.DaoFactory;
 import br.com.SellControl.model.entities.Client;
+import br.com.SellControl.util.Alerts;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class ClienteRegistrationControl implements Initializable {
 
@@ -39,15 +41,13 @@ public class ClienteRegistrationControl implements Initializable {
 	@FXML
 	private TextField txtCellphone;
 	@FXML
-	private TextField txtLandline;
-	@FXML
 	private TextField txtNumber;
 	@FXML
 	private TextField txtComplement;
 
 	@FXML
 	private ComboBox<String> comboBoxUF;
-
+	// Variable for save all my UF in comboBox.
 	private ObservableList<String> obsList;
 
 	@FXML
@@ -67,16 +67,19 @@ public class ClienteRegistrationControl implements Initializable {
 		ClientDAO client = DaoFactory.createClientDAO();
 		// Use SQL Command
 		client.insert(c);
-
+		// Show a success message
+		Alerts.showAlert("Message", null, "Registered client!", AlertType.INFORMATION);
+		
 	}
+
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// Include in my list all states from Brazil
-		List<String> test = Arrays.asList("AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG",
+		List<String> UF = Arrays.asList("AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG",
 				"PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO");
 
-		obsList = FXCollections.observableArrayList(test);
+		obsList = FXCollections.observableArrayList(UF);
 		comboBoxUF.setItems(obsList);
 
 	}

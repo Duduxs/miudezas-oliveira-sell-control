@@ -201,12 +201,12 @@
       </TabPane>
       <HBox alignment="CENTER" layoutX="266.0" layoutY="665.0" prefHeight="50.0" prefWidth="368.0" spacing="20.0">
          <children>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-radius: 10;" text="NEW">
+            <Button fx:id="btnNew" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onBtnNewAction" prefWidth="80.0" style="-fx-background-radius: 10;" text="NEW">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-radius: 10;" text="EDIT">
+            <Button fx:id="btnEdit" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-radius: 10;" text="EDIT">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -216,7 +216,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-radius: 10;" text="DELETE">
+            <Button fx:id="btnDelete" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-radius: 10;" text="DELETE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
