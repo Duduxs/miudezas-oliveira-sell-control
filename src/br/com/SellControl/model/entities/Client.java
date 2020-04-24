@@ -1,6 +1,6 @@
 package br.com.SellControl.model.entities;
 
-public class Clients {
+public class Client {
 
 	private Integer id;
 	private String 	name;
@@ -16,11 +16,11 @@ public class Clients {
 	private String 	city;
 	private String 	state;
 	
-	public Clients() {
+	public Client() {
 		
 	}
 	
-	public Clients(Integer id, String name, String cpf, String email, String phone, String cellphone, String cep,
+	public Client(Integer id, String name, String cpf, String email, String phone, String cellphone, String cep,
 			String address, Integer number, String complement, String neighborhood, String city, String state) {
 		
 		this.id = id;
