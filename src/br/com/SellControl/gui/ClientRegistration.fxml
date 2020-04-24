@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="784.0" prefWidth="899.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="784.0" prefWidth="899.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.SellControl.gui.ClienteRegistrationControl">
    <children>
       <AnchorPane prefHeight="70.0" prefWidth="899.0" style="-fx-background-color: #0066cc;">
          <children>
@@ -57,94 +57,13 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField maxWidth="82.0" prefHeight="25.0" prefWidth="82.0" GridPane.columnIndex="1" />
+                              <TextField fx:id="txtCode" maxWidth="82.0" prefHeight="25.0" prefWidth="82.0" GridPane.columnIndex="1" />
                               <Label text="Name:" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField maxWidth="386.0" prefHeight="25.0" prefWidth="386.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label text="Email:" GridPane.rowIndex="2">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField maxWidth="386.0" prefHeight="25.0" prefWidth="386.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label text="Cellphone:" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="N°:" GridPane.columnIndex="3" GridPane.rowIndex="5">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin>
-                              </Label>
-                              <TextField maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" promptText="(##) # ####-####" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                              <Label text="Landline:" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin>
-                              </Label>
-                              <TextField maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" promptText="(##) # ####-####" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                              <Label text="CEP:" GridPane.rowIndex="3">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" promptText="#####-###" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Label text="Address:" GridPane.rowIndex="5">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField maxWidth="427.0" prefHeight="25.0" prefWidth="427.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <TextField maxWidth="82.0" prefHeight="25.0" prefWidth="46.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-                              <Label text="Neighborhood:" GridPane.rowIndex="6">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                              <Label text="City:" GridPane.rowIndex="7">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                              <Label text="Complement:" GridPane.columnIndex="3" GridPane.rowIndex="6">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin>
-                              </Label>
-                              <TextField maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
-                              <Label text="UF:" GridPane.columnIndex="3" GridPane.rowIndex="7">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin>
-                              </Label>
-                              <ComboBox prefWidth="60.0" GridPane.columnIndex="4" GridPane.rowIndex="7" />
-                              <Label text="CPF:" GridPane.rowIndex="4">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField maxWidth="160.0" prefHeight="25.0" prefWidth="160.0" promptText="###.###.###-##" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField fx:id="txtName" maxWidth="386.0" prefHeight="25.0" prefWidth="386.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="63.0" style="-fx-background-radius: 100;" text="Search" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="14.0" />
@@ -153,6 +72,87 @@
                                     <Insets left="15.0" />
                                  </GridPane.margin>
                               </Button>
+                              <Label text="Email:" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txtEmail" maxWidth="386.0" prefHeight="25.0" prefWidth="386.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label text="CEP:" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txtCEP" maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" promptText="#####-###" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label text="CPF:" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txtCPF" maxWidth="160.0" prefHeight="25.0" prefWidth="160.0" promptText="###.###.###-##" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Label text="Address:" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txtAddress" maxWidth="427.0" prefHeight="25.0" prefWidth="427.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Label text="Neighborhood:" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txtNeighborhood" maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <Label text="City:" GridPane.rowIndex="7">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txtCity" maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                              <Label text="Cellphone:" GridPane.columnIndex="3">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </Label>
+                              <TextField fx:id="txtCellphone" maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" promptText="(##) # ####-####" GridPane.columnIndex="4" />
+                              <Label text="Phone:" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </Label>
+                              <TextField fx:id="txtPhone" maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" promptText="(##) # ####-####" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                              <Label text="N°:" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </Label>
+                              <TextField fx:id="txtNumber" maxWidth="82.0" prefHeight="25.0" prefWidth="46.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                              <Label text="Complement:" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </Label>
+                              <TextField fx:id="txtComplement" maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                              <Label text="UF:" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </Label>
+                              <ComboBox fx:id="comboBoxUF" prefWidth="60.0" GridPane.columnIndex="4" GridPane.rowIndex="7" />
                            </children>
                         </GridPane>
                      </children>
@@ -201,17 +201,17 @@
       </TabPane>
       <HBox alignment="CENTER" layoutX="266.0" layoutY="665.0" prefHeight="50.0" prefWidth="368.0" spacing="20.0">
          <children>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-radius: 10;" text="SAVE">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Button>
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-radius: 10;" text="NEW">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-radius: 10;" text="EDIT">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnSave" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onBtnSaveAction" prefWidth="80.0" style="-fx-background-radius: 10;" text="SAVE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

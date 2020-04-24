@@ -22,7 +22,6 @@ public class Client {
 	
 	public Client(Integer id, String name, String cpf, String email, String phone, String cellphone, String cep,
 			String address, Integer number, String complement, String neighborhood, String city, String state) {
-		
 		this.id = id;
 		this.name = name;
 		this.cpf = cpf;
@@ -144,13 +143,14 @@ public class Client {
 
 	@Override
 	public String toString() {
-		return "Clients [id=" + id + ", name=" + name + ", cpf=" + cpf + ", email=" + email + ", phone=" + phone
-				+ ", cellphone=" + cellphone + ", cep=" + cep + ", address=" + address + ", number=" + number
-				+ ", complement=" + complement + ", neighborhood=" + neighborhood + ", city=" + city + ", state="
-				+ state + "]";
+		return "Client id = " + id + "\nname = " + name + "\ncpf = " + cpf + "\nemail = " + email + "\nphone = " + phone
+				+ "\ncellphone = " + cellphone + "\ncep = " + cep + "\naddress = " + address + "\nnumber = " + number
+				+ "\ncomplement = " + complement + "\nneighborhood = " + neighborhood + "\ncity = " + city + "\nstate = "
+				+ state;
 	}
 	
 	
+
 	
 	
 
