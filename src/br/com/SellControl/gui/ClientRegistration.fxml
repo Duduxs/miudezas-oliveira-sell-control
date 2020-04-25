@@ -159,7 +159,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Consult Customer">
+          <Tab fx:id="consultCustomer" onSelectionChanged="#onConsultCustomerChanged" text="Consult Customer">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="504.0" prefWidth="891.0" style="-fx-background-color: #ffffff;">
                      <children>
@@ -174,20 +174,21 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <TableView layoutY="84.0" prefHeight="420.0" prefWidth="872.0">
+                        <TableView fx:id="tableViewClient" layoutY="84.0" prefHeight="420.0" prefWidth="872.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="Code" />
-                            <TableColumn prefWidth="75.0" text="Name" />
-                              <TableColumn prefWidth="75.0" text="E-mail" />
-                              <TableColumn prefWidth="75.0" text="Phone" />
-                              <TableColumn prefWidth="75.0" text="Cell" />
-                              <TableColumn prefWidth="75.0" text="CEP" />
-                              <TableColumn prefWidth="75.0" text="Address" />
-                              <TableColumn prefWidth="75.0" text="N°" />
-                              <TableColumn prefWidth="75.0" text="Comp" />
-                              <TableColumn prefWidth="75.0" text="Neigh" />
-                              <TableColumn prefWidth="75.0" text="City" />
-                              <TableColumn prefWidth="75.0" text="UF" />
+                            <TableColumn fx:id="tableColumnCode" prefWidth="75.0" text="Code" />
+                            <TableColumn fx:id="tableColumnName" prefWidth="75.0" text="Name" />
+                              <TableColumn fx:id="tableColumnCPF" prefWidth="75.0" text="CPF" />
+                              <TableColumn fx:id="tableColumnEmail" prefWidth="75.0" text="Email" />
+                              <TableColumn fx:id="tableColumnPhone" prefWidth="75.0" text="Phone" />
+                              <TableColumn fx:id="tableColumnCellphone" prefWidth="75.0" text="Cellphone" />
+                              <TableColumn fx:id="tableColumnCEP" prefWidth="75.0" text="CEP" />
+                              <TableColumn fx:id="tableColumnAddress" prefWidth="75.0" text="Address" />
+                              <TableColumn fx:id="tableColumnNumber" prefWidth="75.0" text="N°" />
+                              <TableColumn fx:id="tableColumnComplement" prefWidth="75.0" text="Comp" />
+                              <TableColumn fx:id="tableColumnNeighborhood" prefWidth="75.0" text="Neigh" />
+                              <TableColumn fx:id="tableColumnCity" prefWidth="75.0" text="City" />
+                              <TableColumn fx:id="tableColumnState" prefWidth="75.0" text="State" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

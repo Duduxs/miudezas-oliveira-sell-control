@@ -13,12 +13,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ClienteRegistrationControl implements Initializable {
+
 
 	@FXML
 	private TextField txtCode;
@@ -47,9 +52,44 @@ public class ClienteRegistrationControl implements Initializable {
 
 	@FXML
 	private ComboBox<String> comboBoxUF;
-	// Variable for save all my UF in comboBox.
+	// Variable for save all my States/UF in comboBox.
 	private ObservableList<String> obsList;
+	// Variable for save all my Client in tableViewClient.
+	private ObservableList<Client> obsListClient;
 
+	@FXML
+	private TableView<Client> tableViewClient;
+	
+	@FXML
+	private TableColumn<Client, Integer> tableColumnCode;
+	@FXML
+	private TableColumn<Client, String> tableColumnName;
+	@FXML
+	private TableColumn<Client, String> tableColumnCPF;
+	@FXML
+	private TableColumn<Client, String> tableColumnEmail;
+	@FXML
+	private TableColumn<Client, String> tableColumnPhone;
+	@FXML
+	private TableColumn<Client, String> tableColumnCellphone;
+	@FXML
+	private TableColumn<Client, String> tableColumnCEP;
+	@FXML
+	private TableColumn<Client, String> tableColumnAddress;
+	@FXML
+	private TableColumn<Client, Integer> tableColumnNumber;
+	@FXML
+	private TableColumn<Client, String> tableColumnComplement;
+	@FXML
+	private TableColumn<Client, String> tableColumnNeighborhood;
+	@FXML
+	private TableColumn<Client, String> tableColumnCity;
+	@FXML
+	private TableColumn<Client, String> tableColumnState;
+	
+	@FXML
+	private Tab consultCustomer;
+	
 	@FXML
 	private Button btnNew;
 	@FXML
@@ -62,15 +102,25 @@ public class ClienteRegistrationControl implements Initializable {
 	@FXML
 	public void onBtnSaveAction() {
 		// Create a client in model
-		Client c = makeClient();
+		Client client = makeClient();
 		// Create a client in Dao
-		ClientDAO client = DaoFactory.createClientDAO();
+		ClientDAO clientDAO = DaoFactory.createClientDAO();
 		// Use SQL Command
-		client.insert(c);
+		clientDAO.insert(client);
 		// Show a success message
 		Alerts.showAlert("Message", null, "Registered client!", AlertType.INFORMATION);
 		
 	}
+	
+	@FXML
+	public void onConsultCustomerChanged() {
+		//Load my tableView with all my clients, and show them.
+		if(consultCustomer.isSelected()) 
+			updateTableViewClient();
+		
+		
+	}
+
 
 
 	@Override
@@ -81,10 +131,14 @@ public class ClienteRegistrationControl implements Initializable {
 
 		obsList = FXCollections.observableArrayList(UF);
 		comboBoxUF.setItems(obsList);
-
+		
+		/*When the FXML Panel start this method will be responsible for load
+		* the columns to save my client datas.
+		*/
+		initializeNodes();
 	}
 
-	// Get the form and make client
+	// Get the form and make client. This is for the insert sql command in btnSaveAction method.
 	public Client makeClient() {
 
 		Integer code = Integer.parseInt(txtCode.getText());
@@ -104,6 +158,37 @@ public class ClienteRegistrationControl implements Initializable {
 		return new Client(code, name, cpf, email, phone, cellphone, cep, address, number, complement, neighborhood,
 				city, state);
 
+	}
+	
+	public void initializeNodes() {
+		
+		//Initialize all columns at the my tableViewClient to insert data later.
+		tableColumnCode.setCellValueFactory(new PropertyValueFactory<>("id"));
+		tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+		tableColumnCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+		tableColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+		tableColumnPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+		tableColumnCellphone.setCellValueFactory(new PropertyValueFactory<>("cellphone"));
+		tableColumnCEP.setCellValueFactory(new PropertyValueFactory<>("cep"));
+		tableColumnAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+		tableColumnNumber.setCellValueFactory(new PropertyValueFactory<>("number"));
+		tableColumnComplement.setCellValueFactory(new PropertyValueFactory<>("complement"));
+		tableColumnNeighborhood.setCellValueFactory(new PropertyValueFactory<>("neighborhood"));
+		tableColumnCity.setCellValueFactory(new PropertyValueFactory<>("city"));
+		tableColumnState.setCellValueFactory(new PropertyValueFactory<>("state"));
+	}
+	
+	public void updateTableViewClient() {
+		
+		// Create a clientDao.
+		ClientDAO clientDAO = DaoFactory.createClientDAO();
+		// Create a client list and use sql command findAll.
+		List<Client> list = clientDAO.findAll();
+		// Now load all my clients from insert to the my obsListClient.
+		obsListClient = FXCollections.observableArrayList(list);
+		// Set my table putting all clients him.
+		tableViewClient.setItems(obsListClient);
+		
 	}
 
 }

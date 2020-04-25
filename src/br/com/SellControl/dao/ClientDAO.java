@@ -2,7 +2,10 @@ package br.com.SellControl.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.SellControl.db.DB;
 import br.com.SellControl.db.DbException;
@@ -19,24 +22,36 @@ public class ClientDAO {
 	public void insert(Client client) {
 
 		PreparedStatement ps = null;
-		
+
 		try {
 			StringBuilder query = new StringBuilder();
 			query.append(
 					"insert into tb_client (name,cpf,email,phone,cellphone,cep,address,number,complement,neighborhood,city,state)");
 			query.append("values (?,?,?,?,?,?,?,?,?,?,?,?)");
-			
-			 ps = conn.prepareStatement(query.toString());
-			
-			makeClient(ps,client);
+
+			ps = conn.prepareStatement(query.toString());
+
+			ps.setString(1, client.getName());
+			ps.setString(2, client.getCpf());
+			ps.setString(3, client.getEmail());
+			ps.setString(4, client.getPhone());
+			ps.setString(5, client.getCellphone());
+			ps.setString(6, client.getCep());
+			ps.setString(7, client.getAddress());
+			ps.setInt(8, client.getNumber());
+			ps.setString(9, client.getComplement());
+			ps.setString(10, client.getNeighborhood());
+			ps.setString(11, client.getCity());
+			ps.setString(12, client.getState());
+
 			int rows = ps.executeUpdate();
-			
-			if(rows > 0) {
+
+			if (rows > 0) {
 				System.out.println("\n" + rows + " rows affected!");
-			}else {
+			} else {
 				throw new DbException("Error, no rows affected!");
 			}
-		
+
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
 		} finally {
@@ -45,21 +60,56 @@ public class ClientDAO {
 
 	}
 
-	public Client makeClient(PreparedStatement ps, Client client) throws SQLException {
+	public List<Client> findAll() {
 
-		ps.setString(1, client.getName());
-		ps.setString(2, client.getCpf());
-		ps.setString(3, client.getEmail());
-		ps.setString(4, client.getPhone());
-		ps.setString(5, client.getCellphone());
-		ps.setString(6, client.getCep());
-		ps.setString(7, client.getAddress());
-		ps.setInt(8, client.getNumber());
-		ps.setString(9, client.getComplement());
-		ps.setString(10, client.getNeighborhood());
-		ps.setString(11, client.getCity());
-		ps.setString(12, client.getState());
-		return client;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		List<Client> list = new ArrayList<>();
+
+		try {
+			String sql = "select * from tb_client";
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Client c = new Client();
+				list.add(makeClient(rs, c));
+			}
+
+			if (list.size() > 0) {
+				System.out.println(list.size() + " rows affected!");
+				return list;
+			} else
+				throw new DbException("Error, no rows affected!");
+
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closePreparedStatement(ps);
+			DB.closeResultSet(rs);
+			
+		}
+
+	}
+
+	public Client makeClient(ResultSet rs, Client c) throws SQLException {
+
+		c.setId(rs.getInt("id"));
+		c.setName(rs.getString("name"));
+		c.setCpf(rs.getString("cpf"));
+		c.setEmail(rs.getString("email"));
+		c.setPhone(rs.getString("phone"));
+		c.setCellphone(rs.getString("cellphone"));
+		c.setCep(rs.getString("cep"));
+		c.setAddress(rs.getString("address"));
+		c.setNumber(rs.getInt("number"));
+		c.setComplement(rs.getString("complement"));
+		c.setNeighborhood(rs.getString("neighborhood"));
+		c.setCity(rs.getString("city"));
+		c.setState(rs.getString("state"));
+
+		return c;
 
 	}
 
