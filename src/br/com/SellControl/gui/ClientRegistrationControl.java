@@ -23,10 +23,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 public class ClientRegistrationControl implements Initializable {
-
-	
 
 	@FXML
 	private TextField txtCode;
@@ -64,7 +63,7 @@ public class ClientRegistrationControl implements Initializable {
 	private TableView<Client> tableViewClient;
 	@FXML
 	private TabPane tabPaneClient;
-	
+
 	@FXML
 	private TableColumn<Client, Integer> tableColumnCode;
 	@FXML
@@ -91,14 +90,12 @@ public class ClientRegistrationControl implements Initializable {
 	private TableColumn<Client, String> tableColumnCity;
 	@FXML
 	private TableColumn<Client, String> tableColumnState;
-	
+
 	@FXML
 	private Tab tabConsultCustomer;
 	@FXML
 	private Tab tabPersonalData;
-	
 
-	
 	@FXML
 	private Button btnNew;
 	@FXML
@@ -118,8 +115,9 @@ public class ClientRegistrationControl implements Initializable {
 		clientDAO.insert(client);
 		// Show a success message
 		Alerts.showAlert("Message", null, "Registered client!", AlertType.INFORMATION);
-		
+
 	}
+
 	@FXML
 	public void onBtnEditAction() {
 		// Create a client in model
@@ -143,46 +141,50 @@ public class ClientRegistrationControl implements Initializable {
 		// Show a success message
 		Alerts.showAlert("Message", null, "Deleted client!", AlertType.INFORMATION);
 	}
-	
+
 	@FXML
 	public void onConsultCustomerChanged() {
-		//IF consultCustomer is selected them load my tableView with all my clients, and show them.
-		if(tabConsultCustomer.isSelected()) 
+		// IF consultCustomer is selected them load my tableView with all my clients,
+		// and show them.
+		if (tabConsultCustomer.isSelected())
 			updateTableViewClient();
 	}
-	
-	/*When the mouse clicked in my TableView in tuple i want to go to 
-	 personal data tab with values.
+
+	/*
+	 * When the mouse clicked in my TableView in tuple i want to go to personal data
+	 * tab with values.
 	 */
 	@FXML
 	public void onTableViewClientMouseClicked() {
-		// Set the tab and change them.
-		SingleSelectionModel<Tab> selectionModel = tabPaneClient.getSelectionModel();
-		selectionModel.select(0);
-		
-		// A temporary variable for save the selected cells in TableView.
-		Client client = tableViewClient.getSelectionModel().getSelectedItem();
-		// In the personalDataTab i set these items.
-		txtCode.setText(client.getId().toString());
-		txtName.setText(client.getName().toString());
-		txtCPF.setText(client.getCpf().toString());
-		txtEmail.setText(client.getEmail().toString());
-		txtPhone.setText(client.getPhone().toString());
-		txtCellphone.setText(client.getCellphone().toString());
-		txtCEP.setText(client.getCep().toString());
-		txtAddress.setText(client.getAddress().toString());
-		txtNumber.setText(client.getNumber().toString());
-		txtComplement.setText(client.getComplement().toString());
-		txtNeighborhood.setText(client.getNeighborhood().toString());
-		txtCity.setText(client.getCity().toString());
-		comboBoxUF.setValue(client.getState());
+		//This function only will be executed if have an element in TableView, so avoiding an exception.
+		if (tableViewClient.getSelectionModel().getSelectedItem() != null) {
 
+			// Set the tab and change them.
+			SingleSelectionModel<Tab> selectionModel = tabPaneClient.getSelectionModel();
+			selectionModel.select(0);
+
+			// A temporary variable for save the selected cells in TableView.
+			Client client = tableViewClient.getSelectionModel().getSelectedItem();
+			// In the personalDataTab i set these items.
+			txtCode.setText(client.getId().toString());
+			txtName.setText(client.getName().toString());
+			txtCPF.setText(client.getCpf().toString());
+			txtEmail.setText(client.getEmail().toString());
+			txtPhone.setText(client.getPhone().toString());
+			txtCellphone.setText(client.getCellphone().toString());
+			txtCEP.setText(client.getCep().toString());
+			txtAddress.setText(client.getAddress().toString());
+			txtNumber.setText(client.getNumber().toString());
+			txtComplement.setText(client.getComplement().toString());
+			txtNeighborhood.setText(client.getNeighborhood().toString());
+			txtCity.setText(client.getCity().toString());
+			comboBoxUF.setValue(client.getState());
+
+		}
 	}
 
-
-
-
-	// Get the form and make client. This is for the insert sql command in btnSaveAction method.
+	// Get the form and make client. This is for the insert sql command in
+	// btnSaveAction method.
 	public Client makeClient() {
 
 		Integer code = Integer.parseInt(txtCode.getText());
@@ -203,13 +205,13 @@ public class ClientRegistrationControl implements Initializable {
 				city, state);
 
 	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		initializeComboBox();
 		initializeNodes();
 	}
-	
-	
+
 	public void initializeComboBox() {
 		// Include in my list all states from Brazil
 		List<String> UF = Arrays.asList("AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG",
@@ -221,13 +223,13 @@ public class ClientRegistrationControl implements Initializable {
 		comboBoxUF.getSelectionModel().select(16);
 	}
 
-	
-	/*When the FXML Panel start this method will be responsible for load
-	* the columns to save my client datas.
-	*/
+	/*
+	 * When the FXML Panel start this method will be responsible for load the
+	 * columns to save my client datas.
+	 */
 	public void initializeNodes() {
-		
-		//Initialize all columns at the my tableViewClient to insert data later.
+
+		// Initialize all columns at the my tableViewClient to insert data later.
 		tableColumnCode.setCellValueFactory(new PropertyValueFactory<>("id"));
 		tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
 		tableColumnCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
@@ -243,9 +245,9 @@ public class ClientRegistrationControl implements Initializable {
 		tableColumnState.setCellValueFactory(new PropertyValueFactory<>("state"));
 
 	}
-	
+
 	public void updateTableViewClient() {
-		
+
 		// Create a clientDao.
 		ClientDAO clientDAO = DaoFactory.createClientDAO();
 		// Create a client list and use sql command findAll.
@@ -254,7 +256,7 @@ public class ClientRegistrationControl implements Initializable {
 		obsListClient = FXCollections.observableArrayList(list);
 		// Set my table putting all clients him.
 		tableViewClient.setItems(obsListClient);
-		
+
 	}
 
 }
