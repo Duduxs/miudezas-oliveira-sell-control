@@ -64,7 +64,7 @@ public class ClientDAO {
 
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		
+
 		List<Client> list = new ArrayList<>();
 
 		try {
@@ -88,7 +88,77 @@ public class ClientDAO {
 		} finally {
 			DB.closePreparedStatement(ps);
 			DB.closeResultSet(rs);
-			
+
+		}
+
+	}
+
+	public void delete(Client client) {
+
+		PreparedStatement ps = null;
+
+		try {
+
+			String query = "delete from tb_client where id = ?";
+
+			ps = conn.prepareStatement(query);
+
+			ps.setInt(1, client.getId());
+
+			int rows = ps.executeUpdate();
+
+			if (rows > 0) {
+				System.out.println("\n" + rows + " rows affected!");
+			} else {
+				throw new DbException("Error, no rows affected!");
+			}
+
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closePreparedStatement(ps);
+		}
+
+	}
+
+	public void update(Client client) {
+
+		PreparedStatement ps = null;
+
+		try {
+
+			StringBuilder query = new StringBuilder();
+			query.append(
+					"update tb_client set name=?,cpf=?,email=?,phone=?,cellphone=?,cep=?,address=?,number=?,complement=?,neighborhood=?,city=?,state=?");
+			query.append("where id=?");
+			ps = conn.prepareStatement(query.toString());
+
+			ps.setString(1, client.getName());
+			ps.setString(2, client.getCpf());
+			ps.setString(3, client.getEmail());
+			ps.setString(4, client.getPhone());
+			ps.setString(5, client.getCellphone());
+			ps.setString(6, client.getCep());
+			ps.setString(7, client.getAddress());
+			ps.setInt(8, client.getNumber());
+			ps.setString(9, client.getComplement());
+			ps.setString(10, client.getNeighborhood());
+			ps.setString(11, client.getCity());
+			ps.setString(12, client.getState());
+			ps.setInt(13, client.getId());
+
+			int rows = ps.executeUpdate();
+
+			if (rows > 0) {
+				System.out.println("\n" + rows + " rows affected!");
+			} else {
+				throw new DbException("Error, no rows affected!");
+			}
+
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closePreparedStatement(ps);
 		}
 
 	}

@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="784.0" prefWidth="899.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.SellControl.gui.ClienteRegistrationControl">
+<AnchorPane fx:id="ClientRegistrationPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="784.0" prefWidth="899.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.SellControl.gui.ClientRegistrationControl">
    <children>
       <AnchorPane prefHeight="70.0" prefWidth="899.0" style="-fx-background-color: #0066cc;">
          <children>
@@ -27,9 +27,9 @@
             </Label>
          </children>
       </AnchorPane>
-      <TabPane layoutX="14.0" layoutY="88.0" prefHeight="533.0" prefWidth="872.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPaneClient" layoutX="14.0" layoutY="88.0" prefHeight="533.0" prefWidth="872.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Personal Data">
+          <Tab fx:id="tabPersonalData" text="Personal Data">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #ffffff;">
                      <children>
@@ -159,7 +159,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab fx:id="consultCustomer" onSelectionChanged="#onConsultCustomerChanged" text="Consult Customer">
+          <Tab fx:id="tabConsultCustomer" onSelectionChanged="#onConsultCustomerChanged" text="Consult Customer">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="504.0" prefWidth="891.0" style="-fx-background-color: #ffffff;">
                      <children>
@@ -174,7 +174,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <TableView fx:id="tableViewClient" layoutY="84.0" prefHeight="420.0" prefWidth="872.0">
+                        <TableView fx:id="tableViewClient" layoutY="84.0" onMouseClicked="#onTableViewClientMouseClicked" prefHeight="420.0" prefWidth="872.0">
                           <columns>
                             <TableColumn fx:id="tableColumnCode" prefWidth="75.0" text="Code" />
                             <TableColumn fx:id="tableColumnName" prefWidth="75.0" text="Name" />

@@ -16,14 +16,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class ClienteRegistrationControl implements Initializable {
+public class ClientRegistrationControl implements Initializable {
 
+	
 
 	@FXML
 	private TextField txtCode;
@@ -59,6 +62,8 @@ public class ClienteRegistrationControl implements Initializable {
 
 	@FXML
 	private TableView<Client> tableViewClient;
+	@FXML
+	private TabPane tabPaneClient;
 	
 	@FXML
 	private TableColumn<Client, Integer> tableColumnCode;
@@ -88,7 +93,11 @@ public class ClienteRegistrationControl implements Initializable {
 	private TableColumn<Client, String> tableColumnState;
 	
 	@FXML
-	private Tab consultCustomer;
+	private Tab tabConsultCustomer;
+	@FXML
+	private Tab tabPersonalData;
+	
+
 	
 	@FXML
 	private Button btnNew;
@@ -114,28 +123,56 @@ public class ClienteRegistrationControl implements Initializable {
 	
 	@FXML
 	public void onConsultCustomerChanged() {
-		//Load my tableView with all my clients, and show them.
-		if(consultCustomer.isSelected()) 
+		//IF consultCustomer is selected them load my tableView with all my clients, and show them.
+		if(tabConsultCustomer.isSelected()) 
 			updateTableViewClient();
-		
-		
 	}
+	
+	/*When the mouse clicked in my TableView in tuple i want to go to 
+	 personal data tab with values.
+	 */
+	@FXML
+	public void onTableViewClientMouseClicked() {
+		// Set the tab and change them.
+		SingleSelectionModel<Tab> selectionModel = tabPaneClient.getSelectionModel();
+		selectionModel.select(0);
+		
+		// A temporary variable for save the selected cells in TableView.
+		Client client = tableViewClient.getSelectionModel().getSelectedItem();
+		// In the personalDataTab i set these items.
+		txtCode.setText(client.getId().toString());
+		txtName.setText(client.getName().toString());
+		txtCPF.setText(client.getCpf().toString());
+		txtEmail.setText(client.getEmail().toString());
+		txtPhone.setText(client.getPhone().toString());
+		txtCellphone.setText(client.getCellphone().toString());
+		txtCEP.setText(client.getCep().toString());
+		txtAddress.setText(client.getAddress().toString());
+		txtNumber.setText(client.getNumber().toString());
+		txtComplement.setText(client.getComplement().toString());
+		txtNeighborhood.setText(client.getNeighborhood().toString());
+		txtCity.setText(client.getCity().toString());
+		comboBoxUF.setValue(client.getState());
 
+	}
+	
 
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		initializeComboBox();
+		initializeNodes();
+	}
+	
+	public void initializeComboBox() {
 		// Include in my list all states from Brazil
 		List<String> UF = Arrays.asList("AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG",
 				"PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO");
 
 		obsList = FXCollections.observableArrayList(UF);
 		comboBoxUF.setItems(obsList);
-		
-		/*When the FXML Panel start this method will be responsible for load
-		* the columns to save my client datas.
-		*/
-		initializeNodes();
+		// PE in comboBox will be select first
+		comboBoxUF.getSelectionModel().select(16);
 	}
 
 	// Get the form and make client. This is for the insert sql command in btnSaveAction method.
@@ -159,7 +196,9 @@ public class ClienteRegistrationControl implements Initializable {
 				city, state);
 
 	}
-	
+	/*When the FXML Panel start this method will be responsible for load
+	* the columns to save my client datas.
+	*/
 	public void initializeNodes() {
 		
 		//Initialize all columns at the my tableViewClient to insert data later.
@@ -176,6 +215,7 @@ public class ClienteRegistrationControl implements Initializable {
 		tableColumnNeighborhood.setCellValueFactory(new PropertyValueFactory<>("neighborhood"));
 		tableColumnCity.setCellValueFactory(new PropertyValueFactory<>("city"));
 		tableColumnState.setCellValueFactory(new PropertyValueFactory<>("state"));
+
 	}
 	
 	public void updateTableViewClient() {
