@@ -120,6 +120,29 @@ public class ClientRegistrationControl implements Initializable {
 		Alerts.showAlert("Message", null, "Registered client!", AlertType.INFORMATION);
 		
 	}
+	@FXML
+	public void onBtnEditAction() {
+		// Create a client in model
+		Client client = makeClient();
+		// Create a client in Dao
+		ClientDAO clientDAO = DaoFactory.createClientDAO();
+		// Use SQL Command
+		clientDAO.update(client);
+		// Show a success message
+		Alerts.showAlert("Message", null, "Edited client!", AlertType.INFORMATION);
+	}
+
+	@FXML
+	public void onBtnDeleteAction() {
+		// Create a client in model
+		Client client = makeClient();
+		// Create a client in Dao
+		ClientDAO clientDAO = DaoFactory.createClientDAO();
+		// Use SQL Command
+		clientDAO.delete(client);
+		// Show a success message
+		Alerts.showAlert("Message", null, "Deleted client!", AlertType.INFORMATION);
+	}
 	
 	@FXML
 	public void onConsultCustomerChanged() {
@@ -155,25 +178,9 @@ public class ClientRegistrationControl implements Initializable {
 		comboBoxUF.setValue(client.getState());
 
 	}
-	
 
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		initializeComboBox();
-		initializeNodes();
-	}
-	
-	public void initializeComboBox() {
-		// Include in my list all states from Brazil
-		List<String> UF = Arrays.asList("AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG",
-				"PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO");
 
-		obsList = FXCollections.observableArrayList(UF);
-		comboBoxUF.setItems(obsList);
-		// PE in comboBox will be select first
-		comboBoxUF.getSelectionModel().select(16);
-	}
 
 	// Get the form and make client. This is for the insert sql command in btnSaveAction method.
 	public Client makeClient() {
@@ -196,6 +203,25 @@ public class ClientRegistrationControl implements Initializable {
 				city, state);
 
 	}
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		initializeComboBox();
+		initializeNodes();
+	}
+	
+	
+	public void initializeComboBox() {
+		// Include in my list all states from Brazil
+		List<String> UF = Arrays.asList("AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG",
+				"PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO");
+
+		obsList = FXCollections.observableArrayList(UF);
+		comboBoxUF.setItems(obsList);
+		// PE in comboBox will be select first
+		comboBoxUF.getSelectionModel().select(16);
+	}
+
+	
 	/*When the FXML Panel start this method will be responsible for load
 	* the columns to save my client datas.
 	*/
