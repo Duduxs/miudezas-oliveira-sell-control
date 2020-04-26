@@ -118,7 +118,7 @@ public class ClientDAO {
 
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
-			//If have code field empty, them throw this exception
+			// If have code field empty, them throw this exception
 		} catch (DbException e) {
 			throw new ControlException(e.getMessage(), "message", null, "Code it has to be the same", AlertType.ERROR);
 
@@ -164,12 +164,44 @@ public class ClientDAO {
 
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
-			//If have code field empty, them throw this exception
+			// If have code field empty, them throw this exception
 		} catch (DbException e) {
 			throw new ControlException(e.getMessage(), "message", null, "Code it has to be the same", AlertType.ERROR);
 
 		} finally {
 			DB.closePreparedStatement(ps);
+		}
+
+	}
+
+	public List<Client> findbyName(String name) {
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		List<Client> list = new ArrayList<>();
+
+		try {
+			String sql = "select * from tb_client where name like ?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, "%" + name + "%");
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Client c = new Client();
+				list.add(makeClient(rs, c));
+			}
+
+			return list;
+
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+
+		finally {
+			DB.closePreparedStatement(ps);
+			DB.closeResultSet(rs);
+
 		}
 
 	}

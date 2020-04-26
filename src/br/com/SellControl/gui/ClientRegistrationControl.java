@@ -53,6 +53,10 @@ public class ClientRegistrationControl implements Initializable {
 	@FXML
 	private TextField txtComplement;
 
+	
+	@FXML
+	private TextField txtSearch;
+	
 	@FXML
 	private ComboBox<String> comboBoxUF;
 	// Variable for save all my States/UF in comboBox.
@@ -64,6 +68,7 @@ public class ClientRegistrationControl implements Initializable {
 	private TableView<Client> tableViewClient;
 	@FXML
 	private TabPane tabPaneClient;
+
 
 	@FXML
 	private TableColumn<Client, Integer> tableColumnCode;
@@ -105,9 +110,11 @@ public class ClientRegistrationControl implements Initializable {
 	private Button btnSave;
 	@FXML
 	private Button btnDelete;
+	@FXML
+	private Button btnSearch;
 
 	@FXML
-	public void onBtnSaveAction() {
+	private void onBtnSaveAction() {
 		// Create a client in model
 		Client client = makeClient();
 		// Create a client in Dao
@@ -120,7 +127,7 @@ public class ClientRegistrationControl implements Initializable {
 	}
 
 	@FXML
-	public void onBtnEditAction() {
+	private void onBtnEditAction() {
 		// Create a client in model
 		Client client = makeClient();
 		// Create a client in Dao
@@ -130,11 +137,10 @@ public class ClientRegistrationControl implements Initializable {
 		// Show a success message
 		Alerts.showAlert("Message", null, "Edited client!", AlertType.INFORMATION);
 
-	
 	}
 
 	@FXML
-	public void onBtnDeleteAction() {
+	private void onBtnDeleteAction() {
 		// Create a client in model
 		Client client = makeClient();
 		// Create a client in Dao
@@ -144,9 +150,33 @@ public class ClientRegistrationControl implements Initializable {
 		// Show a success message
 		Alerts.showAlert("Message", null, "Deleted client!", AlertType.INFORMATION);
 	}
+	//Search a list of client on the Consult Customer tab at the btn Search
+	@FXML
+	private void onBtnSearchAction() {
+		// Create a clientDao.
+		ClientDAO clientDAO = DaoFactory.createClientDAO();
+		// Create a client list and use sql command findbyName
+		List<Client> list = clientDAO.findbyName(txtSearch.getText());
+		// Now load all my clients from insert to the my obsListClient.
+		obsListClient = FXCollections.observableArrayList(list);
+		// Set my table putting all clients him.
+		tableViewClient.setItems(obsListClient);
+	}
+	//Search a list of client on the Consult Customer tab at the txtSearch only tipping
+	@FXML
+	private void onTxtSearchKeyPressedAction() {
+		// Create a clientDao.
+		ClientDAO clientDAO = DaoFactory.createClientDAO();
+		// Create a client list and use sql command findbyName
+		List<Client> list = clientDAO.findbyName(txtSearch.getText());
+		// Now load all my clients from insert to the my obsListClient.
+		obsListClient = FXCollections.observableArrayList(list);
+		// Set my table putting all clients him.
+		tableViewClient.setItems(obsListClient);
+	}
 
 	@FXML
-	public void onConsultCustomerChanged() {
+	private void onConsultCustomerChanged() {
 		// IF consultCustomer is selected them load my tableView with all my clients,
 		// and show them.
 		if (tabConsultCustomer.isSelected())
@@ -158,7 +188,7 @@ public class ClientRegistrationControl implements Initializable {
 	 * tab with values.
 	 */
 	@FXML
-	public void onTableViewClientMouseClicked() {
+	private void onTableViewClientMouseClicked() {
 		// This function only will be executed if have an element in TableView, so
 		// avoiding an exception.
 		if (tableViewClient.getSelectionModel().getSelectedItem() != null) {
@@ -189,34 +219,31 @@ public class ClientRegistrationControl implements Initializable {
 
 	// Get the form and make client. This is for the insert sql command in
 	// btnSaveAction method.
-	public Client makeClient() {
+	private Client makeClient() {
 		try {
-		Integer code = Integer.parseInt(txtCode.getText());
-		String name = txtName.getText();
-		String cpf = txtCPF.getText();
-		String email = txtEmail.getText();
-		String phone = txtPhone.getText();
-		String cellphone = txtCellphone.getText();
-		String cep = txtCEP.getText();
-		String address = txtAddress.getText();
-		Integer number = Integer.parseInt(txtNumber.getText());
-		String complement = txtComplement.getText();
-		String neighborhood = txtNeighborhood.getText();
-		String city = txtCity.getText();
-		String state = comboBoxUF.getSelectionModel().getSelectedItem();
+			Integer code = Integer.parseInt(txtCode.getText());
+			String name = txtName.getText();
+			String cpf = txtCPF.getText();
+			String email = txtEmail.getText();
+			String phone = txtPhone.getText();
+			String cellphone = txtCellphone.getText();
+			String cep = txtCEP.getText();
+			String address = txtAddress.getText();
+			Integer number = Integer.parseInt(txtNumber.getText());
+			String complement = txtComplement.getText();
+			String neighborhood = txtNeighborhood.getText();
+			String city = txtCity.getText();
+			String state = comboBoxUF.getSelectionModel().getSelectedItem();
 
-		return new Client(code, name, cpf, email, phone, cellphone, cep, address, number, complement, neighborhood,
-				city, state);
+			return new Client(code, name, cpf, email, phone, cellphone, cep, address, number, complement, neighborhood,
+					city, state);
 		}
-		//If have any field empty, them throw this exception
-		catch(NumberFormatException e) {
+		// If have any field empty, them throw this exception
+		catch (NumberFormatException e) {
 			throw new ControlException(e.getMessage(), "message", null, "fields cannot be empty", AlertType.ERROR);
 		}
 
-	
-
 	}
-
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -226,7 +253,7 @@ public class ClientRegistrationControl implements Initializable {
 
 	}
 
-	public void initializeComboBox() {
+	private void initializeComboBox() {
 		// Include in my list all states from Brazil
 		List<String> UF = Arrays.asList("AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG",
 				"PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO");
@@ -241,7 +268,7 @@ public class ClientRegistrationControl implements Initializable {
 	 * When the FXML Panel start this method will be responsible for load the
 	 * columns to save my client datas.
 	 */
-	public void initializeNodes() {
+	private void initializeNodes() {
 
 		// Initialize all columns at the my tableViewClient to insert data later.
 		tableColumnCode.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -259,8 +286,9 @@ public class ClientRegistrationControl implements Initializable {
 		tableColumnState.setCellValueFactory(new PropertyValueFactory<>("state"));
 
 	}
+
 	// Use the mask in the some form data.
-	public void initializeMask() {
+	private void initializeMask() {
 		Mask.maskCEP(txtCEP);
 		Mask.maskCPF(txtCPF);
 		Mask.maskPhone(txtPhone);
@@ -268,7 +296,7 @@ public class ClientRegistrationControl implements Initializable {
 
 	}
 
-	public void updateTableViewClient() {
+	private void updateTableViewClient() {
 
 		// Create a clientDao.
 		ClientDAO clientDAO = DaoFactory.createClientDAO();

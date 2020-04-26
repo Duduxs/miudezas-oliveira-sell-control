@@ -168,8 +168,8 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="66.0" layoutY="40.0" prefHeight="25.0" prefWidth="386.0" />
-                        <Button layoutX="468.0" layoutY="37.0" mnemonicParsing="false" style="-fx-background-radius: 100;" text="Search">
+                        <TextField fx:id="txtSearch" layoutX="66.0" layoutY="40.0" onKeyPressed="#onTxtSearchKeyPressedAction" prefHeight="25.0" prefWidth="386.0" />
+                        <Button fx:id="btnSearch" layoutX="468.0" layoutY="37.0" mnemonicParsing="false" onAction="#onBtnSearchAction" style="-fx-background-radius: 100;" text="Search">
                            <font>
                               <Font size="14.0" />
                            </font>
