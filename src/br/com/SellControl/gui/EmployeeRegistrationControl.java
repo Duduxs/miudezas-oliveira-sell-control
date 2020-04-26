@@ -451,6 +451,9 @@ public class EmployeeRegistrationControl implements Initializable {
 			txtNeighborhood.setText(webServiceCep.getBairro());
 			comboBoxUF.getSelectionModel().select(webServiceCep.getUf());
 		}
+		else {
+			Alerts.showAlert("message", null, "Digit a valid cpf", AlertType.ERROR);
+		}
 	}
 
 }

@@ -327,7 +327,6 @@ public class ClientRegistrationControl implements Initializable {
 		initializeNodes();
 		initializeMask();
 		initializeConstraints();
-	
 
 	}
 
@@ -362,7 +361,6 @@ public class ClientRegistrationControl implements Initializable {
 		tableColumnNeighborhood.setCellValueFactory(new PropertyValueFactory<>("neighborhood"));
 		tableColumnCity.setCellValueFactory(new PropertyValueFactory<>("city"));
 		tableColumnState.setCellValueFactory(new PropertyValueFactory<>("state"));
-	
 
 	}
 
@@ -374,6 +372,7 @@ public class ClientRegistrationControl implements Initializable {
 		Mask.maskPhone(txtCellphone);
 
 	}
+
 	// Set max lenght for my TextFields
 	private void initializeConstraints() {
 		Constraints.setTextFieldMaxLength(txtName, 20);
@@ -410,6 +409,8 @@ public class ClientRegistrationControl implements Initializable {
 			txtCity.setText(webServiceCep.getCidade());
 			txtNeighborhood.setText(webServiceCep.getBairro());
 			comboBoxUF.getSelectionModel().select(webServiceCep.getUf());
+		}else {
+			Alerts.showAlert("message", null, "Digit a valid cpf", AlertType.ERROR);
 		}
 	}
 
