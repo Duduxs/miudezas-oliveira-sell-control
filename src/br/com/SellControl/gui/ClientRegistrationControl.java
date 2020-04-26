@@ -53,10 +53,9 @@ public class ClientRegistrationControl implements Initializable {
 	@FXML
 	private TextField txtComplement;
 
-	
 	@FXML
 	private TextField txtSearch;
-	
+
 	@FXML
 	private ComboBox<String> comboBoxUF;
 	// Variable for save all my States/UF in comboBox.
@@ -68,7 +67,6 @@ public class ClientRegistrationControl implements Initializable {
 	private TableView<Client> tableViewClient;
 	@FXML
 	private TabPane tabPaneClient;
-
 
 	@FXML
 	private TableColumn<Client, Integer> tableColumnCode;
@@ -103,7 +101,7 @@ public class ClientRegistrationControl implements Initializable {
 	private Tab tabPersonalData;
 
 	@FXML
-	private Button btnNew;
+	private Button btnClean;
 	@FXML
 	private Button btnEdit;
 	@FXML
@@ -111,16 +109,22 @@ public class ClientRegistrationControl implements Initializable {
 	@FXML
 	private Button btnDelete;
 	@FXML
-	private Button btnSearch;
+	private Button btnSearchConsultCustomer;
+	@FXML
+	private Button btnSearchPersonalData;
 
 	@FXML
 	private void onBtnSaveAction() {
 		// Create a client in model
 		Client client = makeClient();
+		// The code don't need a value from textField.
+		txtCode.setText("1");
 		// Create a client in Dao
 		ClientDAO clientDAO = DaoFactory.createClientDAO();
 		// Use SQL Command
 		clientDAO.insert(client);
+		// Clean the elements in TextField.
+		onBtnCleanAction();
 		// Show a success message
 		Alerts.showAlert("Message", null, "Registered client!", AlertType.INFORMATION);
 
@@ -130,10 +134,14 @@ public class ClientRegistrationControl implements Initializable {
 	private void onBtnEditAction() {
 		// Create a client in model
 		Client client = makeClient();
+		// Set an id getting the element from TableView
+		client.setId(Integer.parseInt(txtCode.getText()));
 		// Create a client in Dao
 		ClientDAO clientDAO = DaoFactory.createClientDAO();
 		// Use SQL Command
 		clientDAO.update(client);
+		// Clean the elements in TextField.
+		onBtnCleanAction();
 		// Show a success message
 		Alerts.showAlert("Message", null, "Edited client!", AlertType.INFORMATION);
 
@@ -143,16 +151,42 @@ public class ClientRegistrationControl implements Initializable {
 	private void onBtnDeleteAction() {
 		// Create a client in model
 		Client client = makeClient();
+		// Set an id getting the element from TableView
+		client.setId(Integer.parseInt(txtCode.getText()));
 		// Create a client in Dao
 		ClientDAO clientDAO = DaoFactory.createClientDAO();
 		// Use SQL Command
 		clientDAO.delete(client);
+		// Clean the elements in TextField.
+		onBtnCleanAction();
 		// Show a success message
 		Alerts.showAlert("Message", null, "Deleted client!", AlertType.INFORMATION);
 	}
-	//Search a list of client on the Consult Customer tab at the btn Search
+
 	@FXML
-	private void onBtnSearchAction() {
+	private void onBtnCleanAction() {
+		// "" = not change
+		// Clean all elements in TextField.
+
+		txtCode.setText("");
+		txtName.setText(null);
+		txtEmail.setText(null);
+		txtCEP.setText("");
+		txtCPF.setText("");
+		txtAddress.setText(null);
+		txtNeighborhood.setText(null);
+		txtCity.setText(null);
+		txtCellphone.setText("");
+		txtPhone.setText("");
+		txtNumber.setText(null);
+		txtComplement.setText(null);
+		comboBoxUF.getSelectionModel().select(null);
+
+	}
+
+	// Search a list of client on the Consult Customer tab at the btn Search
+	@FXML
+	private void onBtnSearchConsultCustomerAction() {
 		// Create a clientDao.
 		ClientDAO clientDAO = DaoFactory.createClientDAO();
 		// Create a client list and use sql command findbyName
@@ -162,7 +196,23 @@ public class ClientRegistrationControl implements Initializable {
 		// Set my table putting all clients him.
 		tableViewClient.setItems(obsListClient);
 	}
-	//Search a list of client on the Consult Customer tab at the txtSearch only tipping
+
+	/*
+	 * When i'm in the first tab and i click in search, this method will be throw
+	 * and it will fill all TextFields on first tab.
+	 */
+	@FXML
+	private void onBtnSearchPersonalDataAction() {
+		// Create a clientDao.
+		ClientDAO clientDAO = DaoFactory.createClientDAO();
+		// Create a client list and use sql command findClientByName
+		Client c = clientDAO.findClientByName(txtName.getText());
+		setClient(c);
+
+	}
+
+	// Search a list of client on the Consult Customer tab at the txtSearch only
+	// tipping
 	@FXML
 	private void onTxtSearchKeyPressedAction() {
 		// Create a clientDao.
@@ -221,7 +271,8 @@ public class ClientRegistrationControl implements Initializable {
 	// btnSaveAction method.
 	private Client makeClient() {
 		try {
-			Integer code = Integer.parseInt(txtCode.getText());
+			// The code don't need a value from textField.
+			Integer code = Integer.parseInt("1");
 			String name = txtName.getText();
 			String cpf = txtCPF.getText();
 			String email = txtEmail.getText();
@@ -245,6 +296,26 @@ public class ClientRegistrationControl implements Initializable {
 
 	}
 
+	// This method exists for set all form (TextFields) on my first tab, using the
+	// attributes of the client.
+	private void setClient(Client c) {
+
+		txtCode.setText(c.getId().toString());
+		txtName.setText(c.getName());
+		txtEmail.setText(c.getEmail());
+		txtCEP.setText(c.getCep());
+		txtCPF.setText(c.getCpf());
+		txtAddress.setText(c.getAddress());
+		txtNeighborhood.setText(c.getNeighborhood());
+		txtCity.setText(c.getCity());
+		txtCellphone.setText(c.getCellphone());
+		txtPhone.setText(c.getPhone());
+		txtNumber.setText(c.getNumber().toString());
+		txtComplement.setText(c.getComplement());
+		comboBoxUF.getSelectionModel().select(c.getState());
+	}
+
+	// Method for intialize something in start of the program
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		initializeComboBox();
@@ -296,6 +367,7 @@ public class ClientRegistrationControl implements Initializable {
 
 	}
 
+	// Update my TableView, So, having the data from the columns.
 	private void updateTableViewClient() {
 
 		// Create a clientDao.

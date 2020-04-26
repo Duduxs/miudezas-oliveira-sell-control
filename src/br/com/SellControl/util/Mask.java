@@ -32,6 +32,14 @@ public class Mask {
 				}
 			}
 		});
+
+		textField.setOnKeyReleased((KeyEvent evt) -> {
+
+			if (!textField.getText().matches("\\d-*")) {
+				textField.setText(textField.getText().replaceAll("[^\\d-]", ""));
+				textField.positionCaret(textField.getText().length());
+			}
+		});
 	}
 
 	public static void maskCPF(TextField textField) {
@@ -78,70 +86,79 @@ public class Mask {
 
 			}
 		});
+		textField.setOnKeyReleased((KeyEvent evt) -> {
+
+			if (!textField.getText().matches("\\d.-*")) {
+				textField.setText(textField.getText().replaceAll("[^\\d.-]", ""));
+				textField.positionCaret(textField.getText().length());
+			}
+		});
 
 	}
 
 	public static void maskPhone(TextField textField) {
 
-		  textField.setOnKeyTyped((KeyEvent event) -> {
-			  //Only numbers
-	            if("0123456789".contains(event.getCharacter())==false){
-	                event.consume();
-	            }
-	           
-	            if(event.getCharacter().trim().length()==0){ // erasing
-	        		// divide my string, spare the "-" and "." from numbers in this moment.
-	                if(textField.getText().length()==10&&textField.getText().substring(9,10).equals("-")){
-	                    textField.setText(textField.getText().substring(0,9));
-	                    textField.positionCaret(textField.getText().length());
-	                }
-	                if(textField.getText().length()==9&&textField.getText().substring(8,9).equals("-")){
-	                    textField.setText(textField.getText().substring(0,8));
-	                    textField.positionCaret(textField.getText().length());
-	                }
-	                if(textField.getText().length()==4){
-	                    textField.setText(textField.getText().substring(0,3));
-	                    textField.positionCaret(textField.getText().length());
-	                }
-	                if(textField.getText().length()==1){
-	                    textField.setText("");
-	                }
-	               
-	            }else{ //typing
-	            	// this if allow only 15 char in phone (Including the " " )
-	                if(textField.getText().length()==15) event.consume();
-	            	// now add "-" in my numbers in correct position.
-	                if(textField.getText().length()==0){
-	                    textField.setText("("+event.getCharacter());
-	                    textField.positionCaret(textField.getText().length());
-	                    event.consume();
-	                }
-	                if(textField.getText().length()==3){
-	                	// Set a space " " for better format
-	                    textField.setText(textField.getText()+") "+event.getCharacter());
-	                    textField.positionCaret(textField.getText().length());
-	                    event.consume();
-	                }
-	                if(textField.getText().length()==9){
-	                    textField.setText(textField.getText()+"-"+event.getCharacter());
-	                    textField.positionCaret(textField.getText().length());
-	                    event.consume();
-	                }
-	                if(textField.getText().length()==10&&textField.getText().substring(9,10)!="-"){
-	                    textField.setText(textField.getText()+"-"+event.getCharacter());
-	                    textField.positionCaret(textField.getText().length());
-	                    event.consume();
-	                }
-	                if(textField.getText().length()==14&&textField.getText().substring(9,10).equals("-")){
-	                    textField.setText(textField.getText().substring(0,9)+textField.getText().substring(10,11)+"-"+textField.getText().substring(11,14)+event.getCharacter());
-	                    textField.positionCaret(textField.getText().length());
-	                    event.consume();
-	                }
-	               
-	            }
-	           
-	        });
-	    
-	               
-	    }
+		textField.setOnKeyTyped((KeyEvent event) -> {
+			// Only numbers
+			if ("0123456789".contains(event.getCharacter()) == false) {
+				event.consume();
+			}
+
+			if (event.getCharacter().trim().length() == 0) { // erasing
+				// divide my string, spare the "-" and "." from numbers in this moment.
+				if (textField.getText().length() == 10 && textField.getText().substring(9, 10).equals("-")) {
+					textField.setText(textField.getText().substring(0, 9));
+					textField.positionCaret(textField.getText().length());
+				}
+				if (textField.getText().length() == 9 && textField.getText().substring(8, 9).equals("-")) {
+					textField.setText(textField.getText().substring(0, 8));
+					textField.positionCaret(textField.getText().length());
+				}
+				if (textField.getText().length() == 4) {
+					textField.setText(textField.getText().substring(0, 3));
+					textField.positionCaret(textField.getText().length());
+				}
+				if (textField.getText().length() == 1) {
+					textField.setText("");
+				}
+
+			} else { // typing
+						// this if allow only 15 char in phone (Including the " " )
+				if (textField.getText().length() == 15)
+					event.consume();
+				// now add "-" in my numbers in correct position.
+				if (textField.getText().length() == 0) {
+					textField.setText("(" + event.getCharacter());
+					textField.positionCaret(textField.getText().length());
+					event.consume();
+				}
+				if (textField.getText().length() == 3) {
+					// Set a space " " for better format
+					textField.setText(textField.getText() + ") " + event.getCharacter());
+					textField.positionCaret(textField.getText().length());
+					event.consume();
+				}
+				if (textField.getText().length() == 9) {
+					textField.setText(textField.getText() + "-" + event.getCharacter());
+					textField.positionCaret(textField.getText().length());
+					event.consume();
+				}
+				if (textField.getText().length() == 10 && textField.getText().substring(9, 10) != "-") {
+					textField.setText(textField.getText() + "-" + event.getCharacter());
+					textField.positionCaret(textField.getText().length());
+					event.consume();
+				}
+				if (textField.getText().length() == 14 && textField.getText().substring(9, 10).equals("-")) {
+					textField.setText(textField.getText().substring(0, 9) + textField.getText().substring(10, 11) + "-"
+							+ textField.getText().substring(11, 14) + event.getCharacter());
+					textField.positionCaret(textField.getText().length());
+					event.consume();
+				}
+
+			}
+
+		});
+
+
+	}
 }

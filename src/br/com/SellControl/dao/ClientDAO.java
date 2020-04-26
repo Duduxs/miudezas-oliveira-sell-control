@@ -48,9 +48,9 @@ public class ClientDAO {
 
 			int rows = ps.executeUpdate();
 
-			if (rows > 0) 
+			if (rows <= 0)
 				throw new DbException("Error, no rows affected!");
-		
+
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
 
@@ -77,9 +77,9 @@ public class ClientDAO {
 				list.add(makeClient(rs, c));
 			}
 
-			if (list.size() > 0) 
+			if (list.size() > 0)
 				return list;
-			 else
+			else
 				throw new DbException("Error, no rows affected!");
 
 		} catch (SQLException e) {
@@ -106,9 +106,8 @@ public class ClientDAO {
 
 			int rows = ps.executeUpdate();
 
-			if (rows <= 0) 
+			if (rows <= 0)
 				throw new DbException("Error, no rows affected!");
-			
 
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
@@ -150,11 +149,10 @@ public class ClientDAO {
 
 			int rows = ps.executeUpdate();
 
-			if (rows <= 0) 
+			if (rows <= 0)
 				throw new DbException("Error, no rows affected!");
-			
-		}
-		 catch (SQLException e) {
+
+		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
 			// If have code field empty, them throw this exception
 		} catch (DbException e) {
@@ -165,7 +163,6 @@ public class ClientDAO {
 		}
 
 	}
-		
 
 	public List<Client> findbyName(String name) {
 
@@ -186,6 +183,37 @@ public class ClientDAO {
 			}
 
 			return list;
+
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+
+		finally {
+			DB.closePreparedStatement(ps);
+			DB.closeResultSet(rs);
+
+		}
+
+	}
+
+	// This method will be used in first tab.
+	public Client findClientByName(String name) {
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			Client c = new Client();
+			String sql = "select * from tb_client where name like ?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, "%" + name + "%");
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				c = makeClient(rs, c);
+			}
+
+			return c;
 
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
