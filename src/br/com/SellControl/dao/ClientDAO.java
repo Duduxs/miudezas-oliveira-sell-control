@@ -196,7 +196,7 @@ public class ClientDAO {
 
 	}
 
-	// This method will be used in first tab.
+	// This method will be used in first tab, and his search is ' name = ? ' otherwise the user have to fill the whole name.
 	public Client findClientByName(String name) {
 
 		PreparedStatement ps = null;
@@ -204,9 +204,9 @@ public class ClientDAO {
 
 		try {
 			Client c = new Client();
-			String sql = "select * from tb_client where name like ?";
+			String sql = "select * from tb_client where name = ?";
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, "%" + name + "%");
+			ps.setString(1, name);
 			rs = ps.executeQuery();
 
 			while (rs.next()) {

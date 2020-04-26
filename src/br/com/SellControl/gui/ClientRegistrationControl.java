@@ -299,7 +299,7 @@ public class ClientRegistrationControl implements Initializable {
 	// This method exists for set all form (TextFields) on my first tab, using the
 	// attributes of the client.
 	private void setClient(Client c) {
-
+		try {
 		txtCode.setText(c.getId().toString());
 		txtName.setText(c.getName());
 		txtEmail.setText(c.getEmail());
@@ -313,6 +313,10 @@ public class ClientRegistrationControl implements Initializable {
 		txtNumber.setText(c.getNumber().toString());
 		txtComplement.setText(c.getComplement());
 		comboBoxUF.getSelectionModel().select(c.getState());
+		}
+		catch(NullPointerException e) {
+			throw new ControlException(e.getMessage(), "message", null, "Client not found!", AlertType.ERROR);
+		}
 	}
 
 	// Method for intialize something in start of the program
