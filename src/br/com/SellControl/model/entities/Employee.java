@@ -10,10 +10,26 @@ public class Employee extends Client {
 
 	}
 
-	public Employee(String password, String office, String acess_level) {
+	public Employee(Integer id, String name, String cpf, String email, String password, String office,
+			String acess_level, String phone, String cellphone, String cep, String address, Integer number,
+			String complement, String neighborhood, String city, String state) {
+		
+		this.setId(id);
+		this.setName(name);
+		this.setCpf(cpf);
+		this.setEmail(email);
 		this.password = password;
 		this.office = office;
 		this.acess_level = acess_level;
+		this.setPhone(phone);
+		this.setCellphone(cellphone);
+		this.setCep(cep);
+		this.setAddress(address);
+		this.setNumber(number);
+		this.setComplement(complement);
+		this.setNeighborhood(neighborhood);
+		this.setCity(city);
+		this.setState(state);
 	}
 
 	public String getPassword() {

@@ -160,7 +160,7 @@
                               <ComboBox fx:id="comboBoxUF" prefWidth="60.0" GridPane.columnIndex="4" GridPane.rowIndex="7" />
                            </children>
                         </GridPane>
-                        <Pane focusTraversable="true" layoutX="858.0" prefHeight="557.0" prefWidth="489.0" style="-fx-background-color: #9c9998; -fx-background-radius: 10; -fx-region-border: #9c9998;">
+                        <Pane focusTraversable="true" layoutX="858.0" prefHeight="557.0" prefWidth="489.0" style="-fx-background-color: #9c9998; -fx-background-radius: 10;">
                            <children>
                               <HBox alignment="CENTER" layoutX="51.0" layoutY="104.0" prefHeight="50.0" prefWidth="368.0" spacing="20.0">
                                  <children>

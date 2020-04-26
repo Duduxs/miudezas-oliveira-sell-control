@@ -5,10 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import br.com.SellControl.dao.ClientDAO;
 import br.com.SellControl.dao.DaoFactory;
+import br.com.SellControl.dao.EmployeeDAO;
 import br.com.SellControl.db.ControlException;
-import br.com.SellControl.model.entities.Client;
+import br.com.SellControl.model.entities.Employee;
 import br.com.SellControl.util.Alerts;
 import br.com.SellControl.util.Constraints;
 import br.com.SellControl.util.Mask;
@@ -33,7 +33,7 @@ public class EmployeeRegistrationControl implements Initializable {
 
 	@FXML
 	private PasswordField txtPassword;
-	
+
 	@FXML
 	private TextField txtOffice;
 	@FXML
@@ -68,56 +68,54 @@ public class EmployeeRegistrationControl implements Initializable {
 	private ComboBox<String> comboBoxUF;
 	@FXML
 	ComboBox<String> comboBoxAcess_level;
-	
+
 	// Variable for save all my States/UF in comboBox.
 	private ObservableList<String> obsList;
-	// Variable for save all my Client in tableViewEmployee.
-	private ObservableList<Client> obsListClient;
+	// Variable for save all my Employee in tableViewEmployee.
+	private ObservableList<Employee> obsListEmployee;
 	// Variable for save all my AcessLevel in comboBox.
 	private ObservableList<String> obsListAcess;
-	
-
 
 	@FXML
-	private TableView<Client> tableViewEmployee;
+	private TableView<Employee> tableViewEmployee;
 	@FXML
 	private TabPane tabPaneEmployee;
 
 	@FXML
-	private TableColumn<Client, Integer> tableColumnCode;
+	private TableColumn<Employee, Integer> tableColumnCode;
 	@FXML
-	private TableColumn<Client, String> tableColumnName;
+	private TableColumn<Employee, String> tableColumnName;
 	@FXML
-	private TableColumn<Client, String> tableColumnCPF;
+	private TableColumn<Employee, String> tableColumnCPF;
 	@FXML
-	private TableColumn<Client, String> tableColumnEmail;
+	private TableColumn<Employee, String> tableColumnEmail;
 	@FXML
-	private TableColumn<Client, String> tableColumnPhone;
+	private TableColumn<Employee, String> tableColumnPhone;
 	@FXML
-	private TableColumn<Client, String> tableColumnCellphone;
+	private TableColumn<Employee, String> tableColumnCellphone;
 	@FXML
-	private TableColumn<Client, String> tableColumnCEP;
+	private TableColumn<Employee, String> tableColumnCEP;
 	@FXML
-	private TableColumn<Client, String> tableColumnAddress;
+	private TableColumn<Employee, String> tableColumnAddress;
 	@FXML
-	private TableColumn<Client, Integer> tableColumnNumber;
+	private TableColumn<Employee, Integer> tableColumnNumber;
 	@FXML
-	private TableColumn<Client, String> tableColumnComplement;
+	private TableColumn<Employee, String> tableColumnComplement;
 	@FXML
-	private TableColumn<Client, String> tableColumnNeighborhood;
+	private TableColumn<Employee, String> tableColumnNeighborhood;
 	@FXML
-	private TableColumn<Client, String> tableColumnCity;
+	private TableColumn<Employee, String> tableColumnCity;
 	@FXML
-	private TableColumn<Client, String> tableColumnState;
+	private TableColumn<Employee, String> tableColumnState;
 	@FXML
-	private TableColumn<Client, String> tableColumnPassword;
+	private TableColumn<Employee, String> tableColumnPassword;
 	@FXML
-	private TableColumn<Client, String> tableColumnOffice;
+	private TableColumn<Employee, String> tableColumnOffice;
 	@FXML
-	private TableColumn<Client, String> tableColumnAcessLevel;
+	private TableColumn<Employee, String> tableColumnAcessLevel;
 
 	@FXML
-	private Tab tabConsultCustomer;
+	private Tab tabConsultEmployee;
 	@FXML
 	private Tab tabPersonalData;
 
@@ -130,60 +128,58 @@ public class EmployeeRegistrationControl implements Initializable {
 	@FXML
 	private Button btnDelete;
 	@FXML
-	private Button btnSearchConsultCustomer;
+	private Button btnSearchConsultEmployee;
 	@FXML
 	private Button btnSearchPersonalData;
 
-
-
 	@FXML
 	private void onBtnSaveAction() {
-		// Create a client in model
-		Client client = makeClient();
+		// Create a employee in model
+		Employee employee = makeEmployee();
 		// The code don't need a value from textField.
 		txtCode.setText("1");
-		// Create a client in Dao
-		ClientDAO clientDAO = DaoFactory.createClientDAO();
+		// Create a employee in Dao
+		EmployeeDAO employeeDAO = DaoFactory.createEmployeeDAO();
 		// Use SQL Command
-		clientDAO.insert(client);
+		employeeDAO.insert(employee);
 		// Clean the elements in TextField.
 		onBtnCleanAction();
 		// Show a success message
-		Alerts.showAlert("Message", null, "Registered client!", AlertType.INFORMATION);
+		Alerts.showAlert("Message", null, "Registered employee!", AlertType.INFORMATION);
 
 	}
 
 	@FXML
 	private void onBtnEditAction() {
-		// Create a client in model
-		Client client = makeClient();
+		// Create a employee in model
+		Employee employee = makeEmployee();
 		// Set an id getting the element from TableView
-		client.setId(Integer.parseInt(txtCode.getText()));
-		// Create a client in Dao
-		ClientDAO clientDAO = DaoFactory.createClientDAO();
+		employee.setId(Integer.parseInt(txtCode.getText()));
+		// Create a employee in Dao
+		EmployeeDAO employeeDAO = DaoFactory.createEmployeeDAO();
 		// Use SQL Command
-		clientDAO.update(client);
+		employeeDAO.update(employee);
 		// Clean the elements in TextField.
 		onBtnCleanAction();
 		// Show a success message
-		Alerts.showAlert("Message", null, "Edited client!", AlertType.INFORMATION);
+		Alerts.showAlert("Message", null, "Edited employee!", AlertType.INFORMATION);
 
 	}
 
 	@FXML
 	private void onBtnDeleteAction() {
-		// Create a client in model
-		Client client = makeClient();
+		// Create a employee in model
+		Employee employee = makeEmployee();
 		// Set an id getting the element from TableView
-		client.setId(Integer.parseInt(txtCode.getText()));
-		// Create a client in Dao
-		ClientDAO clientDAO = DaoFactory.createClientDAO();
+		employee.setId(Integer.parseInt(txtCode.getText()));
+		// Create a employee in Dao
+		EmployeeDAO emplyeeDAO = DaoFactory.createEmployeeDAO();
 		// Use SQL Command
-		clientDAO.delete(client);
+		emplyeeDAO.delete(employee);
 		// Clean the elements in TextField.
 		onBtnCleanAction();
 		// Show a success message
-		Alerts.showAlert("Message", null, "Deleted client!", AlertType.INFORMATION);
+		Alerts.showAlert("Message", null, "Deleted employee!", AlertType.INFORMATION);
 	}
 
 	@FXML
@@ -194,6 +190,8 @@ public class EmployeeRegistrationControl implements Initializable {
 		txtCode.setText("");
 		txtName.setText(null);
 		txtEmail.setText(null);
+		txtPassword.setText(null);
+		txtOffice.setText(null);
 		txtCEP.setText("");
 		txtCPF.setText("");
 		txtAddress.setText(null);
@@ -204,20 +202,21 @@ public class EmployeeRegistrationControl implements Initializable {
 		txtNumber.setText(null);
 		txtComplement.setText(null);
 		comboBoxUF.getSelectionModel().select(null);
+		comboBoxAcess_level.getSelectionModel().select(null);
 
 	}
 
-	// Search a list of client on the Consult Customer tab at the btn Search
+	// Search a list of employee on the Consult employee tab at the btn Search
 	@FXML
-	private void onBtnSearchConsultCustomerAction() {
-		// Create a clientDao.
-		ClientDAO clientDAO = DaoFactory.createClientDAO();
-		// Create a client list and use sql command findbyName
-		List<Client> list = clientDAO.findbyName(txtSearch.getText());
-		// Now load all my clients from insert to the my obsListClient.
-		obsListClient = FXCollections.observableArrayList(list);
+	private void onBtnSearchConsultEmployeeAction() {
+		// Create a employeeDao.
+		EmployeeDAO employeeDAO = DaoFactory.createEmployeeDAO();
+		// Create a employee list and use sql command findbyName
+		List<Employee> list = employeeDAO.findbyName(txtSearch.getText());
+		// Now load all my employee from insert to the my obsListEmployee.
+		obsListEmployee = FXCollections.observableArrayList(list);
 		// Set my table putting all clients him.
-		tableViewEmployee.setItems(obsListClient);
+		tableViewEmployee.setItems(obsListEmployee);
 	}
 
 	/*
@@ -226,33 +225,33 @@ public class EmployeeRegistrationControl implements Initializable {
 	 */
 	@FXML
 	private void onBtnSearchPersonalDataAction() {
-		// Create a clientDao.
-		ClientDAO clientDAO = DaoFactory.createClientDAO();
+		// Create a employeeDao.
+		EmployeeDAO employeeDAO = DaoFactory.createEmployeeDAO();
 		// Create a client list and use sql command findClientByName
-		Client c = clientDAO.findClientByName(txtName.getText());
-		setClient(c);
+		Employee e = employeeDAO.findEmployeeByName(txtName.getText());
+		setEmployee(e);
 
 	}
 
-	// Search a list of client on the Consult Customer tab at the txtSearch only
+	// Search a list of employee on the Consult Employee tab at the txtSearch only
 	// tipping
 	@FXML
 	private void onTxtSearchKeyPressedAction() {
-		// Create a clientDao.
-		ClientDAO clientDAO = DaoFactory.createClientDAO();
-		// Create a client list and use sql command findbyName
-		List<Client> list = clientDAO.findbyName(txtSearch.getText());
-		// Now load all my clients from insert to the my obsListClient.
-		obsListClient = FXCollections.observableArrayList(list);
-		// Set my table putting all clients him.
-		tableViewEmployee.setItems(obsListClient);
+		// Create a employeeDao.
+		EmployeeDAO employeeDAO = DaoFactory.createEmployeeDAO();
+		// Create a employee list and use sql command findbyName
+		List<Employee> list = employeeDAO.findbyName(txtSearch.getText());
+		// Now load all my employee from insert to the my obsListEmployee.
+		obsListEmployee = FXCollections.observableArrayList(list);
+		// Set my table putting all employee him.
+		tableViewEmployee.setItems(obsListEmployee);
 	}
 
 	@FXML
-	private void onConsultCustomerChanged() {
-		// IF consultCustomer is selected them load my tableView with all my clients,
+	private void onConsultEmployeeChanged() {
+		// IF consultEmployee is selected them load my tableView with all my employee,
 		// and show them.
-		if (tabConsultCustomer.isSelected())
+		if (tabConsultEmployee.isSelected())
 			updateTableViewEmployee();
 	}
 
@@ -271,34 +270,40 @@ public class EmployeeRegistrationControl implements Initializable {
 			selectionModel.select(0);
 
 			// A temporary variable for save the selected cells in TableView.
-			Client client = tableViewEmployee.getSelectionModel().getSelectedItem();
+			Employee employee = tableViewEmployee.getSelectionModel().getSelectedItem();
 			// In the personalDataTab i set these items.
-			txtCode.setText(client.getId().toString());
-			txtName.setText(client.getName().toString());
-			txtCPF.setText(client.getCpf().toString());
-			txtEmail.setText(client.getEmail().toString());
-			txtPhone.setText(client.getPhone().toString());
-			txtCellphone.setText(client.getCellphone().toString());
-			txtCEP.setText(client.getCep().toString());
-			txtAddress.setText(client.getAddress().toString());
-			txtNumber.setText(client.getNumber().toString());
-			txtComplement.setText(client.getComplement().toString());
-			txtNeighborhood.setText(client.getNeighborhood().toString());
-			txtCity.setText(client.getCity().toString());
-			comboBoxUF.setValue(client.getState());
+			txtCode.setText(employee.getId().toString());
+			txtName.setText(employee.getName().toString());
+			txtCPF.setText(employee.getCpf().toString());
+			txtEmail.setText(employee.getEmail().toString());
+			txtPassword.setText(employee.getPassword().toString());
+			txtOffice.setText(employee.getOffice().toString());
+			comboBoxAcess_level.setValue(employee.getAcess_level());
+			txtPhone.setText(employee.getPhone().toString());
+			txtCellphone.setText(employee.getCellphone().toString());
+			txtCEP.setText(employee.getCep().toString());
+			txtAddress.setText(employee.getAddress().toString());
+			txtNumber.setText(employee.getNumber().toString());
+			txtComplement.setText(employee.getComplement().toString());
+			txtNeighborhood.setText(employee.getNeighborhood().toString());
+			txtCity.setText(employee.getCity().toString());
+			comboBoxUF.setValue(employee.getState());
 
 		}
 	}
 
-	// Get the form and make client. This is for the insert sql command in
+	// Get the form and make employee. This is for the insert sql command in
 	// btnSaveAction method.
-	private Client makeClient() {
+	private Employee makeEmployee() {
 		try {
 			// The code don't need a value from textField.
 			Integer code = Integer.parseInt("1");
 			String name = txtName.getText();
 			String cpf = txtCPF.getText();
 			String email = txtEmail.getText();
+			String password = txtPassword.getText();
+			String office = txtOffice.getText();
+			String acess_level = comboBoxAcess_level.getSelectionModel().getSelectedItem();
 			String phone = txtPhone.getText();
 			String cellphone = txtCellphone.getText();
 			String cep = txtCEP.getText();
@@ -309,8 +314,8 @@ public class EmployeeRegistrationControl implements Initializable {
 			String city = txtCity.getText();
 			String state = comboBoxUF.getSelectionModel().getSelectedItem();
 
-			return new Client(code, name, cpf, email, phone, cellphone, cep, address, number, complement, neighborhood,
-					city, state);
+			return new Employee(code, name, cpf, email, password, office, acess_level, phone, cellphone, cep, address,
+					number, complement, neighborhood, city, state);
 		}
 		// If have any field empty, them throw this exception
 		catch (NumberFormatException e) {
@@ -320,24 +325,27 @@ public class EmployeeRegistrationControl implements Initializable {
 	}
 
 	// This method exists for set all form (TextFields) on my first tab, using the
-	// attributes of the client.
-	private void setClient(Client c) {
+	// attributes of the employee.
+	private void setEmployee(Employee e) {
 		try {
-			txtCode.setText(c.getId().toString());
-			txtName.setText(c.getName());
-			txtEmail.setText(c.getEmail());
-			txtCEP.setText(c.getCep());
-			txtCPF.setText(c.getCpf());
-			txtAddress.setText(c.getAddress());
-			txtNeighborhood.setText(c.getNeighborhood());
-			txtCity.setText(c.getCity());
-			txtCellphone.setText(c.getCellphone());
-			txtPhone.setText(c.getPhone());
-			txtNumber.setText(c.getNumber().toString());
-			txtComplement.setText(c.getComplement());
-			comboBoxUF.getSelectionModel().select(c.getState());
-		} catch (NullPointerException e) {
-			throw new ControlException(e.getMessage(), "message", null, "Client not found!", AlertType.ERROR);
+			txtCode.setText(e.getId().toString());
+			txtName.setText(e.getName());
+			txtEmail.setText(e.getEmail());
+			txtPassword.setText(e.getPassword());
+			txtOffice.setText(e.getOffice());
+			comboBoxAcess_level.getSelectionModel().select(e.getAcess_level());
+			txtCEP.setText(e.getCep());
+			txtCPF.setText(e.getCpf());
+			txtAddress.setText(e.getAddress());
+			txtNeighborhood.setText(e.getNeighborhood());
+			txtCity.setText(e.getCity());
+			txtCellphone.setText(e.getCellphone());
+			txtPhone.setText(e.getPhone());
+			txtNumber.setText(e.getNumber().toString());
+			txtComplement.setText(e.getComplement());
+			comboBoxUF.getSelectionModel().select(e.getState());
+		} catch (NullPointerException n) {
+			throw new ControlException(n.getMessage(), "message", null, "Employee not found!", AlertType.ERROR);
 		}
 	}
 
@@ -348,7 +356,6 @@ public class EmployeeRegistrationControl implements Initializable {
 		initializeNodes();
 		initializeMask();
 		initializeConstraints();
-	
 
 	}
 
@@ -361,17 +368,18 @@ public class EmployeeRegistrationControl implements Initializable {
 		comboBoxUF.setItems(obsList);
 		// PE in comboBox will be select first
 		comboBoxUF.getSelectionModel().select(16);
-		
-		List<String> acess = Arrays.asList("User","Administrator");
-		
+		//Include in my list the acess from system.
+		List<String> acess = Arrays.asList("User", "Administrator");
+
 		obsListAcess = FXCollections.observableArrayList(acess);
 		comboBoxAcess_level.setItems(obsListAcess);
+		// User in comboBox will be select first
 		comboBoxAcess_level.getSelectionModel().select(0);
 	}
 
 	/*
 	 * When the FXML Panel start this method will be responsible for load the
-	 * columns to save my client datas.
+	 * columns to save my employee datas.
 	 */
 	private void initializeNodes() {
 
@@ -380,6 +388,9 @@ public class EmployeeRegistrationControl implements Initializable {
 		tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
 		tableColumnCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
 		tableColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+		tableColumnPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
+		tableColumnOffice.setCellValueFactory(new PropertyValueFactory<>("office"));
+		tableColumnAcessLevel.setCellValueFactory(new PropertyValueFactory<>("acess_level"));
 		tableColumnPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
 		tableColumnCellphone.setCellValueFactory(new PropertyValueFactory<>("cellphone"));
 		tableColumnCEP.setCellValueFactory(new PropertyValueFactory<>("cep"));
@@ -389,7 +400,6 @@ public class EmployeeRegistrationControl implements Initializable {
 		tableColumnNeighborhood.setCellValueFactory(new PropertyValueFactory<>("neighborhood"));
 		tableColumnCity.setCellValueFactory(new PropertyValueFactory<>("city"));
 		tableColumnState.setCellValueFactory(new PropertyValueFactory<>("state"));
-	
 
 	}
 
@@ -401,6 +411,7 @@ public class EmployeeRegistrationControl implements Initializable {
 		Mask.maskPhone(txtCellphone);
 
 	}
+
 	// Set max lenght for my TextFields
 	private void initializeConstraints() {
 		Constraints.setTextFieldMaxLength(txtName, 20);
@@ -410,19 +421,21 @@ public class EmployeeRegistrationControl implements Initializable {
 		Constraints.setTextFieldMaxLength(txtComplement, 60);
 		Constraints.setTextFieldMaxLength(txtNeighborhood, 30);
 		Constraints.setTextFieldMaxLength(txtCity, 25);
+		Constraints.setTextFieldMaxLength(txtOffice, 15);
+		Constraints.setTextFieldMaxLength(txtPassword, 10);
 	}
 
 	// Update my TableView, So, having the data from the columns.
 	private void updateTableViewEmployee() {
 
-		// Create a clientDao.
-		ClientDAO clientDAO = DaoFactory.createClientDAO();
-		// Create a client list and use sql command findAll.
-		List<Client> list = clientDAO.findAll();
-		// Now load all my clients from insert to the my obsListClient.
-		obsListClient = FXCollections.observableArrayList(list);
-		// Set my table putting all clients him.
-		tableViewEmployee.setItems(obsListClient);
+		// Create a employeeDao.
+		EmployeeDAO employeeDAO = DaoFactory.createEmployeeDAO();
+		// Create a employee list and use sql command findAll.
+		List<Employee> list = employeeDAO.findAll();
+		// Now load all my employee from insert to the my obsListEmployee.
+		obsListEmployee = FXCollections.observableArrayList(list);
+		// Set my table putting all employee him.
+		tableViewEmployee.setItems(obsListEmployee);
 
 	}
 
@@ -441,5 +454,3 @@ public class EmployeeRegistrationControl implements Initializable {
 	}
 
 }
-	
-	

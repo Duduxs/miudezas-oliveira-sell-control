@@ -19,6 +19,7 @@ public class Program extends Application {
 			Parent parent = FXMLLoader.load(getClass().getResource("/br/com/SellControl/gui/EmployeeRegistration.fxml"));
 			Scene scene = new Scene(parent);
 			primaryStage.setScene(scene);
+			primaryStage.setResizable(false);
 			primaryStage.show();
 
 		} catch (IOException e) {

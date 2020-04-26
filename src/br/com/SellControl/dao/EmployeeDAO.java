@@ -29,7 +29,7 @@ public class EmployeeDAO {
 			StringBuilder query = new StringBuilder();
 			query.append(
 					"insert into tb_employee (name,cpf,email,password,office,acess_level,phone,cellphone,cep,address,number,complement,neighborhood,city,state)");
-			query.append("values (?,?,?,?,?,?,?,?,?,?,?,?)");
+			query.append("values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
 			ps = conn.prepareStatement(query.toString());
 
@@ -80,10 +80,7 @@ public class EmployeeDAO {
 				list.add(makeEmployee(rs, c));
 			}
 
-			if (list.size() > 0)
-				return list;
-			else
-				throw new DbException("Error, no rows affected!");
+		
 
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
@@ -92,6 +89,7 @@ public class EmployeeDAO {
 			DB.closeResultSet(rs);
 
 		}
+		return list;
 
 	}
 
@@ -132,7 +130,7 @@ public class EmployeeDAO {
 
 			StringBuilder query = new StringBuilder();
 			query.append(
-					"update tb_employee set name=?,cpf=?,email=?,password=?,office=?,acess_level=?phone=?,cellphone=?,cep=?,address=?,number=?,complement=?,neighborhood=?,city=?,state=?");
+					"update tb_employee set name=?,cpf=?,email=?,password=?,office=?,acess_level=?,phone=?,cellphone=?,cep=?,address=?,number=?,complement=?,neighborhood=?,city=?,state=?");
 			query.append("where id=?");
 			ps = conn.prepareStatement(query.toString());
 

@@ -77,11 +77,6 @@ public class ClientDAO {
 				list.add(makeClient(rs, c));
 			}
 
-			if (list.size() > 0)
-				return list;
-			else
-				throw new DbException("Error, no rows affected!");
-
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
 		} finally {
@@ -89,6 +84,7 @@ public class ClientDAO {
 			DB.closeResultSet(rs);
 
 		}
+		return list;
 
 	}
 
