@@ -48,12 +48,9 @@ public class ClientDAO {
 
 			int rows = ps.executeUpdate();
 
-			if (rows > 0) {
-				System.out.println("\n" + rows + " rows affected!");
-			} else {
+			if (rows > 0) 
 				throw new DbException("Error, no rows affected!");
-			}
-
+		
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
 
@@ -80,10 +77,9 @@ public class ClientDAO {
 				list.add(makeClient(rs, c));
 			}
 
-			if (list.size() > 0) {
-				System.out.println(list.size() + " rows affected!");
+			if (list.size() > 0) 
 				return list;
-			} else
+			 else
 				throw new DbException("Error, no rows affected!");
 
 		} catch (SQLException e) {
@@ -110,11 +106,9 @@ public class ClientDAO {
 
 			int rows = ps.executeUpdate();
 
-			if (rows > 0) {
-				System.out.println("\n" + rows + " rows affected!");
-			} else {
+			if (rows <= 0) 
 				throw new DbException("Error, no rows affected!");
-			}
+			
 
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
@@ -156,13 +150,11 @@ public class ClientDAO {
 
 			int rows = ps.executeUpdate();
 
-			if (rows > 0) {
-				System.out.println("\n" + rows + " rows affected!");
-			} else {
+			if (rows <= 0) 
 				throw new DbException("Error, no rows affected!");
-			}
-
-		} catch (SQLException e) {
+			
+		}
+		 catch (SQLException e) {
 			throw new DbException(e.getMessage());
 			// If have code field empty, them throw this exception
 		} catch (DbException e) {
@@ -173,6 +165,7 @@ public class ClientDAO {
 		}
 
 	}
+		
 
 	public List<Client> findbyName(String name) {
 
