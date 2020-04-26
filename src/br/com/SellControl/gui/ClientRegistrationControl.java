@@ -10,6 +10,7 @@ import br.com.SellControl.dao.DaoFactory;
 import br.com.SellControl.db.ControlException;
 import br.com.SellControl.model.entities.Client;
 import br.com.SellControl.util.Alerts;
+import br.com.SellControl.util.Constraints;
 import br.com.SellControl.util.Mask;
 import br.com.SellControl.util.WebServiceCep;
 import javafx.collections.FXCollections;
@@ -325,6 +326,8 @@ public class ClientRegistrationControl implements Initializable {
 		initializeComboBox();
 		initializeNodes();
 		initializeMask();
+		initializeConstraints();
+	
 
 	}
 
@@ -359,6 +362,7 @@ public class ClientRegistrationControl implements Initializable {
 		tableColumnNeighborhood.setCellValueFactory(new PropertyValueFactory<>("neighborhood"));
 		tableColumnCity.setCellValueFactory(new PropertyValueFactory<>("city"));
 		tableColumnState.setCellValueFactory(new PropertyValueFactory<>("state"));
+	
 
 	}
 
@@ -369,6 +373,16 @@ public class ClientRegistrationControl implements Initializable {
 		Mask.maskPhone(txtPhone);
 		Mask.maskPhone(txtCellphone);
 
+	}
+	// Set max lenght for my TextFields
+	private void initializeConstraints() {
+		Constraints.setTextFieldMaxLength(txtName, 20);
+		Constraints.setTextFieldMaxLength(txtEmail, 32);
+		Constraints.setTextFieldMaxLength(txtAddress, 30);
+		Constraints.setTextFieldMaxLength(txtNumber, 5);
+		Constraints.setTextFieldMaxLength(txtComplement, 60);
+		Constraints.setTextFieldMaxLength(txtNeighborhood, 30);
+		Constraints.setTextFieldMaxLength(txtCity, 25);
 	}
 
 	// Update my TableView, So, having the data from the columns.
