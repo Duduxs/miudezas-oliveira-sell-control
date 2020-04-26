@@ -9,4 +9,9 @@ public class DaoFactory {
 	public static ClientDAO createClientDAO() {
 		return new ClientDAO(DB.openConnection());
 	}
+	
+	//Here i return a employeeDAO after opening a connection with at the DB.
+		public static EmployeeDAO createEmployeeDAO() {
+			return new EmployeeDAO(DB.openConnection());
+		}
 }
