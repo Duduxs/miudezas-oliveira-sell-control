@@ -11,6 +11,7 @@ import br.com.SellControl.db.ControlException;
 import br.com.SellControl.model.entities.Client;
 import br.com.SellControl.util.Alerts;
 import br.com.SellControl.util.Mask;
+import br.com.SellControl.util.WebServiceCep;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -300,21 +301,20 @@ public class ClientRegistrationControl implements Initializable {
 	// attributes of the client.
 	private void setClient(Client c) {
 		try {
-		txtCode.setText(c.getId().toString());
-		txtName.setText(c.getName());
-		txtEmail.setText(c.getEmail());
-		txtCEP.setText(c.getCep());
-		txtCPF.setText(c.getCpf());
-		txtAddress.setText(c.getAddress());
-		txtNeighborhood.setText(c.getNeighborhood());
-		txtCity.setText(c.getCity());
-		txtCellphone.setText(c.getCellphone());
-		txtPhone.setText(c.getPhone());
-		txtNumber.setText(c.getNumber().toString());
-		txtComplement.setText(c.getComplement());
-		comboBoxUF.getSelectionModel().select(c.getState());
-		}
-		catch(NullPointerException e) {
+			txtCode.setText(c.getId().toString());
+			txtName.setText(c.getName());
+			txtEmail.setText(c.getEmail());
+			txtCEP.setText(c.getCep());
+			txtCPF.setText(c.getCpf());
+			txtAddress.setText(c.getAddress());
+			txtNeighborhood.setText(c.getNeighborhood());
+			txtCity.setText(c.getCity());
+			txtCellphone.setText(c.getCellphone());
+			txtPhone.setText(c.getPhone());
+			txtNumber.setText(c.getNumber().toString());
+			txtComplement.setText(c.getComplement());
+			comboBoxUF.getSelectionModel().select(c.getState());
+		} catch (NullPointerException e) {
 			throw new ControlException(e.getMessage(), "message", null, "Client not found!", AlertType.ERROR);
 		}
 	}
@@ -383,6 +383,20 @@ public class ClientRegistrationControl implements Initializable {
 		// Set my table putting all clients him.
 		tableViewClient.setItems(obsListClient);
 
+	}
+
+	// Method for find Cep in WebServiceCep
+	@FXML
+	private void onTxtCepKeyAction() {
+		// Load
+		WebServiceCep webServiceCep = WebServiceCep.searchCep(txtCEP.getText());
+		// Set
+		if (webServiceCep.wasSuccessful()) {
+			txtAddress.setText(webServiceCep.getLogradouroFull());
+			txtCity.setText(webServiceCep.getCidade());
+			txtNeighborhood.setText(webServiceCep.getBairro());
+			comboBoxUF.getSelectionModel().select(webServiceCep.getUf());
+		}
 	}
 
 }

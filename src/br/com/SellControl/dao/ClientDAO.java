@@ -196,7 +196,8 @@ public class ClientDAO {
 
 	}
 
-	// This method will be used in first tab, and his search is ' name = ? ' otherwise the user have to fill the whole name.
+	// This method will be used in first tab, and his search is ' name = ? '
+	// otherwise the user have to fill the whole name.
 	public Client findClientByName(String name) {
 
 		PreparedStatement ps = null;

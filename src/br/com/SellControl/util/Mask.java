@@ -159,6 +159,5 @@ public class Mask {
 
 		});
 
-
 	}
 }
