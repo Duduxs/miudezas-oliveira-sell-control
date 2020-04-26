@@ -7,8 +7,10 @@ import java.util.ResourceBundle;
 
 import br.com.SellControl.dao.ClientDAO;
 import br.com.SellControl.dao.DaoFactory;
+import br.com.SellControl.db.ControlException;
 import br.com.SellControl.model.entities.Client;
 import br.com.SellControl.util.Alerts;
+import br.com.SellControl.util.Mask;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,7 +25,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 
 public class ClientRegistrationControl implements Initializable {
 
@@ -128,6 +129,8 @@ public class ClientRegistrationControl implements Initializable {
 		clientDAO.update(client);
 		// Show a success message
 		Alerts.showAlert("Message", null, "Edited client!", AlertType.INFORMATION);
+
+	
 	}
 
 	@FXML
@@ -156,7 +159,8 @@ public class ClientRegistrationControl implements Initializable {
 	 */
 	@FXML
 	public void onTableViewClientMouseClicked() {
-		//This function only will be executed if have an element in TableView, so avoiding an exception.
+		// This function only will be executed if have an element in TableView, so
+		// avoiding an exception.
 		if (tableViewClient.getSelectionModel().getSelectedItem() != null) {
 
 			// Set the tab and change them.
@@ -186,7 +190,7 @@ public class ClientRegistrationControl implements Initializable {
 	// Get the form and make client. This is for the insert sql command in
 	// btnSaveAction method.
 	public Client makeClient() {
-
+		try {
 		Integer code = Integer.parseInt(txtCode.getText());
 		String name = txtName.getText();
 		String cpf = txtCPF.getText();
@@ -203,13 +207,23 @@ public class ClientRegistrationControl implements Initializable {
 
 		return new Client(code, name, cpf, email, phone, cellphone, cep, address, number, complement, neighborhood,
 				city, state);
+		}
+		//If have any field empty, them throw this exception
+		catch(NumberFormatException e) {
+			throw new ControlException(e.getMessage(), "message", null, "fields cannot be empty", AlertType.ERROR);
+		}
+
+	
 
 	}
+
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		initializeComboBox();
 		initializeNodes();
+		initializeMask();
+
 	}
 
 	public void initializeComboBox() {
@@ -243,6 +257,14 @@ public class ClientRegistrationControl implements Initializable {
 		tableColumnNeighborhood.setCellValueFactory(new PropertyValueFactory<>("neighborhood"));
 		tableColumnCity.setCellValueFactory(new PropertyValueFactory<>("city"));
 		tableColumnState.setCellValueFactory(new PropertyValueFactory<>("state"));
+
+	}
+	// Use the mask in the some form data.
+	public void initializeMask() {
+		Mask.maskCEP(txtCEP);
+		Mask.maskCPF(txtCPF);
+		Mask.maskPhone(txtPhone);
+		Mask.maskPhone(txtCellphone);
 
 	}
 

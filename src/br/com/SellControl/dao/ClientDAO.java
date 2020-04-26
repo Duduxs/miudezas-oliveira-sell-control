@@ -7,9 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.SellControl.db.ControlException;
 import br.com.SellControl.db.DB;
 import br.com.SellControl.db.DbException;
 import br.com.SellControl.model.entities.Client;
+import javafx.scene.control.Alert.AlertType;
 
 public class ClientDAO {
 
@@ -54,6 +56,7 @@ public class ClientDAO {
 
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
+
 		} finally {
 			DB.closePreparedStatement(ps);
 		}
@@ -115,6 +118,10 @@ public class ClientDAO {
 
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
+			//If have code field empty, them throw this exception
+		} catch (DbException e) {
+			throw new ControlException(e.getMessage(), "message", null, "Code it has to be the same", AlertType.ERROR);
+
 		} finally {
 			DB.closePreparedStatement(ps);
 		}
@@ -157,6 +164,10 @@ public class ClientDAO {
 
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
+			//If have code field empty, them throw this exception
+		} catch (DbException e) {
+			throw new ControlException(e.getMessage(), "message", null, "Code it has to be the same", AlertType.ERROR);
+
 		} finally {
 			DB.closePreparedStatement(ps);
 		}

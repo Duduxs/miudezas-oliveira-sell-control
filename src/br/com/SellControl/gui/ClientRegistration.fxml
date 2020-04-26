@@ -83,13 +83,13 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="txtCEP" maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" promptText="#####-###" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="txtCEP" maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <Label text="CPF:" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="txtCPF" maxWidth="160.0" prefHeight="25.0" prefWidth="160.0" promptText="###.###.###-##" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField fx:id="txtCPF" maxWidth="160.0" prefHeight="25.0" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                               <Label text="Address:" GridPane.rowIndex="5">
                                  <font>
                                     <Font size="14.0" />
@@ -116,7 +116,7 @@
                                     <Insets />
                                  </GridPane.margin>
                               </Label>
-                              <TextField fx:id="txtCellphone" maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" promptText="(##) # ####-####" GridPane.columnIndex="4" />
+                              <TextField fx:id="txtCellphone" maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" GridPane.columnIndex="4" />
                               <Label text="Phone:" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="14.0" />
@@ -125,7 +125,7 @@
                                     <Insets />
                                  </GridPane.margin>
                               </Label>
-                              <TextField fx:id="txtPhone" maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" promptText="(##) # ####-####" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtPhone" maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                               <Label text="N°:" GridPane.columnIndex="3" GridPane.rowIndex="5">
                                  <font>
                                     <Font size="14.0" />
