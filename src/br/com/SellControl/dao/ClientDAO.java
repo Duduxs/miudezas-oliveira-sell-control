@@ -109,7 +109,7 @@ public class ClientDAO {
 			throw new DbException(e.getMessage());
 			// If have code field empty, them throw this exception
 		} catch (DbException e) {
-			throw new ControlException(e.getMessage(), "message", null, "Code it has to be the same", AlertType.ERROR);
+			throw new ControlException(e.getMessage(), "message", null, "Code it has to be the same", AlertType.ERROR,true);
 
 		} finally {
 			DB.closePreparedStatement(ps);
@@ -152,7 +152,7 @@ public class ClientDAO {
 			throw new DbException(e.getMessage());
 			// If have code field empty, them throw this exception
 		} catch (DbException e) {
-			throw new ControlException(e.getMessage(), "message", null, "Code it has to be the same", AlertType.ERROR);
+			throw new ControlException(e.getMessage(), "message", null, "Code it has to be the same", AlertType.ERROR,true);
 
 		} finally {
 			DB.closePreparedStatement(ps);
