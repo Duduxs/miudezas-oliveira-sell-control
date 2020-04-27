@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 public class Program extends Application {
 
+	private static Stage mainStage;
 	 
 	@Override
 	public void start(Stage primaryStage) {
@@ -21,11 +22,17 @@ public class Program extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
 			primaryStage.show();
+			//Catch a reference to primaryStage.
+			mainStage = primaryStage;
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public static Stage getMainStage() {
+		return mainStage;
 	}
 
 	public static void main(String[] args) {

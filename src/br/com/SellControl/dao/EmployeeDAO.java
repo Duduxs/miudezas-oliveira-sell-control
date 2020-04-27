@@ -11,11 +11,17 @@ import br.com.SellControl.db.ControlException;
 import br.com.SellControl.db.DB;
 import br.com.SellControl.db.DbException;
 import br.com.SellControl.model.entities.Employee;
+import br.com.SellControl.util.Alerts;
 import javafx.scene.control.Alert.AlertType;
 
 public class EmployeeDAO {
 
 	private Connection conn = null;
+	private Boolean loginVerification = false;
+
+	public Boolean getLoginVerification() {
+		return loginVerification;
+	}
 
 	public EmployeeDAO(Connection conn) {
 		this.conn = conn;
@@ -80,8 +86,6 @@ public class EmployeeDAO {
 				list.add(makeEmployee(rs, c));
 			}
 
-		
-
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
 		} finally {
@@ -114,7 +118,8 @@ public class EmployeeDAO {
 			throw new DbException(e.getMessage());
 			// If have code field empty, them throw this exception
 		} catch (DbException e) {
-			throw new ControlException(e.getMessage(), "message", null, "Code it has to be the same", AlertType.ERROR,true);
+			throw new ControlException(e.getMessage(), "message", null, "Code it has to be the same", AlertType.ERROR,
+					true);
 
 		} finally {
 			DB.closePreparedStatement(ps);
@@ -160,7 +165,8 @@ public class EmployeeDAO {
 			throw new DbException(e.getMessage());
 			// If have code field empty, them throw this exception
 		} catch (DbException e) {
-			throw new ControlException(e.getMessage(), "message", null, "Code it has to be the same", AlertType.ERROR,true);
+			throw new ControlException(e.getMessage(), "message", null, "Code it has to be the same", AlertType.ERROR,
+					true);
 
 		} finally {
 			DB.closePreparedStatement(ps);
@@ -230,6 +236,35 @@ public class EmployeeDAO {
 
 		}
 
+	}
+
+	// Method for Employee login
+	public void EmployeeLogin(String email, String password) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+
+			String sql = "select * from tb_employee where email = ? and password = ?";
+			ps = conn.prepareStatement(sql);
+
+			ps.setString(1, email);
+			ps.setString(2, password);
+
+			rs = ps.executeQuery();
+
+			if (rs.next()) 
+				loginVerification = true;
+			 else 
+				Alerts.showAlert("message", null, "Incorrect data", AlertType.ERROR);
+			
+
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closePreparedStatement(ps);
+			DB.closeResultSet(rs);
+		}
 	}
 
 	public Employee makeEmployee(ResultSet rs, Employee e) throws SQLException {
