@@ -319,7 +319,7 @@ public class EmployeeRegistrationControl implements Initializable {
 		}
 		// If have any field empty, them throw this exception
 		catch (NumberFormatException e) {
-			throw new ControlException(e.getMessage(), "message", null, "fields cannot be empty", AlertType.ERROR);
+			throw new ControlException(e.getMessage(), "message", null, "fields cannot be empty", AlertType.ERROR, true);
 		}
 
 	}
@@ -345,7 +345,7 @@ public class EmployeeRegistrationControl implements Initializable {
 			txtComplement.setText(e.getComplement());
 			comboBoxUF.getSelectionModel().select(e.getState());
 		} catch (NullPointerException n) {
-			throw new ControlException(n.getMessage(), "message", null, "Employee not found!", AlertType.ERROR);
+			throw new ControlException(n.getMessage(), "message", null, "Employee not found!", AlertType.ERROR, true);
 		}
 	}
 
@@ -452,7 +452,7 @@ public class EmployeeRegistrationControl implements Initializable {
 			comboBoxUF.getSelectionModel().select(webServiceCep.getUf());
 		}
 		else {
-			Alerts.showAlert("message", null, "Digit a valid cpf", AlertType.ERROR);
+			throw new ControlException("CPF not found", null, null, null, null, false);
 		}
 	}
 

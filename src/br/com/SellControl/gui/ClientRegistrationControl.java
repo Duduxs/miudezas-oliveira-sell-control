@@ -293,7 +293,7 @@ public class ClientRegistrationControl implements Initializable {
 		}
 		// If have any field empty, them throw this exception
 		catch (NumberFormatException e) {
-			throw new ControlException(e.getMessage(), "message", null, "fields cannot be empty", AlertType.ERROR);
+			throw new ControlException(e.getMessage(), "message", null, "fields cannot be empty", AlertType.ERROR, true);
 		}
 
 	}
@@ -316,7 +316,7 @@ public class ClientRegistrationControl implements Initializable {
 			txtComplement.setText(c.getComplement());
 			comboBoxUF.getSelectionModel().select(c.getState());
 		} catch (NullPointerException e) {
-			throw new ControlException(e.getMessage(), "message", null, "Client not found!", AlertType.ERROR);
+			throw new ControlException(e.getMessage(), "message", null, "Client not found!", AlertType.ERROR, true);
 		}
 	}
 
@@ -410,7 +410,7 @@ public class ClientRegistrationControl implements Initializable {
 			txtNeighborhood.setText(webServiceCep.getBairro());
 			comboBoxUF.getSelectionModel().select(webServiceCep.getUf());
 		}else {
-			Alerts.showAlert("message", null, "Digit a valid cpf", AlertType.ERROR);
+			throw new ControlException("CPF not found", null, null, null, null, false);
 		}
 	}
 
