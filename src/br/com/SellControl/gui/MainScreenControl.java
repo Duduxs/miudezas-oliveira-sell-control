@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -12,7 +13,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class MainScreenControl implements Initializable {
-
+	//For identify the userLogged
+	public static String userLogged;
+	
 	@FXML
 	private MenuBar menuBarMain;
 
@@ -52,9 +55,14 @@ public class MainScreenControl implements Initializable {
 	@FXML
 	private MenuItem miAbout;
 
+	@FXML
+	private Label txtLoggedAs;
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		loadAndSetIcons();
+		//Set the username where i catch in EmployeeDAO logged in screen.
+		txtLoggedAs.setText(userLogged);
 
 	}
 

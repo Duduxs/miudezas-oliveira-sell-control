@@ -66,7 +66,6 @@ public class LoginScreenControl implements Initializable {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/SellControl/gui/MainScreen.fxml"));
 
 				Parent root = (Parent) loader.load();
-				
 
 				Stage stage = new Stage();
 				Scene scene = new Scene(root);

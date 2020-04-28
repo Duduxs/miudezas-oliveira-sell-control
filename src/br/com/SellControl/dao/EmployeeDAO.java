@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.SellControl.db.DB;
+import br.com.SellControl.gui.MainScreenControl;
 import br.com.SellControl.model.entities.Employee;
 import br.com.SellControl.model.exception.ControlException;
 import br.com.SellControl.model.exception.DbException;
@@ -18,7 +19,6 @@ public class EmployeeDAO {
 
 	private Connection conn = null;
 	private Boolean loginVerification = false;
-
 	public Boolean getLoginVerification() {
 		return loginVerification;
 	}
@@ -250,13 +250,19 @@ public class EmployeeDAO {
 
 			ps.setString(1, email);
 			ps.setString(2, password);
-
+		
 			rs = ps.executeQuery();
-
-			if (rs.next()) 
+			
+		
+			if (rs.next()) {
 				loginVerification = true;
+				//Catch the username logged and put in MainScreenControl
+				MainScreenControl.userLogged = rs.getString("name");
+			}
 			 else 
 				Alerts.showAlert("message", null, "Incorrect data", AlertType.ERROR);
+			
+	
 			
 
 		} catch (SQLException e) {
