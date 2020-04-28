@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="776.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.SellControl.gui.MainScreenControl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.SellControl.gui.MainScreenControl">
    <children>
-      <MenuBar fx:id="menuBarMain" prefHeight="25.0" prefWidth="776.0">
+      <MenuBar fx:id="menuBarMain" prefHeight="25.0" prefWidth="675.0">
         <menus>
           <Menu fx:id="menuClient" mnemonicParsing="false" text="Client">
             <items>
@@ -45,12 +45,12 @@
                <items>
                   <MenuItem fx:id="miChangeUser" mnemonicParsing="false" text="Change user" />
                   <MenuItem fx:id="miAbout" mnemonicParsing="false" text="About" />
+                  <MenuItem fx:id="miAbout1" mnemonicParsing="false" onAction="#onMiExitAction" text="Exit" />
                </items>
             </Menu>
-            <Menu fx:id="menuExit" mnemonicParsing="false" text="Exit" />
         </menus>
       </MenuBar>
-      <ImageView fitHeight="354.0" fitWidth="776.0" layoutY="52.0" pickOnBounds="true">
+      <ImageView fitHeight="354.0" fitWidth="675.0" layoutY="52.0" pickOnBounds="true">
          <image>
             <Image url="@../img/ico/fundo.jpg" />
          </image>

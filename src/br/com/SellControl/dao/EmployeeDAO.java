@@ -19,6 +19,7 @@ public class EmployeeDAO {
 
 	private Connection conn = null;
 	private Boolean loginVerification = false;
+
 	public Boolean getLoginVerification() {
 		return loginVerification;
 	}
@@ -250,20 +251,15 @@ public class EmployeeDAO {
 
 			ps.setString(1, email);
 			ps.setString(2, password);
-		
+
 			rs = ps.executeQuery();
-			
-		
+
 			if (rs.next()) {
 				loginVerification = true;
-				//Catch the username logged and put in MainScreenControl
+				// Catch the username logged and put in MainScreenControl
 				MainScreenControl.userLogged = rs.getString("name");
-			}
-			 else 
+			} else
 				Alerts.showAlert("message", null, "Incorrect data", AlertType.ERROR);
-			
-	
-			
 
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());

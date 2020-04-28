@@ -66,11 +66,11 @@ public class LoginScreenControl implements Initializable {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/SellControl/gui/MainScreen.fxml"));
 				// Load the screen and put in root variable.
 				Parent root = (Parent) loader.load();
-				
+
 				Stage stage = new Stage();
 				Scene scene = new Scene(root);
 				stage.setScene(scene);
-				//Not resize screen and size my screen to scene
+				// Not resize screen and size my screen to scene
 				stage.setResizable(false);
 				stage.sizeToScene();
 				stage.show();

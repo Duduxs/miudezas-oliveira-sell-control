@@ -13,9 +13,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class MainScreenControl implements Initializable {
-	//For identify the userLogged
+	// For identify the userLogged
 	public static String userLogged;
-	
+
 	@FXML
 	private MenuBar menuBarMain;
 
@@ -31,8 +31,6 @@ public class MainScreenControl implements Initializable {
 	private Menu menuSell;
 	@FXML
 	private Menu menuSettings;
-	@FXML
-	private Menu menuExit;
 
 	@FXML
 	private MenuItem miClientControl;
@@ -54,15 +52,23 @@ public class MainScreenControl implements Initializable {
 	private MenuItem miChangeUser;
 	@FXML
 	private MenuItem miAbout;
+	@FXML
+	private MenuItem miExit;
 
 	@FXML
 	private Label txtLoggedAs;
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		loadAndSetIcons();
-		//Set the username where i catch in EmployeeDAO logged in screen.
+		// Set the username where i catch in EmployeeDAO logged in screen.
 		txtLoggedAs.setText(userLogged);
+
+	}
+
+	@FXML
+	public void onMiExitAction() {
+		System.exit(1);
 
 	}
 
@@ -74,15 +80,15 @@ public class MainScreenControl implements Initializable {
 		Image imgProvider = new Image(getClass().getResourceAsStream("/br/com/SellControl/img/ico/fornecedores.png"));
 		Image imgEmployee = new Image(getClass().getResourceAsStream("/br/com/SellControl/img/ico/funcionarios.png"));
 		Image imgProduct = new Image(getClass().getResourceAsStream("/br/com/SellControl/img/ico/produtos.png"));
-		Image imgExit = new Image(getClass().getResourceAsStream("/br/com/SellControl/img/ico/sair.png"));
+		//Image imgExit = new Image(getClass().getResourceAsStream("/br/com/SellControl/img/ico/sair.png"));
 		Image imgSell = new Image(getClass().getResourceAsStream("/br/com/SellControl/img/ico/vendas.png"));
-		//Saving their in ImageView
+		// Saving their in ImageView
 		ImageView imgViewClient = new ImageView(imgClient);
 		ImageView imgViewSetting = new ImageView(imgSetting);
 		ImageView imgViewProvider = new ImageView(imgProvider);
 		ImageView imgViewEmployee = new ImageView(imgEmployee);
 		ImageView imgViewProduct = new ImageView(imgProduct);
-		ImageView imgViewExit = new ImageView(imgExit);
+		//ImageView imgViewExit = new ImageView(imgExit);
 		ImageView imgViewSell = new ImageView(imgSell);
 
 		// Setting icons on the menu
@@ -92,7 +98,7 @@ public class MainScreenControl implements Initializable {
 		menuProduct.setGraphic(imgViewProduct);
 		menuSell.setGraphic(imgViewSell);
 		menuSettings.setGraphic(imgViewSetting);
-		menuExit.setGraphic(imgViewExit);
+
 
 	}
 }
