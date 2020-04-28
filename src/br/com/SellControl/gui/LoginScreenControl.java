@@ -62,14 +62,17 @@ public class LoginScreenControl implements Initializable {
 			try {
 				// Hide the loginScreen, hide, not close.
 				Program.getMainStage().hide();
-				// Open the MainScreenFXML and Show him
+				// Open and get the MainScreenFXML.
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/SellControl/gui/MainScreen.fxml"));
-
+				// Load the screen and put in root variable.
 				Parent root = (Parent) loader.load();
-
+				
 				Stage stage = new Stage();
 				Scene scene = new Scene(root);
 				stage.setScene(scene);
+				//Not resize screen and size my screen to scene
+				stage.setResizable(false);
+				stage.sizeToScene();
 				stage.show();
 
 				Alerts.showAlert("message", null, "Welcome!", AlertType.INFORMATION);
