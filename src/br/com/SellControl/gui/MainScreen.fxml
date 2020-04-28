@@ -3,48 +3,55 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.SellControl.gui.MainScreenControl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="776.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.SellControl.gui.MainScreenControl">
    <children>
-      <MenuBar fx:id="menuBarMain" layoutY="2.0" prefHeight="25.0" prefWidth="600.0">
+      <MenuBar fx:id="menuBarMain" prefHeight="25.0" prefWidth="776.0">
         <menus>
           <Menu fx:id="menuClient" mnemonicParsing="false" text="Client">
             <items>
-              <MenuItem fx:id="menuItemClientControl" mnemonicParsing="false" text="Client Control" />
+              <MenuItem fx:id="miClientControl" mnemonicParsing="false" text="Client Control" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Employee">
+          <Menu fx:id="menuEmployee" mnemonicParsing="false" text="Employee">
             <items>
-              <MenuItem mnemonicParsing="false" text="Employee Control" />
+              <MenuItem fx:id="miEmployeeControl" mnemonicParsing="false" text="Employee Control" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Provider">
+          <Menu fx:id="menuProvider" mnemonicParsing="false" text="Provider">
             <items>
-              <MenuItem mnemonicParsing="false" text="Provider Control" />
+              <MenuItem fx:id="miProviderControl" mnemonicParsing="false" text="Provider Control" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" text="Product">
+            <Menu fx:id="menuProduct" mnemonicParsing="false" text="Product">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Stock Control" />
-                  <MenuItem mnemonicParsing="false" text="Product Consultation" />
+                  <MenuItem fx:id="miStockControl" mnemonicParsing="false" text="Stock Control" />
+                  <MenuItem fx:id="miProductConsultation" mnemonicParsing="false" text="Product Consultation" />
                </items>
             </Menu>
             <Menu fx:id="menuSell" mnemonicParsing="false" text="Sell">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Open PoS" />
-                  <MenuItem mnemonicParsing="false" text="Day Position" />
-                  <MenuItem mnemonicParsing="false" text="Sales History" />
+                  <MenuItem fx:id="miOpenPOS" mnemonicParsing="false" text="Open PoS" />
+                  <MenuItem fx:id="miDayPosition" mnemonicParsing="false" text="Day Position" />
+                  <MenuItem fx:id="miSalesHistory" mnemonicParsing="false" text="Sales History" />
                </items>
             </Menu>
             <Menu fx:id="menuSettings" mnemonicParsing="false" text="Settings">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Change user" />
-                  <MenuItem mnemonicParsing="false" text="About" />
+                  <MenuItem fx:id="miChangeUser" mnemonicParsing="false" text="Change user" />
+                  <MenuItem fx:id="miAbout" mnemonicParsing="false" text="About" />
                </items>
             </Menu>
             <Menu fx:id="menuExit" mnemonicParsing="false" text="Exit" />
         </menus>
       </MenuBar>
+      <ImageView fitHeight="354.0" fitWidth="776.0" layoutY="52.0" pickOnBounds="true">
+         <image>
+            <Image url="@../img/ico/fundo.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

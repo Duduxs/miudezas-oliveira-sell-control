@@ -30,25 +30,61 @@ public class MainScreenControl implements Initializable {
 	private Menu menuSettings;
 	@FXML
 	private Menu menuExit;
-	
+
 	@FXML
-	private MenuItem menuItemClientControl;
+	private MenuItem miClientControl;
+	@FXML
+	private MenuItem miEmployeeControl;
+	@FXML
+	private MenuItem miProviderControl;
+	@FXML
+	private MenuItem miStockControl;
+	@FXML
+	private MenuItem miProductConsultation;
+	@FXML
+	private MenuItem miOpenPOS;
+	@FXML
+	private MenuItem miDayPosition;
+	@FXML
+	private MenuItem miSalesHistory;
+	@FXML
+	private MenuItem miChangeUser;
+	@FXML
+	private MenuItem miAbout;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		loadIcons();
+		loadAndSetIcons();
 
 	}
 
-	
-	public void loadIcons() {
+	// This method load and set icons!
+	public void loadAndSetIcons() {
+		// Loading the icons
 		Image imgClient = new Image(getClass().getResourceAsStream("/br/com/SellControl/img/ico/clientes.png"));
+		Image imgSetting = new Image(getClass().getResourceAsStream("/br/com/SellControl/img/ico/configuracoes.png"));
+		Image imgProvider = new Image(getClass().getResourceAsStream("/br/com/SellControl/img/ico/fornecedores.png"));
+		Image imgEmployee = new Image(getClass().getResourceAsStream("/br/com/SellControl/img/ico/funcionarios.png"));
+		Image imgProduct = new Image(getClass().getResourceAsStream("/br/com/SellControl/img/ico/produtos.png"));
+		Image imgExit = new Image(getClass().getResourceAsStream("/br/com/SellControl/img/ico/sair.png"));
+		Image imgSell = new Image(getClass().getResourceAsStream("/br/com/SellControl/img/ico/vendas.png"));
+		//Saving their in ImageView
 		ImageView imgViewClient = new ImageView(imgClient);
-		imgViewClient.setFitWidth(15);
-		imgViewClient.setFitHeight(15);
+		ImageView imgViewSetting = new ImageView(imgSetting);
+		ImageView imgViewProvider = new ImageView(imgProvider);
+		ImageView imgViewEmployee = new ImageView(imgEmployee);
+		ImageView imgViewProduct = new ImageView(imgProduct);
+		ImageView imgViewExit = new ImageView(imgExit);
+		ImageView imgViewSell = new ImageView(imgSell);
 
-		menuItemClientControl.setGraphic(imgViewClient);
+		// Setting icons on the menu
+		menuClient.setGraphic(imgViewClient);
+		menuEmployee.setGraphic(imgViewEmployee);
+		menuProvider.setGraphic(imgViewProvider);
+		menuProduct.setGraphic(imgViewProduct);
+		menuSell.setGraphic(imgViewSell);
+		menuSettings.setGraphic(imgViewSetting);
+		menuExit.setGraphic(imgViewExit);
 
 	}
-
 }

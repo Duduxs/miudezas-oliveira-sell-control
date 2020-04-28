@@ -20,7 +20,9 @@ public class Program extends Application {
 			Parent parent = FXMLLoader.load(getClass().getResource("/br/com/SellControl/gui/MainScreen.fxml"));
 			Scene scene = new Scene(parent);
 			primaryStage.setScene(scene);
+			//Not resizable and size my screen to scene
 			primaryStage.setResizable(false);
+			primaryStage.sizeToScene();
 			primaryStage.show();
 			//Catch a reference to primaryStage.
 			mainStage = primaryStage;

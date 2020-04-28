@@ -207,7 +207,7 @@
                               </HBox>
                               <ImageView fitHeight="297.0" fitWidth="468.0" layoutX="1.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../img/img%20Employee.jpg" />
+                                    <Image url="@../img/img%20Employee.jpg" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D minX="100.0" minY="100.0" />
