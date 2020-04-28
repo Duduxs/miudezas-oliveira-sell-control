@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.SellControl.db.ControlException;
 import br.com.SellControl.db.DB;
-import br.com.SellControl.db.DbException;
 import br.com.SellControl.model.entities.Employee;
+import br.com.SellControl.model.exception.ControlException;
+import br.com.SellControl.model.exception.DbException;
 import br.com.SellControl.util.Alerts;
 import javafx.scene.control.Alert.AlertType;
 

@@ -5,36 +5,45 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.SellControl.gui.MainScreenControl">
    <children>
-      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="600.0">
+      <MenuBar fx:id="menuBarMain" layoutY="2.0" prefHeight="25.0" prefWidth="600.0">
         <menus>
-          <Menu mnemonicParsing="false" text="Client">
+          <Menu fx:id="menuClient" mnemonicParsing="false" text="Client">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem fx:id="menuItemClientControl" mnemonicParsing="false" text="Client Control" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Employee">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
+              <MenuItem mnemonicParsing="false" text="Employee Control" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Provider">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" text="Provider Control" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" text="Sell">
+            <Menu mnemonicParsing="false" text="Product">
                <items>
+                  <MenuItem mnemonicParsing="false" text="Stock Control" />
+                  <MenuItem mnemonicParsing="false" text="Product Consultation" />
+               </items>
+            </Menu>
+            <Menu fx:id="menuSell" mnemonicParsing="false" text="Sell">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Open PoS" />
+                  <MenuItem mnemonicParsing="false" text="Day Position" />
+                  <MenuItem mnemonicParsing="false" text="Sales History" />
+               </items>
+            </Menu>
+            <Menu fx:id="menuSettings" mnemonicParsing="false" text="Settings">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Change user" />
                   <MenuItem mnemonicParsing="false" text="About" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Settings">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="About" />
-               </items>
-            </Menu>
+            <Menu fx:id="menuExit" mnemonicParsing="false" text="Exit" />
         </menus>
       </MenuBar>
    </children>

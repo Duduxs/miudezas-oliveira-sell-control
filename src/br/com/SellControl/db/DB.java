@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import br.com.SellControl.model.exception.DbException;
+
 public class DB {
 
 	private static Connection conn = null;

@@ -7,8 +7,8 @@ import java.util.ResourceBundle;
 
 import br.com.SellControl.dao.ClientDAO;
 import br.com.SellControl.dao.DaoFactory;
-import br.com.SellControl.db.ControlException;
 import br.com.SellControl.model.entities.Client;
+import br.com.SellControl.model.exception.ControlException;
 import br.com.SellControl.util.Alerts;
 import br.com.SellControl.util.Constraints;
 import br.com.SellControl.util.Mask;

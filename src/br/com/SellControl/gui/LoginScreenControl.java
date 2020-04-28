@@ -8,12 +8,13 @@ import java.util.ResourceBundle;
 import br.com.SellControl.application.Program;
 import br.com.SellControl.dao.DaoFactory;
 import br.com.SellControl.dao.EmployeeDAO;
-import br.com.SellControl.db.ControlException;
+import br.com.SellControl.model.exception.ControlException;
 import br.com.SellControl.util.Alerts;
 import br.com.SellControl.util.Constraints;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -62,10 +63,13 @@ public class LoginScreenControl implements Initializable {
 				// Hide the loginScreen, hide, not close.
 				Program.getMainStage().hide();
 				// Open the MainScreenFXML and Show him
-				AnchorPane MainScreenFXML = FXMLLoader
-						.load(getClass().getResource("/br/com/SellControl/gui/MainScreen.fxml"));
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/SellControl/gui/MainScreen.fxml"));
+
+				Parent root = (Parent) loader.load();
+				
+
 				Stage stage = new Stage();
-				Scene scene = new Scene(MainScreenFXML);
+				Scene scene = new Scene(root);
 				stage.setScene(scene);
 				stage.show();
 

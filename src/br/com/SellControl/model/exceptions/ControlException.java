@@ -9,14 +9,12 @@ public class ControlException extends RuntimeException{
 	private static final long serialVersionUID = 1L;
 
 	
-	public ControlException(String msg, String title, String header, String content, AlertType type, boolean make) {
+	public ControlException(String msg, String title, String header, String content, AlertType type) {
 		super(msg);
-		if(make == true) {
 		Alert alert = new Alert(type);
 		alert.setTitle(title);
 		alert.setHeaderText(header);
 		alert.setContentText(content);
 		alert.show();
-		}
 	}
 }
