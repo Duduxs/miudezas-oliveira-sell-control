@@ -32,7 +32,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <TabPane fx:id="tabPaneClient" layoutX="14.0" layoutY="88.0" prefHeight="533.0" prefWidth="1327.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPaneProvider" layoutX="14.0" layoutY="88.0" prefHeight="533.0" prefWidth="1327.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab fx:id="tabPersonalData" text="Personal Data">
             <content>
@@ -186,9 +186,9 @@
                                     </Button>
                                  </children>
                               </HBox>
-                              <ImageView fitHeight="297.0" fitWidth="468.0" layoutX="1.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="297.0" fitWidth="480.0" layoutX="1.0" layoutY="244.0" pickOnBounds="true">
                                  <image>
-                                    <Image url="@../img/img%20Client.jpg" />
+                                    <Image url="@../img/img%20Provider.jpg" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D minX="100.0" minY="100.0" />
@@ -206,7 +206,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab fx:id="tabConsultCustomer" onSelectionChanged="#onConsultCustomerChanged" text="Consult Provider">
+          <Tab fx:id="tabConsultProvider" onSelectionChanged="#onConsultCustomerChanged" text="Consult Provider">
             <content>
               <AnchorPane layoutX="49.0" layoutY="50.0" maxWidth="1418.0" minHeight="0.0" minWidth="0.0" prefHeight="504.0" prefWidth="1246.0" style="-fx-background-color: #ffffff;">
                      <children>
@@ -221,15 +221,15 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <TableView fx:id="tableViewClient" layoutX="4.0" layoutY="84.0" onMouseClicked="#onTableViewClientMouseClicked" prefHeight="421.0" prefWidth="1321.0">
+                        <TableView fx:id="tableViewProvider" layoutX="4.0" layoutY="84.0" onMouseClicked="#onTableViewProviderMouseClicked" prefHeight="421.0" prefWidth="1321.0">
                           <columns>
                             <TableColumn fx:id="tableColumnCode" prefWidth="20.0" resizable="false" text="ID" />
                             <TableColumn fx:id="tableColumnName" prefWidth="129.0" resizable="false" text="Name" />
-                              <TableColumn fx:id="tableColumnCPF" prefWidth="90.0" resizable="false" text="CPF" />
+                              <TableColumn fx:id="tableColumnCNPJ" prefWidth="90.0" resizable="false" text="CNPJ" />
                               <TableColumn fx:id="tableColumnEmail" prefWidth="214.0" resizable="false" text="Email" />
                               <TableColumn fx:id="tableColumnPhone" prefWidth="94.0" resizable="false" text="Phone" />
                               <TableColumn fx:id="tableColumnCellphone" prefWidth="95.0" resizable="false" text="Cellphone" />
-                              <TableColumn fx:id="tableColumnCNPJ" prefWidth="65.0" resizable="false" text="CNPJ" />
+                              <TableColumn fx:id="tableColumnCEP" prefWidth="65.0" resizable="false" text="CEP" />
                               <TableColumn fx:id="tableColumnAddress" prefWidth="158.0" resizable="false" text="Address" />
                               <TableColumn fx:id="tableColumnNumber" prefWidth="40.0" resizable="false" text="N°" />
                               <TableColumn fx:id="tableColumnComplement" prefWidth="150.0" resizable="false" text="Comp" />

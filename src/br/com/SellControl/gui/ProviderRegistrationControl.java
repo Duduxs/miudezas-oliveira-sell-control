@@ -28,7 +28,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class ProviderRegistrationControl implements Initializable{
+public class ProviderRegistrationControl implements Initializable {
 	@FXML
 	private TextField txtCode;
 	@FXML
@@ -97,7 +97,7 @@ public class ProviderRegistrationControl implements Initializable{
 	private TableColumn<Provider, String> tableColumnState;
 
 	@FXML
-	private Tab tabConsultCustomer;
+	private Tab tabConsultProvider;
 	@FXML
 	private Tab tabPersonalData;
 
@@ -230,7 +230,7 @@ public class ProviderRegistrationControl implements Initializable{
 	private void onConsultCustomerChanged() {
 		// IF consultCustomer is selected them load my tableView with all my provider,
 		// and show them.
-		if (tabConsultCustomer.isSelected())
+		if (tabConsultProvider.isSelected())
 			updateTableViewClient();
 	}
 
@@ -287,8 +287,8 @@ public class ProviderRegistrationControl implements Initializable{
 			String city = txtCity.getText();
 			String state = comboBoxUF.getSelectionModel().getSelectedItem();
 
-			return new Provider(code, name, cnpj, email, phone, cellphone, cep, address, number, complement, neighborhood,
-					city, state);
+			return new Provider(code, name, cnpj, email, phone, cellphone, cep, address, number, complement,
+					neighborhood, city, state);
 		}
 		// If have any field empty, them throw this exception
 		catch (NumberFormatException e) {
@@ -316,7 +316,7 @@ public class ProviderRegistrationControl implements Initializable{
 			txtComplement.setText(p.getComplement());
 			comboBoxUF.getSelectionModel().select(p.getState());
 		} catch (NullPointerException e) {
-			throw new ControlException(e.getMessage(), "message", null, "Client not found!", AlertType.ERROR, true);
+			throw new ControlException(e.getMessage(), "message", null, "Provider not found!", AlertType.ERROR, true);
 		}
 	}
 
@@ -410,7 +410,7 @@ public class ProviderRegistrationControl implements Initializable{
 			txtNeighborhood.setText(webServiceCep.getBairro());
 			comboBoxUF.getSelectionModel().select(webServiceCep.getUf());
 		} else {
-			throw new ControlException("CPF not found", null, null, null, null, false);
+			throw new ControlException("CEP not found", null, null, null, null, false);
 		}
 	}
 }
