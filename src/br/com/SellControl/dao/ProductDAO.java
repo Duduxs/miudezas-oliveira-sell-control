@@ -9,6 +9,7 @@ import java.util.List;
 
 import br.com.SellControl.db.DB;
 import br.com.SellControl.model.entities.Product;
+import br.com.SellControl.model.entities.Provider;
 import br.com.SellControl.model.exception.ControlException;
 import br.com.SellControl.model.exception.DbException;
 import javafx.scene.control.Alert.AlertType;
@@ -55,15 +56,18 @@ public class ProductDAO {
 		ResultSet rs = null;
 
 		List<Product> list = new ArrayList<>();
-
+		StringBuilder query = new StringBuilder();
 		try {
-			String sql = "select * from tb_client";
-			ps = conn.prepareStatement(sql);
+			query.append(
+					"select p.id, p.description, p.price, p.qtd_stock, pr.name from tb_product as p inner join tb_provider as pr");
+			query.append(" on p.id=pr.id");
+			ps = conn.prepareStatement(query.toString());
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
 				Product c = new Product();
-				list.add(makeClient(rs, c));
+				Provider pr = new Provider();
+				list.add(makeProduct(rs, c, pr));
 			}
 
 		} catch (SQLException e) {
@@ -77,17 +81,17 @@ public class ProductDAO {
 
 	}
 
-	public void delete(Product client) {
+	public void delete(Product product) {
 
 		PreparedStatement ps = null;
 
 		try {
 
-			String query = "delete from tb_client where id = ?";
+			String query = "delete from tb_product where id = ?";
 
 			ps = conn.prepareStatement(query);
 
-			ps.setInt(1, client.getId());
+			ps.setInt(1, product.getId());
 
 			int rows = ps.executeUpdate();
 
@@ -107,31 +111,22 @@ public class ProductDAO {
 
 	}
 
-	public void update(Product client) {
+	public void update(Product product) {
 
 		PreparedStatement ps = null;
 
 		try {
 
 			StringBuilder query = new StringBuilder();
-			query.append(
-					"update tb_client set name=?,cpf=?,email=?,phone=?,cellphone=?,cep=?,address=?,number=?,complement=?,neighborhood=?,city=?,state=?");
+			query.append("update tb_product set description=?,price=?,qtd_stock=?,for_id=?");
 			query.append("where id=?");
 			ps = conn.prepareStatement(query.toString());
 
-			ps.setString(1, client.getName());
-			ps.setString(2, client.getCpf());
-			ps.setString(3, client.getEmail());
-			ps.setString(4, client.getPhone());
-			ps.setString(5, client.getCellphone());
-			ps.setString(6, client.getCep());
-			ps.setString(7, client.getAddress());
-			ps.setInt(8, client.getNumber());
-			ps.setString(9, client.getComplement());
-			ps.setString(10, client.getNeighborhood());
-			ps.setString(11, client.getCity());
-			ps.setString(12, client.getState());
-			ps.setInt(13, client.getId());
+			ps.setString(1, product.getDescription());
+			ps.setDouble(2, product.getPrice());
+			ps.setInt(3, product.getQtdStock());
+			ps.setInt(4, product.getProvider().getId());
+			ps.setInt(4, product.getId());
 
 			int rows = ps.executeUpdate();
 
@@ -157,16 +152,20 @@ public class ProductDAO {
 		ResultSet rs = null;
 
 		List<Product> list = new ArrayList<>();
-
+		StringBuilder query = new StringBuilder();
 		try {
-			String sql = "select * from tb_client where name like ?";
-			ps = conn.prepareStatement(sql);
+
+			query.append(
+					"select p.id, p.description, p.price, p.qtd_stock, pr.name from tb_product as p inner join tb_provider as pr");
+			query.append(" on p.id=pr.id where p.description like ?");
+			ps = conn.prepareStatement(query.toString());
 			ps.setString(1, "%" + name + "%");
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				Product c = new Product();
-				list.add(makeClient(rs, c));
+				Product p = new Product();
+				Provider pr = new Provider();
+				makeProduct(rs, p, pr);
 			}
 
 			return list;
@@ -185,23 +184,27 @@ public class ProductDAO {
 
 	// This method will be used in first tab, and his search is ' name = ? '
 	// otherwise the user have to fill the whole name.
-	public Product findClientByName(String name) {
+	public Product findProductByName(String name) {
 
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
 		try {
-			Product c = new Product();
-			String sql = "select * from tb_client where name = ?";
-			ps = conn.prepareStatement(sql);
+			StringBuilder query = new StringBuilder();
+			Product p = new Product();
+			Provider pr = new Provider();
+			query.append(
+					"select p.id, p.description, p.price, p.qtd_stock, pr.name from tb_product as p inner join tb_provider as pr");
+			query.append(" on p.id=pr.id where p.description = ?");
+			ps = conn.prepareStatement(query.toString());
 			ps.setString(1, name);
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				c = makeClient(rs, c);
+				p = makeProduct(rs, p, pr);
 			}
 
-			return c;
+			return p;
 
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
@@ -215,23 +218,16 @@ public class ProductDAO {
 
 	}
 
-	public Product makeClient(ResultSet rs, Product c) throws SQLException {
+	public Product makeProduct(ResultSet rs, Product p, Provider pr) throws SQLException {
 
-		c.setId(rs.getInt("id"));
-		c.setName(rs.getString("name"));
-		c.setCpf(rs.getString("cpf"));
-		c.setEmail(rs.getString("email"));
-		c.setPhone(rs.getString("phone"));
-		c.setCellphone(rs.getString("cellphone"));
-		c.setCep(rs.getString("cep"));
-		c.setAddress(rs.getString("address"));
-		c.setNumber(rs.getInt("number"));
-		c.setComplement(rs.getString("complement"));
-		c.setNeighborhood(rs.getString("neighborhood"));
-		c.setCity(rs.getString("city"));
-		c.setState(rs.getString("state"));
+		p.setId(rs.getInt("id"));
+		p.setDescription(rs.getString("description"));
+		p.setPrice(rs.getDouble("price"));
+		p.setQtdStock(rs.getInt("qtd_stock"));
+		pr.setName(rs.getString("pr.name"));
+		p.setProvider(pr);
 
-		return c;
+		return p;
 
 	}
 

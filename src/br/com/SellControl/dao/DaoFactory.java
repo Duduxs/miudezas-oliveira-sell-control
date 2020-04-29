@@ -19,4 +19,9 @@ public class DaoFactory {
 	public static ProviderDAO createProviderDAO() {
 		return new ProviderDAO(DB.openConnection());
 	}
+
+	// Here i return a productDAO after opening a connection with at the DB.
+	public static ProductDAO createProductDAO() {
+		return new ProductDAO(DB.openConnection());
+	}
 }

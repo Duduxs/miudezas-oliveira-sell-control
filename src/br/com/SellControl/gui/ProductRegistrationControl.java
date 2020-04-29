@@ -4,10 +4,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import br.com.SellControl.dao.ClientDAO;
 import br.com.SellControl.dao.DaoFactory;
+import br.com.SellControl.dao.ProductDAO;
 import br.com.SellControl.dao.ProviderDAO;
-import br.com.SellControl.model.entities.Client;
 import br.com.SellControl.model.entities.Product;
 import br.com.SellControl.model.entities.Provider;
 import br.com.SellControl.model.exception.ControlException;
@@ -44,24 +43,26 @@ public class ProductRegistrationControl implements Initializable {
 
 	@FXML
 	private ComboBox<Provider> comboBoxProvider;
+	// Variable for save all my Providers in comboBox.
+	private ObservableList<Provider> obsList;
 	// Variable for save all my Product in tableViewProduct.
-	private ObservableList<Provider> obsListProduct;
+	private ObservableList<Product> obsListProduct;
 
 	@FXML
-	private TableView<Client> tableViewProduct;
+	private TableView<Product> tableViewProduct;
 	@FXML
 	private TabPane tabPaneProduct;
 
 	@FXML
-	private TableColumn<Client, Integer> tableColumnCode;
+	private TableColumn<Product, Integer> tableColumnCode;
 	@FXML
-	private TableColumn<Client, String> tableColumnDescription;
+	private TableColumn<Product, String> tableColumnDescription;
 	@FXML
-	private TableColumn<Client, String> tableColumnPrice;
+	private TableColumn<Product, String> tableColumnPrice;
 	@FXML
-	private TableColumn<Client, String> tableColumnStockQuantity;
+	private TableColumn<Product, String> tableColumnStockQuantity;
 	@FXML
-	private TableColumn<Client, String> tableColumnProvider;
+	private TableColumn<Product, String> tableColumnProvider;
 
 	@FXML
 	private Tab tabConsultProduct;
@@ -83,48 +84,48 @@ public class ProductRegistrationControl implements Initializable {
 
 	@FXML
 	private void onBtnSaveAction() {
-		// Create a client in model
-		Client client = makeClient();
+		// Create a product in model
+		Product product = makeProduct();
 		// The code don't need a value from textField.
 		txtCode.setText("1");
-		// Create a client in Dao
-		ClientDAO clientDAO = DaoFactory.createClientDAO();
+		// Create a product in Dao
+		ProductDAO productDAO = DaoFactory.createProductDAO();
 		// Use SQL Command
-		clientDAO.insert(client);
+		productDAO.insert(product);
 		// Clean the elements in TextField.
 		onBtnCleanAction();
 		// Show a success message
-		Alerts.showAlert("Message", null, "Registered client!", AlertType.INFORMATION);
+		Alerts.showAlert("Message", null, "Registered product!", AlertType.INFORMATION);
 
 	}
 
 	@FXML
 	private void onBtnEditAction() {
-		// Create a client in model
-		Client client = makeClient();
+		// Create a product in model
+		Product product = makeProduct();
 		// Set an id getting the element from TableView
-		client.setId(Integer.parseInt(txtCode.getText()));
-		// Create a client in Dao
-		ClientDAO clientDAO = DaoFactory.createClientDAO();
+		product.setId(Integer.parseInt(txtCode.getText()));
+		// Create a product in Dao
+		ProductDAO productDAO = DaoFactory.createProductDAO();
 		// Use SQL Command
-		clientDAO.update(client);
+		productDAO.update(product);
 		// Clean the elements in TextField.
 		onBtnCleanAction();
 		// Show a success message
-		Alerts.showAlert("Message", null, "Edited client!", AlertType.INFORMATION);
+		Alerts.showAlert("Message", null, "Edited product!", AlertType.INFORMATION);
 
 	}
 
 	@FXML
 	private void onBtnDeleteAction() {
-		// Create a client in model
-		Client client = makeClient();
+		// Create a product in model
+		Product product = makeProduct();
 		// Set an id getting the element from TableView
-		client.setId(Integer.parseInt(txtCode.getText()));
-		// Create a client in Dao
-		ClientDAO clientDAO = DaoFactory.createClientDAO();
+		product.setId(Integer.parseInt(txtCode.getText()));
+		// Create a product in Dao
+		ProductDAO productDAO = DaoFactory.createProductDAO();
 		// Use SQL Command
-		clientDAO.delete(client);
+		productDAO.delete(product);
 		// Clean the elements in TextField.
 		onBtnCleanAction();
 		// Show a success message
@@ -144,17 +145,17 @@ public class ProductRegistrationControl implements Initializable {
 
 	}
 
-	// Search a list of client on the Consult Customer tab at the btn Search
+	// Search a list of product on the Consult Product tab at the btn Search
 	@FXML
-	private void onBtnSearchConsultCustomerAction() {
-		// Create a clientDao.
-		ClientDAO clientDAO = DaoFactory.createClientDAO();
-		// Create a client list and use sql command findbyName
-		List<Client> list = clientDAO.findbyName(txtSearch.getText());
-		// Now load all my clients from insert to the my obsListClient.
-		obsListClient = FXCollections.observableArrayList(list);
-		// Set my table putting all clients him.
-		tableViewClient.setItems(obsListClient);
+	private void onBtnSearchConsultProductAction() {
+		// Create a productDAO
+		ProductDAO productDAO = DaoFactory.createProductDAO();
+		// Create a product list and use sql command findbyName
+		List<Product> list = productDAO.findbyName(txtSearch.getText());
+		// Now load all my product from insert to the my obsListClient.
+		obsListProduct = FXCollections.observableArrayList(list);
+		// Set my table putting all product him.
+		tableViewProduct.setItems(obsListProduct);
 	}
 
 	/*
@@ -162,34 +163,34 @@ public class ProductRegistrationControl implements Initializable {
 	 * and it will fill all TextFields on first tab.
 	 */
 	@FXML
-	private void onBtnSearchPersonalDataAction() {
-		// Create a clientDao.
-		ClientDAO clientDAO = DaoFactory.createClientDAO();
-		// Create a client list and use sql command findClientByName
-		Client c = clientDAO.findClientByName(txtName.getText());
-		setClient(c);
+	private void onBtnSearchProductDataAction() {
+		// Create a ProductDAO.
+		ProductDAO productDAO = DaoFactory.createProductDAO();
+		// Create a product list and use sql command findProductByName
+		Product p = productDAO.findProductByName(txtDescription.getText());
+		setProduct(p);
 
 	}
 
-	// Search a list of client on the Consult Customer tab at the txtSearch only
+	// Search a list of product on the Consult Product tab at the txtSearch only
 	// tipping
 	@FXML
 	private void onTxtSearchKeyPressedAction() {
-		// Create a clientDao.
-		ClientDAO clientDAO = DaoFactory.createClientDAO();
-		// Create a client list and use sql command findbyName
-		List<Client> list = clientDAO.findbyName(txtSearch.getText());
-		// Now load all my clients from insert to the my obsListClient.
-		obsListClient = FXCollections.observableArrayList(list);
-		// Set my table putting all clients him.
-		tableViewClient.setItems(obsListClient);
+		// Create a producttDao.
+		ProductDAO productDAO = DaoFactory.createProductDAO();
+		// Create a product list and use sql command findbyName
+		List<Product> list = productDAO.findbyName(txtSearch.getText());
+		// Now load all my product from insert to the my obsListProduct.
+		obsListProduct = FXCollections.observableArrayList(list);
+		// Set my table putting all product him.
+		tableViewProduct.setItems(obsListProduct);
 	}
 
 	@FXML
-	private void onConsultCustomerChanged() {
-		// IF consultCustomer is selected them load my tableView with all my clients,
+	private void onConsultProductChanged() {
+		// IF consultCustomer is selected them load my tableView with all my product,
 		// and show them.
-		if (tabConsultCustomer.isSelected())
+		if (tabConsultProduct.isSelected())
 			updateTableViewClient();
 	}
 
@@ -198,56 +199,42 @@ public class ProductRegistrationControl implements Initializable {
 	 * tab with values.
 	 */
 	@FXML
-	private void onTableViewClientMouseClicked() {
+	private void onTableViewProductMouseClicked() {
 		// This function only will be executed if have an element in TableView, so
 		// avoiding an exception.
-		if (tableViewClient.getSelectionModel().getSelectedItem() != null) {
+		if (tableViewProduct.getSelectionModel().getSelectedItem() != null) {
 
 			// Set the tab and change them.
-			SingleSelectionModel<Tab> selectionModel = tabPaneClient.getSelectionModel();
+			SingleSelectionModel<Tab> selectionModel = tabPaneProduct.getSelectionModel();
 			selectionModel.select(0);
 
 			// A temporary variable for save the selected cells in TableView.
-			Client client = tableViewClient.getSelectionModel().getSelectedItem();
+			Product product = tableViewProduct.getSelectionModel().getSelectedItem();
 			// In the personalDataTab i set these items.
-			txtCode.setText(client.getId().toString());
-			txtName.setText(client.getName().toString());
-			txtCPF.setText(client.getCpf().toString());
-			txtEmail.setText(client.getEmail().toString());
-			txtPhone.setText(client.getPhone().toString());
-			txtCellphone.setText(client.getCellphone().toString());
-			txtCEP.setText(client.getCep().toString());
-			txtAddress.setText(client.getAddress().toString());
-			txtNumber.setText(client.getNumber().toString());
-			txtComplement.setText(client.getComplement().toString());
-			txtNeighborhood.setText(client.getNeighborhood().toString());
-			txtCity.setText(client.getCity().toString());
-			comboBoxUF.setValue(client.getState());
+			txtCode.setText(product.getId().toString());
+			txtDescription.setText(product.getDescription().toString());
+			txtPrice.setText(product.getPrice().toString());
+			txtStockQuantity.setText(product.getQtdStock().toString());
+			Provider pr = new Provider();
+			ProviderDAO providerDAO = DaoFactory.createProviderDAO();
+			pr = (Provider) providerDAO.findbyName(product.getProvider().getName());
+			comboBoxProvider.setValue(pr);
 
 		}
 	}
 
-	// Get the form and make client. This is for the insert sql command in
+	// Get the form and make Product. This is for the insert sql command in
 	// btnSaveAction method.
-	private Client makeClient() {
+	private Product makeProduct() {
 		try {
 			// The code don't need a value from textField.
 			Integer code = Integer.parseInt("1");
-			String name = txtName.getText();
-			String cpf = txtCPF.getText();
-			String email = txtEmail.getText();
-			String phone = txtPhone.getText();
-			String cellphone = txtCellphone.getText();
-			String cep = txtCEP.getText();
-			String address = txtAddress.getText();
-			Integer number = Integer.parseInt(txtNumber.getText());
-			String complement = txtComplement.getText();
-			String neighborhood = txtNeighborhood.getText();
-			String city = txtCity.getText();
-			String state = comboBoxUF.getSelectionModel().getSelectedItem();
+			String description = txtDescription.getText();
+			Double price = Double.parseDouble(txtPrice.getText());
+			Integer StockQuantity = Integer.parseInt(txtStockQuantity.getText());
+			Provider provider = comboBoxProvider.getSelectionModel().getSelectedItem();
 
-			return new Client(code, name, cpf, email, phone, cellphone, cep, address, number, complement, neighborhood,
-					city, state);
+			return new Product(code, description, price, StockQuantity, provider);
 		}
 		// If have any field empty, them throw this exception
 		catch (NumberFormatException e) {
@@ -258,24 +245,22 @@ public class ProductRegistrationControl implements Initializable {
 	}
 
 	// This method exists for set all form (TextFields) on my first tab, using the
-	// attributes of the client.
-	private void setClient(Client c) {
+	// attributes of the Product.
+	private void setProduct(Product p) {
 		try {
-			txtCode.setText(c.getId().toString());
-			txtName.setText(c.getName());
-			txtEmail.setText(c.getEmail());
-			txtCEP.setText(c.getCep());
-			txtCPF.setText(c.getCpf());
-			txtAddress.setText(c.getAddress());
-			txtNeighborhood.setText(c.getNeighborhood());
-			txtCity.setText(c.getCity());
-			txtCellphone.setText(c.getCellphone());
-			txtPhone.setText(c.getPhone());
-			txtNumber.setText(c.getNumber().toString());
-			txtComplement.setText(c.getComplement());
-			comboBoxUF.getSelectionModel().select(c.getState());
+			txtCode.setText(p.getId().toString());
+			txtDescription.setText(p.getDescription());
+			txtPrice.setText(p.getPrice().toString());
+			txtStockQuantity.setText(p.getQtdStock().toString());
+
+			Provider pr = new Provider();
+			ProviderDAO providerDAO = DaoFactory.createProviderDAO();
+			pr = (Provider) providerDAO.findbyName(p.getProvider().getName());
+
+			comboBoxProvider.getSelectionModel().select(pr);
+
 		} catch (NullPointerException e) {
-			throw new ControlException(e.getMessage(), "message", null, "Client not found!", AlertType.ERROR, true);
+			throw new ControlException(e.getMessage(), "message", null, "Product not found!", AlertType.ERROR, true);
 		}
 	}
 
@@ -295,9 +280,9 @@ public class ProductRegistrationControl implements Initializable {
 		List<Provider> providerList = providerDAO.findAll();
 		// Avoid duplication datas
 		comboBoxProvider.getSelectionModel().clearSelection();
-		//Add in my comboBox the providers
-		obsListProduct = FXCollections.observableArrayList(providerList);
-		comboBoxProvider.setItems(obsListProduct);
+		// Add in my comboBox the providers
+		obsList = FXCollections.observableArrayList(providerList);
+		comboBoxProvider.setItems(obsList);
 		// Position 0 in comboBox will be select first
 		comboBoxProvider.getSelectionModel().select(0);
 	}
@@ -330,14 +315,14 @@ public class ProductRegistrationControl implements Initializable {
 	// Update my TableView, So, having the data from the columns.
 	private void updateTableViewClient() {
 
-		// Create a clientDao.
-		ClientDAO clientDAO = DaoFactory.createClientDAO();
-		// Create a client list and use sql command findAll.
-		List<Client> list = clientDAO.findAll();
-		// Now load all my clients from insert to the my obsListClient.
-		obsListClient = FXCollections.observableArrayList(list);
-		// Set my table putting all clients him.
-		tableViewClient.setItems(obsListClient);
+		// Create a productDAO.
+		ProductDAO productDAO = DaoFactory.createProductDAO();
+		// Create a product list and use sql command findAll.
+		List<Product> list = productDAO.findAll();
+		// Now load all my product from insert to the my obsListProduct.
+		obsListProduct = FXCollections.observableArrayList(list);
+		// Set my table putting all product him.
+		tableViewProduct.setItems(obsListProduct);
 
 	}
 
