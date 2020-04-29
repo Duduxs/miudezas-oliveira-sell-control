@@ -20,15 +20,15 @@ public class Provider {
 		
 	}
 	
-	public Provider(Integer id, String name, String cep, String email, String phone, String cellphone, String cnpj,
+	public Provider(Integer id, String name, String cnpj, String email, String phone, String cellphone, String cep,
 			String address, Integer number, String complement, String neighborhood, String city, String state) {
 		this.id = id;
 		this.name = name;
-		this.cep = cep;
+		this.cnpj = cnpj;
 		this.email = email;
 		this.phone = phone;
 		this.cellphone = cellphone;
-		this.cnpj = cnpj;
+		this.cep = cep;
 		this.address = address;
 		this.number = number;
 		this.complement = complement;

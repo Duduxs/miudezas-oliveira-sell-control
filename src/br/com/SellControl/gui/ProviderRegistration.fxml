@@ -89,7 +89,7 @@
                                  </font>
                               </Label>
                               <TextField fx:id="txtCEP" maxWidth="160.0" onAction="#onTxtCepKeyAction" prefHeight="25.0" prefWidth="167.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Label text="CNP:J" GridPane.rowIndex="4">
+                              <Label text="CNPJ:" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
