@@ -126,7 +126,7 @@
                                     </Button>
                                  </children>
                               </HBox>
-                              <ImageView fitHeight="297.0" fitWidth="465.0" layoutX="1.0" layoutY="242.0" pickOnBounds="true">
+                              <ImageView fitHeight="265.0" fitWidth="470.0" layoutX="-1.0" layoutY="242.0" pickOnBounds="true">
                                  <image>
                                     <Image url="@../img/img%20Product.jpg" />
                                  </image>
@@ -166,7 +166,7 @@
                             <TableColumn fx:id="tableColumnCode" prefWidth="20.0" resizable="false" text="ID" />
                             <TableColumn fx:id="tableColumnDescription" prefWidth="821.0" resizable="false" text="Description" />
                               <TableColumn fx:id="tableColumnPrice" minWidth="0.0" prefWidth="159.0" resizable="false" text="Price" />
-                              <TableColumn fx:id="tableColumnStockQuantity" prefWidth="159.0" resizable="false" text="Stock quantity" />
+                              <TableColumn fx:id="tableColumnStockQuantity" prefWidth="159.0" resizable="false" text="Quantity" />
                               <TableColumn fx:id="tableColumnProvider" prefWidth="161.0" resizable="false" text="Provider" />
                           </columns>
                            <columnResizePolicy>

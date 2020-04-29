@@ -215,10 +215,7 @@ public class ProductRegistrationControl implements Initializable {
 			txtDescription.setText(product.getDescription().toString());
 			txtPrice.setText(product.getPrice().toString());
 			txtStockQuantity.setText(product.getQtdStock().toString());
-			Provider pr = new Provider();
-			ProviderDAO providerDAO = DaoFactory.createProviderDAO();
-			pr = (Provider) providerDAO.findbyName(product.getProvider().getName());
-			comboBoxProvider.setValue(pr);
+			comboBoxProvider.setValue(product.getProvider());
 
 		}
 	}
@@ -232,7 +229,9 @@ public class ProductRegistrationControl implements Initializable {
 			String description = txtDescription.getText();
 			Double price = Double.parseDouble(txtPrice.getText());
 			Integer StockQuantity = Integer.parseInt(txtStockQuantity.getText());
-			Provider provider = comboBoxProvider.getSelectionModel().getSelectedItem();
+
+			Provider provider = new Provider();
+			provider = (Provider) comboBoxProvider.getSelectionModel().getSelectedItem();
 
 			return new Product(code, description, price, StockQuantity, provider);
 		}
@@ -279,7 +278,7 @@ public class ProductRegistrationControl implements Initializable {
 		// Include in my list all providers
 		List<Provider> providerList = providerDAO.findAll();
 		// Avoid duplication datas
-		comboBoxProvider.getSelectionModel().clearSelection();
+		comboBoxProvider.getItems().clear();
 		// Add in my comboBox the providers
 		obsList = FXCollections.observableArrayList(providerList);
 		comboBoxProvider.setItems(obsList);
@@ -297,8 +296,8 @@ public class ProductRegistrationControl implements Initializable {
 		tableColumnCode.setCellValueFactory(new PropertyValueFactory<>("id"));
 		tableColumnDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
 		tableColumnPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-		tableColumnStockQuantity.setCellValueFactory(new PropertyValueFactory<>("qtd_stock"));
-		tableColumnProvider.setCellValueFactory(new PropertyValueFactory<>("for_id"));
+		tableColumnStockQuantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
+		tableColumnProvider.setCellValueFactory(new PropertyValueFactory<>("Provider"));
 
 	}
 

@@ -118,15 +118,14 @@ public class ProductDAO {
 		try {
 
 			StringBuilder query = new StringBuilder();
-			query.append("update tb_product set description=?,price=?,qtd_stock=?,for_id=?");
-			query.append("where id=?");
+			query.append("update tb_product set description=?,price=?,qtd_stock=?,for_id=? where id=?");
 			ps = conn.prepareStatement(query.toString());
 
 			ps.setString(1, product.getDescription());
 			ps.setDouble(2, product.getPrice());
 			ps.setInt(3, product.getQtdStock());
 			ps.setInt(4, product.getProvider().getId());
-			ps.setInt(4, product.getId());
+			ps.setInt(5, product.getId());
 
 			int rows = ps.executeUpdate();
 
