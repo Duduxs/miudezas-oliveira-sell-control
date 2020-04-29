@@ -160,4 +160,65 @@ public class Mask {
 		});
 
 	}
+
+	public static void maskCNPJ(TextField textField) {
+		// Only numbers
+		textField.setOnKeyTyped((KeyEvent event) -> {
+			if ("0123456789".contains(event.getCharacter()) == false) {
+				event.consume();
+			}
+			// divide my string, spare the spaces
+			if (event.getCharacter().trim().length() == 0) { // erasing
+
+				if (textField.getText().length() == 3) {
+					textField.setText(textField.getText().substring(0, 2));
+					textField.positionCaret(textField.getText().length());
+				}
+				if (textField.getText().length() == 7) {
+					textField.setText(textField.getText().substring(0, 6));
+					textField.positionCaret(textField.getText().length());
+				}
+				if (textField.getText().length() == 11) {
+					textField.setText(textField.getText().substring(0, 10));
+					textField.positionCaret(textField.getText().length());
+				}
+				if (textField.getText().length() == 16) {
+					textField.setText(textField.getText().substring(0, 15));
+					textField.positionCaret(textField.getText().length());
+				}
+
+			} else { // typing
+						// this if allow only 18 char in CNPJ (Including the " ")
+				if (textField.getText().length() == 18)
+					event.consume();
+				// now add "." and "/" in my numbers in correct position.
+				if (textField.getText().length() == 2) {
+					textField.setText(textField.getText() + ".");
+					textField.positionCaret(textField.getText().length());
+				}
+				if (textField.getText().length() == 6) {
+					textField.setText(textField.getText() + ".");
+					textField.positionCaret(textField.getText().length());
+				}
+				if (textField.getText().length() == 10) {
+					textField.setText(textField.getText() + "/");
+					textField.positionCaret(textField.getText().length());
+				}
+				if (textField.getText().length() == 15) {
+					textField.setText(textField.getText() + "-");
+					textField.positionCaret(textField.getText().length());
+				}
+
+			}
+		});
+
+		textField.setOnKeyReleased((KeyEvent evt) -> {
+
+			if (!textField.getText().matches("\\d./-*")) {
+				textField.setText(textField.getText().replaceAll("[^\\d./-]", ""));
+				textField.positionCaret(textField.getText().length());
+			}
+		});
+
+	}
 }
