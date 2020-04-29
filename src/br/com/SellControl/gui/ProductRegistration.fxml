@@ -21,7 +21,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1341.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.SellControl.gui.ClientRegistrationControl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1341.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.SellControl.gui.ProductRegistrationControl">
    <children>
       <AnchorPane prefHeight="70.0" prefWidth="1342.0" style="-fx-background-color: #0066cc;">
          <children>
@@ -32,9 +32,9 @@
             </Label>
          </children>
       </AnchorPane>
-      <TabPane fx:id="tabPaneClient" layoutX="14.0" layoutY="88.0" prefHeight="533.0" prefWidth="1327.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPaneProduct" layoutX="14.0" layoutY="88.0" prefHeight="533.0" prefWidth="1327.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab fx:id="tabPersonalData" text="Product Data">
+          <Tab fx:id="tabProductData" text="Product Data">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="504.0" prefWidth="1278.0" style="-fx-background-color: #ffffff;">
                      <children>
@@ -63,12 +63,6 @@
                                  </font>
                               </Label>
                               <TextField fx:id="txtCode" editable="false" maxWidth="82.0" prefHeight="25.0" prefWidth="82.0" GridPane.columnIndex="1" />
-                              <Label text="Name:" GridPane.rowIndex="1">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="txtName" maxWidth="386.0" prefHeight="25.0" prefWidth="386.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <Button fx:id="btnSearchPersonalData" mnemonicParsing="false" onAction="#onBtnSearchPersonalDataAction" prefHeight="30.0" prefWidth="63.0" style="-fx-background-radius: 100;" text="Search" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="14.0" />
@@ -77,25 +71,25 @@
                                     <Insets left="15.0" />
                                  </GridPane.margin>
                               </Button>
-                              <Label text="Description:" GridPane.rowIndex="2">
+                              <Label text="Description:" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="txtEmail" maxWidth="386.0" prefHeight="25.0" prefWidth="386.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label text="Price:" GridPane.rowIndex="3">
+                              <TextField fx:id="txtDescription" maxWidth="386.0" prefHeight="25.0" prefWidth="386.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label text="Price:" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="txtCEP" maxWidth="160.0" onAction="#onTxtCepKeyAction" prefHeight="25.0" prefWidth="167.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Label text="Stock Quantity:" GridPane.rowIndex="4">
+                              <TextField fx:id="txtPrice" maxWidth="160.0" onAction="#onTxtCepKeyAction" prefHeight="25.0" prefWidth="167.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label text="Stock Quantity:" GridPane.rowIndex="3">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="txtCPF" maxWidth="160.0" prefHeight="25.0" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <Label text="Provider:" GridPane.rowIndex="5">
+                              <TextField fx:id="txtStockQuantity" maxWidth="160.0" prefHeight="25.0" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label text="Provider:" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -103,7 +97,7 @@
                                     <Insets />
                                  </GridPane.margin>
                               </Label>
-                              <ComboBox fx:id="comboBoxUF" prefWidth="60.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <ComboBox fx:id="comboBoxProvider" prefHeight="25.0" prefWidth="158.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                            </children>
                         </GridPane>
                         <Pane focusTraversable="true" layoutX="858.0" prefHeight="557.0" prefWidth="489.0" style="-fx-background-color: #9c9998; -fx-background-radius: 10;">
@@ -132,9 +126,9 @@
                                     </Button>
                                  </children>
                               </HBox>
-                              <ImageView fitHeight="297.0" fitWidth="468.0" layoutX="1.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="297.0" fitWidth="465.0" layoutX="1.0" layoutY="242.0" pickOnBounds="true">
                                  <image>
-                                    <Image url="@../img/img%20Client.jpg" />
+                                    <Image url="@../img/img%20Product.jpg" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D minX="100.0" minY="100.0" />
@@ -152,7 +146,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab fx:id="tabConsultCustomer" onSelectionChanged="#onConsultCustomerChanged" text="Consult Product">
+          <Tab fx:id="tabConsultProduct" onSelectionChanged="#onConsultCustomerChanged" text="Consult Product">
             <content>
               <AnchorPane layoutX="49.0" layoutY="50.0" maxWidth="1418.0" minHeight="0.0" minWidth="0.0" prefHeight="504.0" prefWidth="1246.0" style="-fx-background-color: #ffffff;">
                      <children>
@@ -162,26 +156,18 @@
                            </font>
                         </Label>
                         <TextField fx:id="txtSearch" layoutX="66.0" layoutY="40.0" onKeyPressed="#onTxtSearchKeyPressedAction" prefHeight="25.0" prefWidth="386.0" />
-                        <Button fx:id="btnSearchConsultCustomer" layoutX="468.0" layoutY="37.0" mnemonicParsing="false" onAction="#onBtnSearchConsultCustomerAction" style="-fx-background-radius: 100;" text="Search">
+                        <Button fx:id="btnSearchConsultProduct" layoutX="468.0" layoutY="37.0" mnemonicParsing="false" onAction="#onBtnSearchConsultCustomerAction" style="-fx-background-radius: 100;" text="Search">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <TableView fx:id="tableViewClient" layoutX="4.0" layoutY="84.0" onMouseClicked="#onTableViewClientMouseClicked" prefHeight="421.0" prefWidth="1321.0">
+                        <TableView fx:id="tableViewProduct" layoutX="4.0" layoutY="84.0" onMouseClicked="#onTableViewClientMouseClicked" prefHeight="421.0" prefWidth="1321.0">
                           <columns>
                             <TableColumn fx:id="tableColumnCode" prefWidth="20.0" resizable="false" text="ID" />
-                            <TableColumn fx:id="tableColumnName" prefWidth="129.0" resizable="false" text="Name" />
-                              <TableColumn fx:id="tableColumnCPF" prefWidth="90.0" resizable="false" text="CPF" />
-                              <TableColumn fx:id="tableColumnEmail" prefWidth="214.0" resizable="false" text="Email" />
-                              <TableColumn fx:id="tableColumnPhone" prefWidth="94.0" resizable="false" text="Phone" />
-                              <TableColumn fx:id="tableColumnCellphone" prefWidth="95.0" resizable="false" text="Cellphone" />
-                              <TableColumn fx:id="tableColumnCEP" prefWidth="65.0" resizable="false" text="CEP" />
-                              <TableColumn fx:id="tableColumnAddress" prefWidth="158.0" resizable="false" text="Address" />
-                              <TableColumn fx:id="tableColumnNumber" prefWidth="40.0" resizable="false" text="N°" />
-                              <TableColumn fx:id="tableColumnComplement" prefWidth="150.0" resizable="false" text="Comp" />
-                              <TableColumn fx:id="tableColumnNeighborhood" prefWidth="101.0" resizable="false" text="Neigh" />
-                              <TableColumn fx:id="tableColumnCity" prefWidth="127.0" resizable="false" text="City" />
-                              <TableColumn fx:id="tableColumnState" prefWidth="36.0" resizable="false" text="State" />
+                            <TableColumn fx:id="tableColumnDescription" prefWidth="821.0" resizable="false" text="Description" />
+                              <TableColumn fx:id="tableColumnPrice" minWidth="0.0" prefWidth="159.0" resizable="false" text="Price" />
+                              <TableColumn fx:id="tableColumnStockQuantity" prefWidth="159.0" resizable="false" text="Stock quantity" />
+                              <TableColumn fx:id="tableColumnProvider" prefWidth="161.0" resizable="false" text="Provider" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
