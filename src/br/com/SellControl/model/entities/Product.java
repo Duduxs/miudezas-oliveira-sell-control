@@ -4,7 +4,7 @@ public class Product {
 
 	private Integer id;
 	private String description;
-	private Integer price;
+	private Double price;
 	private Integer qtdStock;
 
 	private Provider provider;
@@ -13,7 +13,7 @@ public class Product {
 
 	}
 
-	public Product(Integer id, String description, Integer price, Integer qtdStock, Provider provider) {
+	public Product(Integer id, String description, Double price, Integer qtdStock, Provider provider) {
 		this.id = id;
 		this.description = description;
 		this.price = price;
@@ -37,11 +37,11 @@ public class Product {
 		this.description = description;
 	}
 
-	public Integer getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 

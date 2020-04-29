@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.SellControl.db.DB;
-import br.com.SellControl.model.entities.Client;
+import br.com.SellControl.model.entities.Product;
 import br.com.SellControl.model.exception.ControlException;
 import br.com.SellControl.model.exception.DbException;
 import javafx.scene.control.Alert.AlertType;
@@ -21,30 +21,19 @@ public class ProductDAO {
 		this.conn = conn;
 	}
 
-	public void insert(Client client) {
+	public void insert(Product product) {
 
 		PreparedStatement ps = null;
 
 		try {
-			StringBuilder query = new StringBuilder();
-			query.append(
-					"insert into tb_client (name,cpf,email,phone,cellphone,cep,address,number,complement,neighborhood,city,state)");
-			query.append("values (?,?,?,?,?,?,?,?,?,?,?,?)");
+			String query = "insert into tb_product (description,price,qtd_stock,for_id) values (?,?,?,?)";
 
-			ps = conn.prepareStatement(query.toString());
+			ps = conn.prepareStatement(query);
 
-			ps.setString(1, client.getName());
-			ps.setString(2, client.getCpf());
-			ps.setString(3, client.getEmail());
-			ps.setString(4, client.getPhone());
-			ps.setString(5, client.getCellphone());
-			ps.setString(6, client.getCep());
-			ps.setString(7, client.getAddress());
-			ps.setInt(8, client.getNumber());
-			ps.setString(9, client.getComplement());
-			ps.setString(10, client.getNeighborhood());
-			ps.setString(11, client.getCity());
-			ps.setString(12, client.getState());
+			ps.setString(1, product.getDescription());
+			ps.setDouble(2, product.getPrice());
+			ps.setInt(3, product.getQtdStock());
+			ps.setInt(4, product.getProvider().getId());
 
 			int rows = ps.executeUpdate();
 
@@ -60,12 +49,12 @@ public class ProductDAO {
 
 	}
 
-	public List<Client> findAll() {
+	public List<Product> findAll() {
 
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
-		List<Client> list = new ArrayList<>();
+		List<Product> list = new ArrayList<>();
 
 		try {
 			String sql = "select * from tb_client";
@@ -73,7 +62,7 @@ public class ProductDAO {
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				Client c = new Client();
+				Product c = new Product();
 				list.add(makeClient(rs, c));
 			}
 
@@ -88,7 +77,7 @@ public class ProductDAO {
 
 	}
 
-	public void delete(Client client) {
+	public void delete(Product client) {
 
 		PreparedStatement ps = null;
 
@@ -109,7 +98,8 @@ public class ProductDAO {
 			throw new DbException(e.getMessage());
 			// If have code field empty, them throw this exception
 		} catch (DbException e) {
-			throw new ControlException(e.getMessage(), "message", null, "Code it has to be the same", AlertType.ERROR,true);
+			throw new ControlException(e.getMessage(), "message", null, "Code it has to be the same", AlertType.ERROR,
+					true);
 
 		} finally {
 			DB.closePreparedStatement(ps);
@@ -117,7 +107,7 @@ public class ProductDAO {
 
 	}
 
-	public void update(Client client) {
+	public void update(Product client) {
 
 		PreparedStatement ps = null;
 
@@ -152,7 +142,8 @@ public class ProductDAO {
 			throw new DbException(e.getMessage());
 			// If have code field empty, them throw this exception
 		} catch (DbException e) {
-			throw new ControlException(e.getMessage(), "message", null, "Code it has to be the same", AlertType.ERROR,true);
+			throw new ControlException(e.getMessage(), "message", null, "Code it has to be the same", AlertType.ERROR,
+					true);
 
 		} finally {
 			DB.closePreparedStatement(ps);
@@ -160,12 +151,12 @@ public class ProductDAO {
 
 	}
 
-	public List<Client> findbyName(String name) {
+	public List<Product> findbyName(String name) {
 
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
-		List<Client> list = new ArrayList<>();
+		List<Product> list = new ArrayList<>();
 
 		try {
 			String sql = "select * from tb_client where name like ?";
@@ -174,7 +165,7 @@ public class ProductDAO {
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				Client c = new Client();
+				Product c = new Product();
 				list.add(makeClient(rs, c));
 			}
 
@@ -194,13 +185,13 @@ public class ProductDAO {
 
 	// This method will be used in first tab, and his search is ' name = ? '
 	// otherwise the user have to fill the whole name.
-	public Client findClientByName(String name) {
+	public Product findClientByName(String name) {
 
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
 		try {
-			Client c = new Client();
+			Product c = new Product();
 			String sql = "select * from tb_client where name = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, name);
@@ -224,7 +215,7 @@ public class ProductDAO {
 
 	}
 
-	public Client makeClient(ResultSet rs, Client c) throws SQLException {
+	public Product makeClient(ResultSet rs, Product c) throws SQLException {
 
 		c.setId(rs.getInt("id"));
 		c.setName(rs.getString("name"));
