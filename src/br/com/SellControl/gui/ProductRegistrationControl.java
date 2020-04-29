@@ -1,21 +1,23 @@
 package br.com.SellControl.gui;
 
 import java.net.URL;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import br.com.SellControl.dao.ClientDAO;
 import br.com.SellControl.dao.DaoFactory;
+import br.com.SellControl.dao.ProviderDAO;
 import br.com.SellControl.model.entities.Client;
+import br.com.SellControl.model.entities.Product;
+import br.com.SellControl.model.entities.Provider;
 import br.com.SellControl.model.exception.ControlException;
 import br.com.SellControl.util.Alerts;
 import br.com.SellControl.util.Constraints;
-import br.com.SellControl.util.Mask;
-import br.com.SellControl.util.WebServiceCep;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.SingleSelectionModel;
@@ -24,10 +26,9 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class ProductRegistrationControl {
+public class ProductRegistrationControl implements Initializable {
 
 	@FXML
 	private TextField txtCode;
@@ -42,9 +43,9 @@ public class ProductRegistrationControl {
 	private TextField txtSearch;
 
 	@FXML
-	private ComboBox<String> comboBoxProvider;
-	// Variable for save all my Client in tableViewProduct.
-	private ObservableList<Client> obsListProduct;
+	private ComboBox<Provider> comboBoxProvider;
+	// Variable for save all my Product in tableViewProduct.
+	private ObservableList<Provider> obsListProduct;
 
 	@FXML
 	private TableView<Client> tableViewProduct;
@@ -136,18 +137,10 @@ public class ProductRegistrationControl {
 		// Clean all elements in TextField.
 
 		txtCode.setText("");
-		txtName.setText(null);
-		txtEmail.setText(null);
-		txtCEP.setText("");
-		txtCPF.setText("");
-		txtAddress.setText(null);
-		txtNeighborhood.setText(null);
-		txtCity.setText(null);
-		txtCellphone.setText("");
-		txtPhone.setText("");
-		txtNumber.setText(null);
-		txtComplement.setText(null);
-		comboBoxUF.getSelectionModel().select(null);
+		txtDescription.setText(null);
+		txtPrice.setText(null);
+		txtStockQuantity.setText(null);
+		comboBoxProvider.getSelectionModel().select(null);
 
 	}
 
@@ -291,63 +284,47 @@ public class ProductRegistrationControl {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		initializeComboBox();
 		initializeNodes();
-		initializeMask();
 		initializeConstraints();
 
 	}
 
 	private void initializeComboBox() {
-		// Include in my list all states from Brazil
-		List<String> UF = Arrays.asList("AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG",
-				"PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO");
-
-		obsList = FXCollections.observableArrayList(UF);
-		comboBoxUF.setItems(obsList);
-		// PE in comboBox will be select first
-		comboBoxUF.getSelectionModel().select(16);
+		// Create providerDAO
+		ProviderDAO providerDAO = DaoFactory.createProviderDAO();
+		// Include in my list all providers
+		List<Provider> providerList = providerDAO.findAll();
+		// Avoid duplication datas
+		comboBoxProvider.getSelectionModel().clearSelection();
+		//Add in my comboBox the providers
+		obsListProduct = FXCollections.observableArrayList(providerList);
+		comboBoxProvider.setItems(obsListProduct);
+		// Position 0 in comboBox will be select first
+		comboBoxProvider.getSelectionModel().select(0);
 	}
 
 	/*
 	 * When the FXML Panel start this method will be responsible for load the
-	 * columns to save my client datas.
+	 * columns to save my product datas.
 	 */
 	private void initializeNodes() {
 
-		// Initialize all columns at the my tableViewClient to insert data later.
+		// Initialize all columns at the my tableViewProduct to insert data later.
 		tableColumnCode.setCellValueFactory(new PropertyValueFactory<>("id"));
-		tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
-		tableColumnCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
-		tableColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-		tableColumnPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-		tableColumnCellphone.setCellValueFactory(new PropertyValueFactory<>("cellphone"));
-		tableColumnCEP.setCellValueFactory(new PropertyValueFactory<>("cep"));
-		tableColumnAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
-		tableColumnNumber.setCellValueFactory(new PropertyValueFactory<>("number"));
-		tableColumnComplement.setCellValueFactory(new PropertyValueFactory<>("complement"));
-		tableColumnNeighborhood.setCellValueFactory(new PropertyValueFactory<>("neighborhood"));
-		tableColumnCity.setCellValueFactory(new PropertyValueFactory<>("city"));
-		tableColumnState.setCellValueFactory(new PropertyValueFactory<>("state"));
-
-	}
-
-	// Use the mask in the some form data.
-	private void initializeMask() {
-		Mask.maskCEP(txtCEP);
-		Mask.maskCPF(txtCPF);
-		Mask.maskPhone(txtPhone);
-		Mask.maskPhone(txtCellphone);
+		tableColumnDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+		tableColumnPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+		tableColumnStockQuantity.setCellValueFactory(new PropertyValueFactory<>("qtd_stock"));
+		tableColumnProvider.setCellValueFactory(new PropertyValueFactory<>("for_id"));
 
 	}
 
 	// Set max lenght for my TextFields
 	private void initializeConstraints() {
-		Constraints.setTextFieldMaxLength(txtName, 20);
-		Constraints.setTextFieldMaxLength(txtEmail, 32);
-		Constraints.setTextFieldMaxLength(txtAddress, 30);
-		Constraints.setTextFieldMaxLength(txtNumber, 5);
-		Constraints.setTextFieldMaxLength(txtComplement, 60);
-		Constraints.setTextFieldMaxLength(txtNeighborhood, 30);
-		Constraints.setTextFieldMaxLength(txtCity, 25);
+		Constraints.setTextFieldMaxLength(txtDescription, 100);
+		Constraints.setTextFieldMaxLength(txtPrice, 8);
+		Constraints.setTextFieldDouble(txtPrice);
+		Constraints.setTextFieldMaxLength(txtStockQuantity, 7);
+		Constraints.setTextFieldInteger(txtStockQuantity);
+
 	}
 
 	// Update my TableView, So, having the data from the columns.
@@ -363,6 +340,5 @@ public class ProductRegistrationControl {
 		tableViewClient.setItems(obsListClient);
 
 	}
-
 
 }
