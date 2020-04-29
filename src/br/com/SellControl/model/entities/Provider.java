@@ -4,11 +4,11 @@ public class Provider {
 
 	private Integer id;
 	private String 	name;
-	private String 	cpf;
+	private String 	cnpj;
 	private String 	email;
 	private String 	phone;
 	private String 	cellphone;
-	private String 	cnpj;
+	private String 	cep;
 	private String 	address;
 	private Integer number;
 	private String 	complement;
@@ -20,11 +20,11 @@ public class Provider {
 		
 	}
 	
-	public Provider(Integer id, String name, String cpf, String email, String phone, String cellphone, String cnpj,
+	public Provider(Integer id, String name, String cep, String email, String phone, String cellphone, String cnpj,
 			String address, Integer number, String complement, String neighborhood, String city, String state) {
 		this.id = id;
 		this.name = name;
-		this.cpf = cpf;
+		this.cep = cep;
 		this.email = email;
 		this.phone = phone;
 		this.cellphone = cellphone;
@@ -53,12 +53,12 @@ public class Provider {
 		this.name = name;
 	}
 
-	public String getCpf() {
-		return cpf;
+	public String getCep() {
+		return cep;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setCep(String cep) {
+		this.cep = cep;
 	}
 
 	public String getEmail() {
@@ -143,7 +143,7 @@ public class Provider {
 
 	@Override
 	public String toString() {
-		return "Client id = " + id + "\nname = " + name + "\ncpf = " + cpf + "\nemail = " + email + "\nphone = " + phone
+		return "Client id = " + id + "\nname = " + name + "\ncep = " + cep + "\nemail = " + email + "\nphone = " + phone
 				+ "\ncellphone = " + cellphone + "\ncnpj = " + cnpj + "\naddress = " + address + "\nnumber = " + number
 				+ "\ncomplement = " + complement + "\nneighborhood = " + neighborhood + "\ncity = " + city + "\nstate = "
 				+ state;

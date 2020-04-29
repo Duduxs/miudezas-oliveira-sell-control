@@ -34,11 +34,11 @@ public class ProviderDAO {
 			ps = conn.prepareStatement(query.toString());
 
 			ps.setString(1, provider.getName());
-			ps.setString(2, provider.getCpf());
+			ps.setString(2, provider.getCnpj());
 			ps.setString(3, provider.getEmail());
 			ps.setString(4, provider.getPhone());
 			ps.setString(5, provider.getCellphone());
-			ps.setString(6, provider.getCnpj());
+			ps.setString(6, provider.getCep());
 			ps.setString(7, provider.getAddress());
 			ps.setInt(8, provider.getNumber());
 			ps.setString(9, provider.getComplement());
@@ -130,11 +130,11 @@ public class ProviderDAO {
 			ps = conn.prepareStatement(query.toString());
 
 			ps.setString(1, provider.getName());
-			ps.setString(2, provider.getCpf());
+			ps.setString(2, provider.getCnpj());
 			ps.setString(3, provider.getEmail());
 			ps.setString(4, provider.getPhone());
 			ps.setString(5, provider.getCellphone());
-			ps.setString(6, provider.getCnpj());
+			ps.setString(6, provider.getCep());
 			ps.setString(7, provider.getAddress());
 			ps.setInt(8, provider.getNumber());
 			ps.setString(9, provider.getComplement());
@@ -228,11 +228,11 @@ public class ProviderDAO {
 
 		c.setId(rs.getInt("id"));
 		c.setName(rs.getString("name"));
-		c.setCpf(rs.getString("cpf"));
+		c.setCnpj(rs.getString("cnpj"));
 		c.setEmail(rs.getString("email"));
 		c.setPhone(rs.getString("phone"));
 		c.setCellphone(rs.getString("cellphone"));
-		c.setCnpj(rs.getString("cnpj"));
+		c.setCep(rs.getString("cep"));
 		c.setAddress(rs.getString("address"));
 		c.setNumber(rs.getInt("number"));
 		c.setComplement(rs.getString("complement"));
