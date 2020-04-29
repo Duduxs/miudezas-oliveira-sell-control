@@ -5,9 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import br.com.SellControl.dao.ProviderDAO;
 import br.com.SellControl.dao.DaoFactory;
-import br.com.SellControl.model.entities.Provider;
+import br.com.SellControl.dao.ProviderDAO;
 import br.com.SellControl.model.entities.Provider;
 import br.com.SellControl.model.exception.ControlException;
 import br.com.SellControl.util.Alerts;
@@ -17,6 +16,8 @@ import br.com.SellControl.util.WebServiceCep;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.SingleSelectionModel;
@@ -25,10 +26,9 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class ProviderRegistrationControl {
+public class ProviderRegistrationControl implements Initializable{
 	@FXML
 	private TextField txtCode;
 	@FXML
@@ -74,7 +74,7 @@ public class ProviderRegistrationControl {
 	@FXML
 	private TableColumn<Provider, String> tableColumnName;
 	@FXML
-	private TableColumn<Provider, String> tableColumnCPF;
+	private TableColumn<Provider, String> tableColumnCEP;
 	@FXML
 	private TableColumn<Provider, String> tableColumnEmail;
 	@FXML
@@ -208,7 +208,7 @@ public class ProviderRegistrationControl {
 		ProviderDAO providerDAO = DaoFactory.createProviderDAO();
 		// Create a provider list and use sql command findClientByName
 		Provider c = providerDAO.findProviderByName(txtName.getText());
-		setClient(c);
+		setProvider(c);
 
 	}
 
@@ -275,7 +275,7 @@ public class ProviderRegistrationControl {
 			// The code don't need a value from textField.
 			Integer code = Integer.parseInt("1");
 			String name = txtName.getText();
-			String cnjp = txtCNPJ.getText();
+			String cnpj = txtCNPJ.getText();
 			String email = txtEmail.getText();
 			String phone = txtPhone.getText();
 			String cellphone = txtCellphone.getText();
@@ -299,22 +299,22 @@ public class ProviderRegistrationControl {
 	}
 
 	// This method exists for set all form (TextFields) on my first tab, using the
-	// attributes of the client.
-	private void setClient(Provider c) {
+	// attributes of the provider.
+	private void setProvider(Provider p) {
 		try {
-			txtCode.setText(c.getId().toString());
-			txtName.setText(c.getName());
-			txtEmail.setText(c.getEmail());
-			txtCEP.setText(c.getCep());
-			txtCPF.setText(c.getCpf());
-			txtAddress.setText(c.getAddress());
-			txtNeighborhood.setText(c.getNeighborhood());
-			txtCity.setText(c.getCity());
-			txtCellphone.setText(c.getCellphone());
-			txtPhone.setText(c.getPhone());
-			txtNumber.setText(c.getNumber().toString());
-			txtComplement.setText(c.getComplement());
-			comboBoxUF.getSelectionModel().select(c.getState());
+			txtCode.setText(p.getId().toString());
+			txtName.setText(p.getName());
+			txtEmail.setText(p.getEmail());
+			txtCEP.setText(p.getCep());
+			txtCNPJ.setText(p.getCnpj());
+			txtAddress.setText(p.getAddress());
+			txtNeighborhood.setText(p.getNeighborhood());
+			txtCity.setText(p.getCity());
+			txtCellphone.setText(p.getCellphone());
+			txtPhone.setText(p.getPhone());
+			txtNumber.setText(p.getNumber().toString());
+			txtComplement.setText(p.getComplement());
+			comboBoxUF.getSelectionModel().select(p.getState());
 		} catch (NullPointerException e) {
 			throw new ControlException(e.getMessage(), "message", null, "Client not found!", AlertType.ERROR, true);
 		}
@@ -343,14 +343,14 @@ public class ProviderRegistrationControl {
 
 	/*
 	 * When the FXML Panel start this method will be responsible for load the
-	 * columns to save my client datas.
+	 * columns to save my provider datas.
 	 */
 	private void initializeNodes() {
 
-		// Initialize all columns at the my tableViewClient to insert data later.
+		// Initialize all columns at the my tableViewprovider to insert data later.
 		tableColumnCode.setCellValueFactory(new PropertyValueFactory<>("id"));
 		tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
-		tableColumnCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+		tableColumnCNPJ.setCellValueFactory(new PropertyValueFactory<>("cnpj"));
 		tableColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 		tableColumnPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
 		tableColumnCellphone.setCellValueFactory(new PropertyValueFactory<>("cellphone"));
@@ -387,14 +387,14 @@ public class ProviderRegistrationControl {
 	// Update my TableView, So, having the data from the columns.
 	private void updateTableViewClient() {
 
-		// Create a clientDao.
-		ProviderDAO clientDAO = DaoFactory.createClientDAO();
-		// Create a client list and use sql command findAll.
-		List<Provider> list = clientDAO.findAll();
-		// Now load all my clients from insert to the my obsListClient.
-		obsListClient = FXCollections.observableArrayList(list);
-		// Set my table putting all clients him.
-		tableViewClient.setItems(obsListClient);
+		// Create a providerDAO.
+		ProviderDAO providerDAO = DaoFactory.createProviderDAO();
+		// Create a provider list and use sql command findAll.
+		List<Provider> list = providerDAO.findAll();
+		// Now load all my provider from insert to the my obsListProvider.
+		obsListProvider = FXCollections.observableArrayList(list);
+		// Set my table putting all provider him.
+		tableViewProvider.setItems(obsListProvider);
 
 	}
 
