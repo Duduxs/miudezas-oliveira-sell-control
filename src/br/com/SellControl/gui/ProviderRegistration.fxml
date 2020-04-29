@@ -225,17 +225,17 @@
                           <columns>
                             <TableColumn fx:id="tableColumnCode" prefWidth="20.0" resizable="false" text="ID" />
                             <TableColumn fx:id="tableColumnName" prefWidth="129.0" resizable="false" text="Name" />
-                              <TableColumn fx:id="tableColumnCNPJ" prefWidth="90.0" resizable="false" text="CNPJ" />
+                              <TableColumn fx:id="tableColumnCNPJ" prefWidth="116.0" resizable="false" text="CNPJ" />
                               <TableColumn fx:id="tableColumnEmail" prefWidth="214.0" resizable="false" text="Email" />
                               <TableColumn fx:id="tableColumnPhone" prefWidth="94.0" resizable="false" text="Phone" />
                               <TableColumn fx:id="tableColumnCellphone" prefWidth="95.0" resizable="false" text="Cellphone" />
                               <TableColumn fx:id="tableColumnCEP" prefWidth="65.0" resizable="false" text="CEP" />
                               <TableColumn fx:id="tableColumnAddress" prefWidth="158.0" resizable="false" text="Address" />
                               <TableColumn fx:id="tableColumnNumber" prefWidth="40.0" resizable="false" text="N°" />
-                              <TableColumn fx:id="tableColumnComplement" prefWidth="150.0" resizable="false" text="Comp" />
+                              <TableColumn fx:id="tableColumnComplement" prefWidth="122.0" resizable="false" text="Comp" />
                               <TableColumn fx:id="tableColumnNeighborhood" prefWidth="101.0" resizable="false" text="Neigh" />
-                              <TableColumn fx:id="tableColumnCity" prefWidth="127.0" resizable="false" text="City" />
-                              <TableColumn fx:id="tableColumnState" prefWidth="36.0" resizable="false" text="State" />
+                              <TableColumn fx:id="tableColumnCity" minWidth="0.0" prefWidth="127.0" resizable="false" text="City" />
+                              <TableColumn fx:id="tableColumnState" prefWidth="38.0" resizable="false" text="State" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
