@@ -60,7 +60,7 @@ public class ProductDAO {
 		try {
 			query.append(
 					"select p.id, p.description, p.price, p.qtd_stock, pr.name from tb_product as p inner join tb_provider as pr");
-			query.append(" on p.id=pr.id");
+			query.append(" on p.for_id=pr.id");
 			ps = conn.prepareStatement(query.toString());
 			rs = ps.executeQuery();
 
@@ -156,7 +156,7 @@ public class ProductDAO {
 
 			query.append(
 					"select p.id, p.description, p.price, p.qtd_stock, pr.name from tb_product as p inner join tb_provider as pr");
-			query.append(" on p.id=pr.id where p.description like ?");
+			query.append(" on p.for_id=pr.id where p.description like ?");
 			ps = conn.prepareStatement(query.toString());
 			ps.setString(1, "%" + name + "%");
 			rs = ps.executeQuery();
@@ -164,7 +164,7 @@ public class ProductDAO {
 			while (rs.next()) {
 				Product p = new Product();
 				Provider pr = new Provider();
-				makeProduct(rs, p, pr);
+				list.add(makeProduct(rs, p, pr));
 			}
 
 			return list;
@@ -194,7 +194,7 @@ public class ProductDAO {
 			Provider pr = new Provider();
 			query.append(
 					"select p.id, p.description, p.price, p.qtd_stock, pr.name from tb_product as p inner join tb_provider as pr");
-			query.append(" on p.id=pr.id where p.description = ?");
+			query.append(" on p.for_id=pr.id where p.description = ?");
 			ps = conn.prepareStatement(query.toString());
 			ps.setString(1, name);
 			rs = ps.executeQuery();
@@ -219,10 +219,10 @@ public class ProductDAO {
 
 	public Product makeProduct(ResultSet rs, Product p, Provider pr) throws SQLException {
 
-		p.setId(rs.getInt("id"));
-		p.setDescription(rs.getString("description"));
-		p.setPrice(rs.getDouble("price"));
-		p.setQtdStock(rs.getInt("qtd_stock"));
+		p.setId(rs.getInt("p.id"));
+		p.setDescription(rs.getString("p.description"));
+		p.setPrice(rs.getDouble("p.price"));
+		p.setQtdStock(rs.getInt("p.qtd_stock"));
 		pr.setName(rs.getString("pr.name"));
 		p.setProvider(pr);
 

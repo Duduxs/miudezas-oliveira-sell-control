@@ -36,7 +36,7 @@ public class ProductRegistrationControl implements Initializable {
 	@FXML
 	private TextField txtPrice;
 	@FXML
-	private TextField txtStockQuantity;
+	private TextField txtStock;
 
 	@FXML
 	private TextField txtSearch;
@@ -58,11 +58,11 @@ public class ProductRegistrationControl implements Initializable {
 	@FXML
 	private TableColumn<Product, String> tableColumnDescription;
 	@FXML
-	private TableColumn<Product, String> tableColumnPrice;
+	private TableColumn<Product, Double> tableColumnPrice;
 	@FXML
-	private TableColumn<Product, String> tableColumnStockQuantity;
+	private TableColumn<Product, Integer> tableColumnStock;
 	@FXML
-	private TableColumn<Product, String> tableColumnProvider;
+	private TableColumn<Product, Integer> tableColumnProvider;
 
 	@FXML
 	private Tab tabConsultProduct;
@@ -129,7 +129,7 @@ public class ProductRegistrationControl implements Initializable {
 		// Clean the elements in TextField.
 		onBtnCleanAction();
 		// Show a success message
-		Alerts.showAlert("Message", null, "Deleted client!", AlertType.INFORMATION);
+		Alerts.showAlert("Message", null, "Deleted product!", AlertType.INFORMATION);
 	}
 
 	@FXML
@@ -140,23 +140,11 @@ public class ProductRegistrationControl implements Initializable {
 		txtCode.setText("");
 		txtDescription.setText(null);
 		txtPrice.setText(null);
-		txtStockQuantity.setText(null);
+		txtStock.setText(null);
 		comboBoxProvider.getSelectionModel().select(null);
 
 	}
 
-	// Search a list of product on the Consult Product tab at the btn Search
-	@FXML
-	private void onBtnSearchConsultProductAction() {
-		// Create a productDAO
-		ProductDAO productDAO = DaoFactory.createProductDAO();
-		// Create a product list and use sql command findbyName
-		List<Product> list = productDAO.findbyName(txtSearch.getText());
-		// Now load all my product from insert to the my obsListClient.
-		obsListProduct = FXCollections.observableArrayList(list);
-		// Set my table putting all product him.
-		tableViewProduct.setItems(obsListProduct);
-	}
 
 	/*
 	 * When i'm in the first tab and i click in search, this method will be throw
@@ -171,6 +159,20 @@ public class ProductRegistrationControl implements Initializable {
 		setProduct(p);
 
 	}
+	
+	// Search a list of product on the Consult Product tab at the btn Search
+	@FXML
+	private void onBtnSearchConsultProductAction() {
+		// Create a productDAO
+		ProductDAO productDAO = DaoFactory.createProductDAO();
+		// Create a product list and use sql command findbyName
+		List<Product> list = productDAO.findbyName(txtSearch.getText());
+		// Now load all my product from insert to the my obsListClient.
+		obsListProduct = FXCollections.observableArrayList(list);
+		// Set my table putting all product him.
+		tableViewProduct.setItems(obsListProduct);
+	}
+
 
 	// Search a list of product on the Consult Product tab at the txtSearch only
 	// tipping
@@ -191,7 +193,7 @@ public class ProductRegistrationControl implements Initializable {
 		// IF consultCustomer is selected them load my tableView with all my product,
 		// and show them.
 		if (tabConsultProduct.isSelected())
-			updateTableViewClient();
+			updateTableViewProduct();
 	}
 
 	/*
@@ -214,8 +216,13 @@ public class ProductRegistrationControl implements Initializable {
 			txtCode.setText(product.getId().toString());
 			txtDescription.setText(product.getDescription().toString());
 			txtPrice.setText(product.getPrice().toString());
-			txtStockQuantity.setText(product.getQtdStock().toString());
-			comboBoxProvider.setValue(product.getProvider());
+			txtStock.setText(product.getQtdStock().toString());
+
+			Provider p = new Provider();
+			ProviderDAO providerDAO = DaoFactory.createProviderDAO();
+			p = providerDAO.findProviderByName(product.getProvider().getName());
+			comboBoxProvider.setValue(p);
+			// comboBoxProvider.getItems().clear();
 
 		}
 	}
@@ -228,7 +235,7 @@ public class ProductRegistrationControl implements Initializable {
 			Integer code = Integer.parseInt("1");
 			String description = txtDescription.getText();
 			Double price = Double.parseDouble(txtPrice.getText());
-			Integer StockQuantity = Integer.parseInt(txtStockQuantity.getText());
+			Integer StockQuantity = Integer.parseInt(txtStock.getText());
 
 			Provider provider = new Provider();
 			provider = (Provider) comboBoxProvider.getSelectionModel().getSelectedItem();
@@ -250,11 +257,11 @@ public class ProductRegistrationControl implements Initializable {
 			txtCode.setText(p.getId().toString());
 			txtDescription.setText(p.getDescription());
 			txtPrice.setText(p.getPrice().toString());
-			txtStockQuantity.setText(p.getQtdStock().toString());
+			txtStock.setText(p.getQtdStock().toString());
 
 			Provider pr = new Provider();
 			ProviderDAO providerDAO = DaoFactory.createProviderDAO();
-			pr = (Provider) providerDAO.findbyName(p.getProvider().getName());
+			pr = providerDAO.findProviderByName(p.getProvider().getName());
 
 			comboBoxProvider.getSelectionModel().select(pr);
 
@@ -267,8 +274,8 @@ public class ProductRegistrationControl implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		initializeComboBox();
-		initializeNodes();
 		initializeConstraints();
+		initializeNodes();
 
 	}
 
@@ -296,7 +303,7 @@ public class ProductRegistrationControl implements Initializable {
 		tableColumnCode.setCellValueFactory(new PropertyValueFactory<>("id"));
 		tableColumnDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
 		tableColumnPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-		tableColumnStockQuantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
+		tableColumnStock.setCellValueFactory(new PropertyValueFactory<>("Stock"));
 		tableColumnProvider.setCellValueFactory(new PropertyValueFactory<>("Provider"));
 
 	}
@@ -306,13 +313,11 @@ public class ProductRegistrationControl implements Initializable {
 		Constraints.setTextFieldMaxLength(txtDescription, 100);
 		Constraints.setTextFieldMaxLength(txtPrice, 8);
 		Constraints.setTextFieldDouble(txtPrice);
-		Constraints.setTextFieldMaxLength(txtStockQuantity, 7);
-		Constraints.setTextFieldInteger(txtStockQuantity);
 
 	}
 
 	// Update my TableView, So, having the data from the columns.
-	private void updateTableViewClient() {
+	private void updateTableViewProduct() {
 
 		// Create a productDAO.
 		ProductDAO productDAO = DaoFactory.createProductDAO();

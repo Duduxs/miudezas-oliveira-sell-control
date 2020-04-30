@@ -5,7 +5,7 @@ public class Product {
 	private Integer id;
 	private String description;
 	private Double price;
-	private Integer qtdStock;
+	private Integer Stock;
 
 	private Provider provider;
 
@@ -13,11 +13,11 @@ public class Product {
 
 	}
 
-	public Product(Integer id, String description, Double price, Integer qtdStock, Provider provider) {
+	public Product(Integer id, String description, Double price, Integer Stock, Provider provider) {
 		this.id = id;
 		this.description = description;
 		this.price = price;
-		this.qtdStock = qtdStock;
+		this.Stock = Stock;
 		this.provider = provider;
 	}
 
@@ -46,11 +46,11 @@ public class Product {
 	}
 
 	public Integer getQtdStock() {
-		return qtdStock;
+		return Stock;
 	}
 
 	public void setQtdStock(Integer qtdStock) {
-		this.qtdStock = qtdStock;
+		this.Stock = qtdStock;
 	}
 
 	public Provider getProvider() {

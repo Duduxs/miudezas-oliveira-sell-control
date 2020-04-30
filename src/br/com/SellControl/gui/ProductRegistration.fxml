@@ -88,7 +88,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="txtStockQuantity" maxWidth="160.0" prefHeight="25.0" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="txtStock" maxWidth="160.0" prefHeight="25.0" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <Label text="Provider:" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="14.0" />
@@ -166,7 +166,7 @@
                             <TableColumn fx:id="tableColumnCode" prefWidth="20.0" resizable="false" text="ID" />
                             <TableColumn fx:id="tableColumnDescription" prefWidth="821.0" resizable="false" text="Description" />
                               <TableColumn fx:id="tableColumnPrice" minWidth="0.0" prefWidth="159.0" resizable="false" text="Price" />
-                              <TableColumn fx:id="tableColumnStockQuantity" prefWidth="159.0" resizable="false" text="Quantity" />
+                              <TableColumn fx:id="tableColumnStock" prefWidth="159.0" resizable="false" text="Stock" />
                               <TableColumn fx:id="tableColumnProvider" prefWidth="161.0" resizable="false" text="Provider" />
                           </columns>
                            <columnResizePolicy>
