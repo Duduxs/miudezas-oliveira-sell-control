@@ -222,7 +222,7 @@ public class ProductRegistrationControl implements Initializable {
 			ProviderDAO providerDAO = DaoFactory.createProviderDAO();
 			p = providerDAO.findProviderByName(product.getProvider().getName());
 			comboBoxProvider.setValue(p);
-			// comboBoxProvider.getItems().clear();
+		
 
 		}
 	}
@@ -303,7 +303,7 @@ public class ProductRegistrationControl implements Initializable {
 		tableColumnCode.setCellValueFactory(new PropertyValueFactory<>("id"));
 		tableColumnDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
 		tableColumnPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-		tableColumnStock.setCellValueFactory(new PropertyValueFactory<>("Stock"));
+		tableColumnStock.setCellValueFactory(new PropertyValueFactory<>("QtdStock"));
 		tableColumnProvider.setCellValueFactory(new PropertyValueFactory<>("Provider"));
 
 	}
