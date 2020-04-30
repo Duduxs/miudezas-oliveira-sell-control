@@ -145,7 +145,6 @@ public class ProductRegistrationControl implements Initializable {
 
 	}
 
-
 	/*
 	 * When i'm in the first tab and i click in search, this method will be throw
 	 * and it will fill all TextFields on first tab.
@@ -159,7 +158,7 @@ public class ProductRegistrationControl implements Initializable {
 		setProduct(p);
 
 	}
-	
+
 	// Search a list of product on the Consult Product tab at the btn Search
 	@FXML
 	private void onBtnSearchConsultProductAction() {
@@ -172,7 +171,6 @@ public class ProductRegistrationControl implements Initializable {
 		// Set my table putting all product him.
 		tableViewProduct.setItems(obsListProduct);
 	}
-
 
 	// Search a list of product on the Consult Product tab at the txtSearch only
 	// tipping
@@ -222,7 +220,6 @@ public class ProductRegistrationControl implements Initializable {
 			ProviderDAO providerDAO = DaoFactory.createProviderDAO();
 			p = providerDAO.findProviderByName(product.getProvider().getName());
 			comboBoxProvider.setValue(p);
-		
 
 		}
 	}
@@ -313,6 +310,8 @@ public class ProductRegistrationControl implements Initializable {
 		Constraints.setTextFieldMaxLength(txtDescription, 100);
 		Constraints.setTextFieldMaxLength(txtPrice, 8);
 		Constraints.setTextFieldDouble(txtPrice);
+		Constraints.setTextFieldMaxLength(txtStock, 7);
+		Constraints.setTextFieldInteger(txtStock);
 
 	}
 
