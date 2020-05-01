@@ -21,9 +21,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -36,8 +36,9 @@ import javafx.stage.Stage;
 public class PoSControl implements Initializable {
 
 	// For calc my subTotal and total in txtField
-	private Integer quantity = 0;
-	private Double total = 0.0, subtotal = 0.0, price = 0.0;
+	Integer quantity = 0;
+	Double total = 0.0, subtotal = 0.0, price = 0.0;
+	static Double total1;
 
 	@FXML
 	private TextField txtDate;
@@ -88,13 +89,14 @@ public class PoSControl implements Initializable {
 	@FXML
 	public void onbtnPaymentAction() {
 		try {
+
+			// Open and get the PaymentScreenFXML
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/SellControl/gui/Payment.fxml"));
 			// Load the screen and put in root variable.
 			Parent root = (Parent) loader.load();
 			Stage stage = new Stage();
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
-
 			// Not resize screen and size my screen to scene
 			stage.setResizable(false);
 			stage.sizeToScene();
@@ -201,6 +203,8 @@ public class PoSControl implements Initializable {
 			// calc
 			subtotal = quantity * price;
 			total += subtotal;
+			total1 = total;
+
 			// Show in txtTotal
 			txtTotal.setText(total.toString());
 			updateTableViewPoS();
@@ -216,7 +220,9 @@ public class PoSControl implements Initializable {
 		price = Double.parseDouble(txtPrice.getText());
 		// calc
 		subtotal = quantity * price;
+
 		total += subtotal;
+		total1 = total;
 		// Show in txtTotal
 		txtTotal.setText(total.toString());
 		updateTableViewPoS();
