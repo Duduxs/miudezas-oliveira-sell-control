@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1341.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1341.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.SellControl.gui.PoScControl">
    <children>
       <AnchorPane layoutY="-6.0" prefHeight="70.0" prefWidth="1342.0" style="-fx-background-color: #0066cc;">
          <children>
@@ -50,7 +50,7 @@
                      </font>
                   </Label>
                   <TextField maxWidth="386.0" prefHeight="25.0" prefWidth="299.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label text="Data:" GridPane.rowIndex="3">
+                  <Label text="Date:" GridPane.rowIndex="3">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -58,7 +58,7 @@
                         <Insets />
                      </GridPane.margin>
                   </Label>
-                  <TextField maxWidth="162.0" prefHeight="25.0" prefWidth="162.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <TextField fx:id="txtDate" editable="false" maxWidth="162.0" prefHeight="25.0" prefWidth="162.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>

@@ -24,7 +24,7 @@
       </AnchorPane>
       <Pane layoutY="64.0" prefHeight="556.0" prefWidth="1342.0" style="-fx-background-color: #ffffff; -fx-border-style: solid;">
          <children>
-            <GridPane layoutX="26.0" layoutY="2.0" prefHeight="466.0" prefWidth="1314.0">
+            <GridPane layoutX="26.0" layoutY="2.0" prefHeight="466.0" prefWidth="1315.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="709.0" minWidth="10.0" prefWidth="291.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="1200.0" minWidth="10.0" prefWidth="1023.0" />
@@ -45,12 +45,12 @@
                         <Insets right="-250.0" />
                      </GridPane.margin>
                   </Label>
-                  <TextField maxHeight="1300.0" maxWidth="1032.0" prefHeight="109.0" prefWidth="1032.0" GridPane.columnIndex="1">
+                  <TextField maxHeight="1300.0" maxWidth="1032.0" prefHeight="96.0" prefWidth="974.0" GridPane.columnIndex="1">
                      <font>
                         <Font size="45.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets />
+                        <Insets right="5.0" top="5.0" />
                      </GridPane.margin></TextField>
                   <Label prefHeight="63.0" prefWidth="199.0" text="CHECK:" GridPane.rowIndex="2">
                      <font>
@@ -80,21 +80,33 @@
                      <font>
                         <Font size="45.0" />
                      </font>
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin>
                   </TextField>
                   <TextField maxHeight="1300.0" maxWidth="1118.0" prefHeight="108.0" prefWidth="1118.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
                         <Font size="45.0" />
                      </font>
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin>
                   </TextField>
                   <TextField editable="false" maxHeight="1300.0" maxWidth="1120.0" prefHeight="108.0" prefWidth="1120.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <font>
                         <Font size="45.0" />
                      </font>
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin>
                   </TextField>
-                  <TextField editable="false" maxHeight="1300.0" maxWidth="1135.0" prefHeight="108.0" prefWidth="1135.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <TextField editable="false" maxHeight="1300.0" maxWidth="1135.0" prefHeight="96.0" prefWidth="1044.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <font>
                         <Font size="45.0" />
                      </font>
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin>
                   </TextField>
                   <Label prefHeight="86.0" prefWidth="165.0" text="CARD:" GridPane.rowIndex="1">
                      <font>
