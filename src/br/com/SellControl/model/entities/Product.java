@@ -6,6 +6,8 @@ public class Product {
 	private String description;
 	private Double price;
 	private Integer Stock;
+	// set, variable and updateTableViewPos all temporary
+	private Double subTotal;
 
 	private Provider provider;
 
@@ -59,6 +61,15 @@ public class Product {
 
 	public void setProvider(Provider provider) {
 		this.provider = provider;
+	}
+
+	// set, variable and updateTableViewPos all temporary
+	public void setSubTotal(Double subTotal) {
+		this.subTotal = subTotal;
+	}
+	// set, variable and updateTableViewPos all temporary
+	public Double getSubTotal() {
+		return subTotal;
 	}
 
 }

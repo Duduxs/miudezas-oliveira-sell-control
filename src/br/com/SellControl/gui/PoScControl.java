@@ -2,6 +2,7 @@ package br.com.SellControl.gui;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -190,16 +191,21 @@ public class PoScControl implements Initializable {
 		tableColumnDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
 		tableColumnQuantity.setCellValueFactory(new PropertyValueFactory<>("QtdStock"));
 		tableColumnPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-		tableColumnSubTotal.setCellValueFactory(new PropertyValueFactory<>("subtotal"));
+		tableColumnSubTotal.setCellValueFactory(new PropertyValueFactory<>("SubTotal"));
 	}
 
 	// Update my TableView, So, having the data from the columns.
+	// set, variable and updateTableViewPos all temporary
 	private void updateTableViewPoS() {
+		Product product = new Product();
+		product.setId(Integer.parseInt(txtCode.getText()));
+		product.setDescription((txtProduct.getText()));
+		product.setPrice(Double.parseDouble(txtPrice.getText()));
+		product.setQtdStock(Integer.parseInt(txtQuantity.getText()));
+		product.setSubTotal(Double.parseDouble(subtotal.toString()));
 
-		// Create a productDAO
-		ProductDAO productDAO = DaoFactory.createProductDAO();
-		// Create a product list and use sql command findAll.
-		List<Product> list = productDAO.findAll();
+		List<Product> list = new ArrayList<>();
+		list.add(product);
 		// Now load all my itnes from insert to the my obsListPointOfSell.
 		obsListPointOfSell = FXCollections.observableArrayList(list);
 		// Set my table putting all pointOfSell him.
