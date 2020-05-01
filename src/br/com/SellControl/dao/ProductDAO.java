@@ -251,6 +251,47 @@ public class ProductDAO {
 
 	}
 
+	// Decrease value from stock
+	public void decreaseStock(int id, int new_qtd) {
+		PreparedStatement ps = null;
+		try {
+			String sql = "update tb_product set qtd_stock = ? where id = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, new_qtd);
+			ps.setInt(2, id);
+
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closePreparedStatement(ps);
+		}
+	}
+
+	// return ActualStock from a product in tb_product
+	public int returnActualStock(int id) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			//Receive qtd_stock In SELECT.
+			int qtd_stock = 0;
+
+			String sql = "select qtd_stock from tb_product where id = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+
+			rs = ps.executeQuery();
+
+			if (rs.next())
+				qtd_stock = (rs.getInt("qtd_stock"));
+
+			return qtd_stock;
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closePreparedStatement(ps);
+		}
+	}
+
 	public Product makeProduct(ResultSet rs, Product p, Provider pr) throws SQLException {
 
 		p.setId(rs.getInt("p.id"));
