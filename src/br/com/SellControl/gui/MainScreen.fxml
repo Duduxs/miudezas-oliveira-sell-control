@@ -50,7 +50,7 @@
             </Menu>
         </menus>
       </MenuBar>
-      <ImageView fitHeight="354.0" fitWidth="675.0" layoutY="52.0" pickOnBounds="true">
+      <ImageView fitHeight="383.0" fitWidth="675.0" layoutY="23.0" pickOnBounds="true">
          <image>
             <Image url="@../img/ico/fundo.jpg" />
          </image>
