@@ -294,6 +294,7 @@ public class ProductDAO {
 			throw new DbException(e.getMessage());
 		} finally {
 			DB.closePreparedStatement(ps);
+			DB.closeResultSet(rs);
 		}
 	}
 
