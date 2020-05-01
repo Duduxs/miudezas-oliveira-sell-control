@@ -36,9 +36,9 @@ import javafx.stage.Stage;
 public class PoSControl implements Initializable {
 
 	// For calc my subTotal and total in txtField
-	Integer quantity = 0;
-	Double total = 0.0, subtotal = 0.0, price = 0.0;
-	static Double total1;
+	static Integer quantity = 0;
+	static Double total = 0.0, subtotal = 0.0, price = 0.0;
+	// static Double total1;
 
 	@FXML
 	private TextField txtDate;
@@ -84,6 +84,23 @@ public class PoSControl implements Initializable {
 	private Button btnAddItem;
 	@FXML
 	private Button btnPayment;
+
+	public Stage myWindow() {
+
+		try {
+			Parent parent = FXMLLoader.load(getClass().getResource("/br/com/SellControl/gui/PoS.fxml"));
+
+			Stage stage = new Stage();
+			Scene scene = new Scene(parent);
+			stage.setScene(scene);
+			stage.setResizable(false);
+			stage.sizeToScene();
+			return stage;
+
+		} catch (IOException e) {
+			throw new ControlException(e.getMessage(), null, null, null, null, false);
+		}
+	}
 
 	// Test
 	@FXML
@@ -203,7 +220,6 @@ public class PoSControl implements Initializable {
 			// calc
 			subtotal = quantity * price;
 			total += subtotal;
-			total1 = total;
 
 			// Show in txtTotal
 			txtTotal.setText(total.toString());
@@ -222,7 +238,6 @@ public class PoSControl implements Initializable {
 		subtotal = quantity * price;
 
 		total += subtotal;
-		total1 = total;
 		// Show in txtTotal
 		txtTotal.setText(total.toString());
 		updateTableViewPoS();

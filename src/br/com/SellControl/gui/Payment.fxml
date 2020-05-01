@@ -45,7 +45,7 @@
                         <Insets right="-250.0" />
                      </GridPane.margin>
                   </Label>
-                  <TextField maxHeight="1300.0" maxWidth="1032.0" prefHeight="96.0" prefWidth="974.0" GridPane.columnIndex="1">
+                  <TextField fx:id="txtCash" maxHeight="1300.0" maxWidth="1032.0" prefHeight="96.0" prefWidth="974.0" GridPane.columnIndex="1">
                      <font>
                         <Font size="45.0" />
                      </font>
@@ -76,7 +76,7 @@
                         <Insets right="-280.0" />
                      </GridPane.margin>
                   </Label>
-                  <TextField maxHeight="1300.0" maxWidth="1027.0" prefHeight="108.0" prefWidth="1027.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="txtCard" maxHeight="1300.0" maxWidth="1027.0" prefHeight="108.0" prefWidth="1027.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font size="45.0" />
                      </font>
@@ -84,7 +84,7 @@
                         <Insets right="5.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField maxHeight="1300.0" maxWidth="1118.0" prefHeight="108.0" prefWidth="1118.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="txtCheck" maxHeight="1300.0" maxWidth="1118.0" prefHeight="108.0" prefWidth="1118.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
                         <Font size="45.0" />
                      </font>
@@ -92,7 +92,7 @@
                         <Insets right="5.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField editable="false" maxHeight="1300.0" maxWidth="1120.0" prefHeight="108.0" prefWidth="1120.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <TextField fx:id="txtRest" editable="false" maxHeight="1300.0" maxWidth="1120.0" prefHeight="108.0" prefWidth="1120.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <font>
                         <Font size="45.0" />
                      </font>
@@ -118,7 +118,7 @@
                   </Label>
                </children>
             </GridPane>
-            <Button layoutX="509.0" layoutY="480.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="348.0" style="-fx-background-radius: 100;" text="Finalize the sale">
+            <Button fx:id="btnFinalize" layoutX="509.0" layoutY="480.0" mnemonicParsing="false" onAction="#onBtnFinalizeAction" prefHeight="62.0" prefWidth="348.0" style="-fx-background-radius: 100;" text="Finalize the sale">
                <font>
                   <Font size="14.0" />
                </font>
