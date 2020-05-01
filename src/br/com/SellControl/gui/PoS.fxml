@@ -114,28 +114,35 @@
                         <Insets right="50.0" />
                      </GridPane.margin>
                   </Button>
-                  <Label text="Quantity:" GridPane.rowIndex="2">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="txtQuantity" maxWidth="160.0" prefHeight="25.0" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label text="Price:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                  <Label text="Quantity:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                      <font>
                         <Font size="14.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets right="120.0" />
+                        <Insets right="110.0" />
                      </GridPane.margin>
                   </Label>
-                  <TextField fx:id="txtPrice" maxWidth="160.0" prefHeight="25.0" prefWidth="160.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                  <Label text="Price:" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="txtPrice" maxWidth="160.0" prefHeight="25.0" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="txtQuantity" maxWidth="160.0" prefHeight="25.0" prefWidth="160.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets right="-115.0" />
                      </GridPane.margin>
                   </TextField>
                </children>
             </GridPane>
-            <Button layoutX="231.0" layoutY="213.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="30.0" prefWidth="123.0" style="-fx-background-radius: 10;" text="ADD ITEM">
+            <Button fx:id="btnAddItem" layoutX="231.0" layoutY="213.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onBtnAddItemAction" prefHeight="30.0" prefWidth="123.0" style="-fx-background-radius: 10;" text="ADD ITEM">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -144,13 +151,13 @@
       </Pane>
       <Pane layoutX="653.0" layoutY="90.0" prefHeight="354.0" prefWidth="687.0" style="-fx-background-color: #ffffff; -fx-border-style: solid;">
          <children>
-            <TableView layoutX="1.0" layoutY="1.0" prefHeight="352.0" prefWidth="685.0">
+            <TableView fx:id="tableViewPointOfSell" layoutX="1.0" layoutY="1.0" prefHeight="352.0" prefWidth="685.0">
               <columns>
-                <TableColumn prefWidth="20.0" text="ID" />
-                <TableColumn prefWidth="308.0" text="Product" />
-                  <TableColumn prefWidth="119.0" text="Quantity" />
-                  <TableColumn prefWidth="119.0" text="Price" />
-                  <TableColumn prefWidth="119.0" text="SubTotal" />
+                <TableColumn fx:id="tableColumnID" prefWidth="20.0" text="ID" />
+                <TableColumn fx:id="tableColumnDescription" prefWidth="308.0" text="Product " />
+                  <TableColumn fx:id="tableColumnQuantity" prefWidth="119.0" text="Quantity" />
+                  <TableColumn fx:id="tableColumnPrice" prefWidth="119.0" text="Price" />
+                  <TableColumn fx:id="tableColumnSubTotal" prefWidth="119.0" text="SubTotal" />
               </columns>
             </TableView>
          </children>
@@ -187,10 +194,10 @@
                   <Font size="29.0" />
                </font>
             </Label>
-            <TextField layoutX="156.0" layoutY="24.0" maxWidth="504.0" prefHeight="39.0" prefWidth="503.0">
-               <padding>
-                  <Insets bottom="30.0" />
-               </padding>
+            <TextField fx:id="txtTotal" alignment="TOP_CENTER" layoutX="153.0" layoutY="19.0" maxWidth="504.0" prefHeight="39.0" prefWidth="503.0">
+               <font>
+                  <Font size="27.0" />
+               </font>
             </TextField>
          </children>
       </Pane>
