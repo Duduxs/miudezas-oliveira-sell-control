@@ -217,6 +217,40 @@ public class ProductDAO {
 
 	}
 
+	public Product findProductByCode(String code) {
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			StringBuilder query = new StringBuilder();
+			Product p = new Product();
+			Provider pr = new Provider();
+			query.append(
+					"select p.id, p.description, p.price, p.qtd_stock, pr.name from tb_product as p inner join tb_provider as pr");
+			query.append(" on p.for_id=pr.id where p.id = ?");
+			ps = conn.prepareStatement(query.toString());
+			ps.setString(1, code);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				p = makeProduct(rs, p, pr);
+			}
+
+			return p;
+
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+
+		finally {
+			DB.closePreparedStatement(ps);
+			DB.closeResultSet(rs);
+
+		}
+
+	}
+
 	public Product makeProduct(ResultSet rs, Product p, Provider pr) throws SQLException {
 
 		p.setId(rs.getInt("p.id"));

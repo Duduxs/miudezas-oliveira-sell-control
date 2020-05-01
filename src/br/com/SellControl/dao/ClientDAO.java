@@ -109,7 +109,8 @@ public class ClientDAO {
 			throw new DbException(e.getMessage());
 			// If have code field empty, them throw this exception
 		} catch (DbException e) {
-			throw new ControlException(e.getMessage(), "message", null, "Code it has to be the same", AlertType.ERROR,true);
+			throw new ControlException(e.getMessage(), "message", null, "Code it has to be the same", AlertType.ERROR,
+					true);
 
 		} finally {
 			DB.closePreparedStatement(ps);
@@ -152,7 +153,8 @@ public class ClientDAO {
 			throw new DbException(e.getMessage());
 			// If have code field empty, them throw this exception
 		} catch (DbException e) {
-			throw new ControlException(e.getMessage(), "message", null, "Code it has to be the same", AlertType.ERROR,true);
+			throw new ControlException(e.getMessage(), "message", null, "Code it has to be the same", AlertType.ERROR,
+					true);
 
 		} finally {
 			DB.closePreparedStatement(ps);
@@ -204,6 +206,36 @@ public class ClientDAO {
 			String sql = "select * from tb_client where name = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, name);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				c = makeClient(rs, c);
+			}
+
+			return c;
+
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+
+		finally {
+			DB.closePreparedStatement(ps);
+			DB.closeResultSet(rs);
+
+		}
+
+	}
+
+	public Client findClientByCPF(String cpf) {
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			Client c = new Client();
+			String sql = "select * from tb_client where cpf = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, cpf);
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
