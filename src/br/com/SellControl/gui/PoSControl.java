@@ -15,6 +15,7 @@ import br.com.SellControl.model.entities.Client;
 import br.com.SellControl.model.entities.Product;
 import br.com.SellControl.model.exception.ControlException;
 import br.com.SellControl.util.Alerts;
+import br.com.SellControl.util.Constraints;
 import br.com.SellControl.util.Mask;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,12 +37,12 @@ import javafx.stage.Stage;
 public class PoSControl implements Initializable {
 
 	// For calc my subTotal and total in txtField
-	public static Integer quantity = 0;
-	public static Double total = 0.0, subtotal = 0.0, price = 0.0;
-	// static Double total1;
+	private Integer quantity = 0;
+	protected static Double total = 0.0;
+	private Double subtotal = 0.0, price = 0.0;
 
-	public static Client client = new Client();
-	
+	protected static Client client = new Client();
+
 	@FXML
 	private TextField txtDate;
 	@FXML
@@ -73,10 +74,12 @@ public class PoSControl implements Initializable {
 	private TableColumn<Double, Product> tableColumnSubTotal;
 
 	@FXML
-	private TableView<Product> tableViewPointOfSell;
+	public TableView<Product> tableViewPointOfSell;
+	public static TableView<Product> tableViewPointOfSell2;
 
 	@FXML
-	private ObservableList<Product> obsListPointOfSell;
+	public ObservableList<Product> obsListPointOfSell;
+	public List<Product> list = new ArrayList<>();
 
 	@FXML
 	private Button btnSearchCPF;
@@ -113,6 +116,7 @@ public class PoSControl implements Initializable {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/SellControl/gui/Payment.fxml"));
 			// Load the screen and put in root variable.
 			Parent root = (Parent) loader.load();
+
 			Stage stage = new Stage();
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
@@ -155,7 +159,7 @@ public class PoSControl implements Initializable {
 		if (evt.getCode().equals(KeyCode.ENTER)) {
 
 			// Create a new client.
-			
+
 			// Create a dao.
 			ClientDAO clientDAO = DaoFactory.createClientDAO();
 			// Use a new findClientByCPF and put in client
@@ -238,7 +242,6 @@ public class PoSControl implements Initializable {
 		price = Double.parseDouble(txtPrice.getText());
 		// calc
 		subtotal = quantity * price;
-
 		total += subtotal;
 		// Show in txtTotal
 		txtTotal.setText(total.toString());
@@ -250,6 +253,8 @@ public class PoSControl implements Initializable {
 		setDate();
 		// Format a valid cpf
 		Mask.maskCPF(txtCPF);
+		// Constraints.setTextFieldDouble(txtPrice);
+		Constraints.setTextFieldMaxLength(txtPrice, 4);
 		initializeNodes();
 
 	}
@@ -273,13 +278,13 @@ public class PoSControl implements Initializable {
 		product.setPrice(Double.parseDouble(txtPrice.getText()));
 		product.setQtdStock(Integer.parseInt(txtQuantity.getText()));
 		product.setSubTotal(Double.parseDouble(subtotal.toString()));
-
-		List<Product> list = new ArrayList<>();
 		list.add(product);
 		// Now load all my itnes from insert to the my obsListPointOfSell.
 		obsListPointOfSell = FXCollections.observableArrayList(list);
 		// Set my table putting all pointOfSell him.
 		tableViewPointOfSell.setItems(obsListPointOfSell);
+		// Variable for use in PaymentControl.
+		tableViewPointOfSell2 = tableViewPointOfSell;
 
 	}
 

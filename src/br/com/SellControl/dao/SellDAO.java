@@ -8,8 +8,6 @@ import java.sql.SQLException;
 import br.com.SellControl.db.DB;
 import br.com.SellControl.model.entities.Sell;
 import br.com.SellControl.model.exception.DbException;
-import br.com.SellControl.util.Alerts;
-import javafx.scene.control.Alert.AlertType;
 
 public class SellDAO {
 
@@ -37,8 +35,6 @@ public class SellDAO {
 
 			if (rows <= 0)
 				throw new DbException("Error, no rows affected!");
-
-			Alerts.showAlert("Message", null, "Items purchased!", AlertType.INFORMATION);
 
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());

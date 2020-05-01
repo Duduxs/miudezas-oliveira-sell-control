@@ -63,11 +63,11 @@ public class Product {
 		this.provider = provider;
 	}
 
-	// set, variable and updateTableViewPos all temporary
+	
 	public void setSubTotal(Double subTotal) {
 		this.subTotal = subTotal;
 	}
-	// set, variable and updateTableViewPos all temporary
+	
 	public Double getSubTotal() {
 		return subTotal;
 	}

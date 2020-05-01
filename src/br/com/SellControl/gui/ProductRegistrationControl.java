@@ -308,7 +308,7 @@ public class ProductRegistrationControl implements Initializable {
 	// Set max lenght for my TextFields
 	private void initializeConstraints() {
 		Constraints.setTextFieldMaxLength(txtDescription, 100);
-		Constraints.setTextFieldMaxLength(txtPrice, 8);
+		Constraints.setTextFieldMaxLength(txtPrice, 4);
 		Constraints.setTextFieldDouble(txtPrice);
 		Constraints.setTextFieldMaxLength(txtStock, 7);
 		Constraints.setTextFieldInteger(txtStock);
