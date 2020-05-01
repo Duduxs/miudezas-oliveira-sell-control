@@ -36,10 +36,12 @@ import javafx.stage.Stage;
 public class PoSControl implements Initializable {
 
 	// For calc my subTotal and total in txtField
-	static Integer quantity = 0;
-	static Double total = 0.0, subtotal = 0.0, price = 0.0;
+	public static Integer quantity = 0;
+	public static Double total = 0.0, subtotal = 0.0, price = 0.0;
 	// static Double total1;
 
+	public static Client client = new Client();
+	
 	@FXML
 	private TextField txtDate;
 	@FXML
@@ -153,7 +155,7 @@ public class PoSControl implements Initializable {
 		if (evt.getCode().equals(KeyCode.ENTER)) {
 
 			// Create a new client.
-			Client client = new Client();
+			
 			// Create a dao.
 			ClientDAO clientDAO = DaoFactory.createClientDAO();
 			// Use a new findClientByCPF and put in client
