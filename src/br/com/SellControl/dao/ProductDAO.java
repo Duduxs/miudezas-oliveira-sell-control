@@ -255,10 +255,15 @@ public class ProductDAO {
 	public void decreaseStock(int id, int new_qtd) {
 		PreparedStatement ps = null;
 		try {
-			String sql = "update tb_product set qtd_stock = ? where id = ?";
+			String sql = "update tb_product set qtd_stock= ? where id=?";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, new_qtd);
 			ps.setInt(2, id);
+
+			int rows = ps.executeUpdate();
+
+			if (rows <= 0)
+				throw new DbException("Error, no rows affected!");
 
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
@@ -272,7 +277,7 @@ public class ProductDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			//Receive qtd_stock In SELECT.
+			// Receive qtd_stock In SELECT.
 			int qtd_stock = 0;
 
 			String sql = "select qtd_stock from tb_product where id = ?";

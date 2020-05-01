@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import br.com.SellControl.dao.DaoFactory;
 import br.com.SellControl.dao.ItemSellDAO;
+import br.com.SellControl.dao.ProductDAO;
 import br.com.SellControl.dao.SellDAO;
 import br.com.SellControl.model.entities.Client;
 import br.com.SellControl.model.entities.ItemSell;
@@ -93,11 +94,14 @@ public class PaymentControl implements Initializable {
 
 		// Register products in table itemSell
 		for (int i = 0; i < tableViewShopping.getItems().size(); i++) {
-
-			Product product = new Product();
+			
+			int qtd_stock, qtd_buy, qtd_att;
+			
+			Product product = tableViewShopping.getItems().get(i);
+			ProductDAO productDAO = DaoFactory.createProductDAO();
+			
 			// Get the rows Tableview
-			product = tableViewShopping.getItems().get(i);
-
+			
 			ItemSell item = new ItemSell();
 			item.setSell(sell);
 			// Set the row and columns
@@ -105,10 +109,26 @@ public class PaymentControl implements Initializable {
 			item.setProduct(product);
 			item.setQuantity((Integer) col2.getCellObservableValue(product).getValue());
 			item.setSubtotal((Double) col3.getCellObservableValue(product).getValue());
+			
+			//Decrease my stock//
+			
+			// Get the actual qtd in stock
+			qtd_stock = productDAO.returnActualStock(product.getId());
+			// qtd_buy is equals a tableViewShopping, i mean qtd_actual in tableView in the PoSControl.
+			qtd_buy = (Integer) col2.getCellObservableValue(product).getValue();
+			// qtd att is equal a actual qtd in stock minus stock in tableview.
+			qtd_att = qtd_stock - qtd_buy;
+			// Finally decrease my stock.
+			productDAO.decreaseStock(product.getId(), qtd_att);
+			
+			
+			
 			// Insert them in my BD
 			ItemSellDAO itemSellDAO = DaoFactory.createItemSellDAO();
 			itemSellDAO.insert(item);
 		}
+		
+		
 
 	}
 
