@@ -18,7 +18,7 @@
             <TableView fx:id="tableViewSell" layoutX="8.0" layoutY="128.0" prefHeight="427.0" prefWidth="1338.0">
                <columns>
                   <TableColumn fx:id="tableColumnID" prefWidth="20.0" resizable="false" text="ID" />
-                  <TableColumn fx:id="tableColumnSellDate" prefWidth="160.0" resizable="false" text="Sell Date" />
+                  <TableColumn fx:id="tableColumnSellDate" prefWidth="68.0" resizable="false" text="Sell Date" />
                   <TableColumn fx:id="tableColumnClientName" minWidth="0.0" prefWidth="160.0" resizable="false" text="Client" />
                   <TableColumn fx:id="tableColumTotalSales" prefWidth="160.0" resizable="false" text="Total Sales" />
                   <TableColumn fx:id="tableColumnOBS" prefWidth="837.0" resizable="false" text="Observation" />

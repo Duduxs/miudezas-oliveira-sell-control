@@ -83,7 +83,8 @@ public class SellDAO {
 		StringBuilder query = new StringBuilder();
 
 		try {
-			query.append("select s.id , s.sell_date, c.name, s.sell_total, s.comments from tb_sell as s");
+			query.append(
+					"select s.id , date_format(s.sell_date,'%Y/%m/%d') as sell_date, c.name, s.sell_total, s.comments from tb_sell as s");
 			query.append(" inner join tb_client as c on (s.client_id = c.id) where s.sell_date");
 			query.append(" between ? and ?");
 
@@ -98,7 +99,7 @@ public class SellDAO {
 				Sell s = new Sell();
 
 				s.setId(rs.getInt("s.id"));
-				s.setDateSell(rs.getString("s.sell_date"));
+				s.setDateSell(rs.getString("sell_date"));
 				c.setName(rs.getString("c.name"));
 				s.setTotalSell(rs.getDouble("s.sell_total"));
 				s.setObs(rs.getString("s.comments"));
