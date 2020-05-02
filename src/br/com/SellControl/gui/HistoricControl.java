@@ -1,6 +1,8 @@
 package br.com.SellControl.gui;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -13,24 +15,35 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class HistoricControl implements Initializable {
 
+	private DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+
+	// First Pane
 	@FXML
 	private TextField txtStartDate;
 	@FXML
 	private TextField txtEndDate;
-
+	// Second Pane
+	@FXML
+	private TextField txtSellDate;
+	@FXML
+	private TextField txtTotalValue;
+	// First Pane
 	@FXML
 	private Button btnSearch;
+	// Second Pane
+	@FXML
+	private Button btnSearchByDate;
 
 	@FXML
 	private TableView<Sell> tableViewSell;
@@ -48,7 +61,7 @@ public class HistoricControl implements Initializable {
 	@FXML
 	private TableColumn<Sell, String> tableColumnOBS;
 
-	// Search data (1 form)
+	// Search data (1 form) (First Pane)
 	@FXML
 	public void onBtnSearchAction() {
 		// Show my tableView
@@ -58,7 +71,7 @@ public class HistoricControl implements Initializable {
 			Alerts.showAlert("Message", null, "History not found!", AlertType.INFORMATION);
 	}
 
-	// Search data (2 form) pressed enter
+	// Search data (2 form) pressed enter (First Pane)
 	public void onTxtEndDateKeyPressed(KeyEvent evt) {
 		// Show my tableView if i pressed Enter
 		if (evt.getCode().equals(KeyCode.ENTER)) {
@@ -70,11 +83,46 @@ public class HistoricControl implements Initializable {
 		}
 
 	}
-	// Method for intialize something in start of the program
+
+	// Search date (1 form) (Second Pane)
+	@FXML
+	public void onBtnSearchByDateAction() {
+		LocalDate sellDate = LocalDate.parse(txtSellDate.getText(), format);
+		// Create sellDAO
+		SellDAO sellDAO = DaoFactory.createSellDAO();
+		// Use the method and save in Double variable
+		Double totalValue = sellDAO.selectTotalSalesByDate(sellDate);
+		// Set text
+		txtTotalValue.setText(totalValue.toString());
+		// If txtTotalValue after find is empty, them throw an alert.
+		if (txtTotalValue.getText().equals("0.0"))
+			Alerts.showAlert("Message", null, "Value on this Date not found!", AlertType.INFORMATION);
+	}
+
+	// Search date (2 form) (Second Pane)
+	@FXML
+	public void onTxtSellDateKeyPressed(KeyEvent evt) {
+		// Show my TotalValue if i pressed Enter
+		if (evt.getCode().equals(KeyCode.ENTER)) {
+			LocalDate sellDate = LocalDate.parse(txtSellDate.getText(), format);
+			// Create sellDAO
+			SellDAO sellDAO = DaoFactory.createSellDAO();
+			// Use the method and save in Double variable
+			Double totalValue = sellDAO.selectTotalSalesByDate(sellDate);
+			// Set text
+			txtTotalValue.setText(totalValue.toString());
+			// If txtTotalValue after find is empty, them throw an alert.
+			if (txtTotalValue.getText().equals("0.0"))
+				Alerts.showAlert("Message", null, "Value on this Date not found!", AlertType.INFORMATION);
+		}
+	}
+
+	// Method for initialize something in start of the program
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		Mask.DateMask(txtStartDate);
 		Mask.DateMask(txtEndDate);
+		Mask.DateMask(txtSellDate);
 		initializeNodes();
 
 	}

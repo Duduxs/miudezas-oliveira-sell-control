@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -117,6 +118,31 @@ public class SellDAO {
 		}
 		return list;
 
+	}
+
+	// Return a totalSale per date.
+	public Double selectTotalSalesByDate(LocalDate date) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			double sellTotal = 0;
+
+			String sql = "select sum(sell_total) as total from tb_sell where sell_date = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, date.toString());
+
+			rs = ps.executeQuery();
+
+			if (rs.next())
+				sellTotal = rs.getDouble("total");
+
+			return sellTotal;
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closePreparedStatement(ps);
+			DB.closeResultSet(rs);
+		}
 	}
 
 }
