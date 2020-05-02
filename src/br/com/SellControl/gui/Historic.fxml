@@ -10,18 +10,18 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1341.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1341.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.SellControl.gui.HistoricControl">
    <children>
       <AnchorPane layoutY="-6.0" prefHeight="70.0" prefWidth="1341.0" style="-fx-background-color: #0066cc;" />
       <Pane layoutX="-6.0" layoutY="64.0" prefHeight="556.0" prefWidth="1352.0" style="-fx-background-color: #ffffff; -fx-border-style: solid;">
          <children>
-            <TableView layoutX="8.0" layoutY="128.0" prefHeight="427.0" prefWidth="1338.0">
+            <TableView fx:id="tableViewSell" layoutX="8.0" layoutY="128.0" prefHeight="427.0" prefWidth="1338.0">
                <columns>
-                  <TableColumn prefWidth="20.0" resizable="false" text="ID" />
-                  <TableColumn prefWidth="160.0" resizable="false" text="Sell Date" />
-                  <TableColumn minWidth="0.0" prefWidth="160.0" resizable="false" text="Client" />
-                  <TableColumn prefWidth="160.0" resizable="false" text="Total Sales" />
-                  <TableColumn prefWidth="837.0" resizable="false" text="Observation" />
+                  <TableColumn fx:id="tableColumnID" prefWidth="20.0" resizable="false" text="ID" />
+                  <TableColumn fx:id="tableColumnSellDate" prefWidth="160.0" resizable="false" text="Sell Date" />
+                  <TableColumn fx:id="tableColumnClientName" minWidth="0.0" prefWidth="160.0" resizable="false" text="Client" />
+                  <TableColumn fx:id="tableColumTotalSales" prefWidth="160.0" resizable="false" text="Total Sales" />
+                  <TableColumn fx:id="tableColumnOBS" prefWidth="837.0" resizable="false" text="Observation" />
                </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -34,14 +34,14 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" />
+                  <TextField fx:id="txtStartDate" maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" />
                   <Label text="End Date:">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" />
-                  <Button mnemonicParsing="false" style="-fx-background-radius: 100;" text="Search">
+                  <TextField fx:id="txtEndDate" maxWidth="160.0" onKeyPressed="#onTxtEndDateKeyPressed" prefHeight="25.0" prefWidth="167.0" />
+                  <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#onBtnSearchAction" style="-fx-background-radius: 100;" text="Search">
                      <font>
                         <Font size="14.0" />
                      </font>

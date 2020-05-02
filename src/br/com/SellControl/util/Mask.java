@@ -221,4 +221,49 @@ public class Mask {
 		});
 
 	}
+	
+
+    public static void DateMask(TextField textField){
+    	//Only numbers
+        textField.setOnKeyTyped((KeyEvent event) -> {
+            if("0123456789".contains(event.getCharacter())==false){
+                event.consume();
+            }
+        	// divide my string, spare the spaces
+            if(event.getCharacter().trim().length()==0){ // Erasing
+
+                if(textField.getText().length()==5){
+                    textField.setText(textField.getText().substring(0,4));
+                    textField.positionCaret(textField.getText().length());
+                }
+                if(textField.getText().length()==8){
+                    textField.setText(textField.getText().substring(0,7));
+                    textField.positionCaret(textField.getText().length());
+                }
+
+            }else{ // typing
+            	//My date it has to be only ten numbers
+                if(textField.getText().length()==10) event.consume();
+            	// now add "/" in correct position
+                if(textField.getText().length()==4){
+                    textField.setText(textField.getText()+"/");
+                    textField.positionCaret(textField.getText().length());
+                }
+                if(textField.getText().length()==7){
+                    textField.setText(textField.getText()+"/");
+                    textField.positionCaret(textField.getText().length());
+                }
+
+            }
+        });
+
+        textField.setOnKeyReleased((KeyEvent evt) -> {
+
+            if(!textField.getText().matches("\\d/*")){
+                textField.setText(textField.getText().replaceAll("[^\\d/]", ""));
+                textField.positionCaret(textField.getText().length());
+            }
+        });
+
+    }
 }

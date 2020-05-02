@@ -7,6 +7,9 @@ public class Sell {
 	private String dateSell;
 	private Double totalSell;
 	private String obs;
+	// Save Client name
+	@SuppressWarnings("unused")
+	private String clientName;
 
 	public Integer getId() {
 		return id;
@@ -22,6 +25,10 @@ public class Sell {
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+
+	public String getClientName() {
+		return client.getName();
 	}
 
 	public String getDateSell() {
