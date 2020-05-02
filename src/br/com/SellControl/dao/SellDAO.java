@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.SellControl.db.DB;
+import br.com.SellControl.model.entities.Client;
 import br.com.SellControl.model.entities.Sell;
 import br.com.SellControl.model.exception.DbException;
 
@@ -70,4 +73,49 @@ public class SellDAO {
 			DB.closePreparedStatement(ps);
 		}
 	}
+
+	// Return a select from sell done in date X to date Y
+	public List<Sell> selectSellByDate(String dateInit, String dateEnd) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		List<Sell> list = new ArrayList<>();
+		StringBuilder query = new StringBuilder();
+
+		try {
+			query.append("select s.id , s.sell_date, c.name, s.sell_total, s.comments from tb_sell as s");
+			query.append(" inner join tb_client as c on (s.client_id = c.id) where s.sell_date");
+			query.append(" between ? and ?");
+
+			ps = conn.prepareStatement(query.toString());
+			ps.setString(1, dateInit);
+			ps.setString(2, dateEnd);
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Client c = new Client();
+				Sell s = new Sell();
+
+				s.setId(rs.getInt("s.id"));
+				s.setDateSell(rs.getString("s.sell_date"));
+				c.setName(rs.getString("c.name"));
+				s.setTotalSell(rs.getDouble("s.sell_total"));
+				s.setObs(rs.getString("s.comments"));
+
+				s.setClient(c);
+
+				list.add(s);
+			}
+
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closePreparedStatement(ps);
+			DB.closeResultSet(rs);
+		}
+		return list;
+
+	}
+
 }
