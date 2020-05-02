@@ -43,8 +43,6 @@ public class MainScreenControl implements Initializable {
 	@FXML
 	private MenuItem miOpenPOS;
 	@FXML
-	private MenuItem miDayPosition;
-	@FXML
 	private MenuItem miSalesHistory;
 	@FXML
 	private MenuItem miChangeUser;
@@ -59,7 +57,7 @@ public class MainScreenControl implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		// Set the username where i catch in EmployeeDAO logged in screen.
+		// Set the user where i catch in EmployeeDAO logged in screen.
 		txtLoggedAs.setText(userLogged);
 
 	}

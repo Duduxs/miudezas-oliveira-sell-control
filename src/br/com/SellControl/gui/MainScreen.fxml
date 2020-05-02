@@ -37,7 +37,6 @@
             <Menu fx:id="menuSell" mnemonicParsing="false" text="Sell">
                <items>
                   <MenuItem fx:id="miOpenPOS" mnemonicParsing="false" text="Open PoS" />
-                  <MenuItem fx:id="miDayPosition" mnemonicParsing="false" text="Day Position" />
                   <MenuItem fx:id="miSalesHistory" mnemonicParsing="false" text="Sales History" />
                </items>
             </Menu>
