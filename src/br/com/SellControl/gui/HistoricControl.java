@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import br.com.SellControl.dao.DaoFactory;
 import br.com.SellControl.dao.SellDAO;
+import br.com.SellControl.model.entities.ItemSell;
 import br.com.SellControl.model.entities.Sell;
 import br.com.SellControl.util.Alerts;
 import br.com.SellControl.util.Mask;
@@ -33,17 +34,9 @@ public class HistoricControl implements Initializable {
 	private TextField txtStartDate;
 	@FXML
 	private TextField txtEndDate;
-	// Second Pane
-	@FXML
-	private TextField txtSellDate;
-	@FXML
-	private TextField txtTotalValue;
-	// First Pane
+	
 	@FXML
 	private Button btnSearch;
-	// Second Pane
-	@FXML
-	private Button btnSearchByDate;
 
 	@FXML
 	private TableView<Sell> tableViewSell;
@@ -60,7 +53,34 @@ public class HistoricControl implements Initializable {
 	private TableColumn<Sell, Double> tableColumTotalSales;
 	@FXML
 	private TableColumn<Sell, String> tableColumnOBS;
-
+	
+	// Second pane
+	
+	@FXML
+	private TextField txtSellDate;
+	@FXML
+	private TextField txtTotalValue;
+	
+	@FXML
+	private Button btnSearchByDate;
+	
+	@FXML
+	private TableView<ItemSell> tableViewItemSell;
+	@FXML
+	private ObservableList<ItemSell> obsListItemSell;
+	
+	@FXML
+	private TableColumn<ItemSell, Integer> tableColumnItemSellID;
+	@FXML
+	private TableColumn<ItemSell, String> tableColumnProduct;
+	@FXML
+	private TableColumn<ItemSell, String> tableColumnQuantityPurchased;
+	@FXML
+	private TableColumn<ItemSell, Double> tableColumValue;
+	@FXML
+	private TableColumn<ItemSell, String> tableColumnSubTotal;
+	
+	
 	// Search data (1 form) (First Pane)
 	@FXML
 	public void onBtnSearchAction() {
