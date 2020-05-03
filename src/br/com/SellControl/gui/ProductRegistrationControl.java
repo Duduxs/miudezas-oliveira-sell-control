@@ -67,7 +67,7 @@ public class ProductRegistrationControl implements Initializable {
 	@FXML
 
 	private Tab tabProductStock;
-
+	//Name changed
 	private Tab tabStockControl;
 
 	@FXML
