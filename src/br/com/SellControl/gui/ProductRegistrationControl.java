@@ -192,10 +192,10 @@ public class ProductRegistrationControl implements Initializable {
 
 	@FXML
 	private void onStockProductChanged() {
-		// IF StockpRODUCT is selected them load my tableView with all my product,
+
+		// IF consultCustomer is selected them load my tableView with all my product,
 		// and show them.
 		if (tabStockControl.isSelected())
-
 			updateTableViewProduct();
 	}
 
