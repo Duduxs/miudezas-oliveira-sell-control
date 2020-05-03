@@ -26,8 +26,6 @@ public class MainScreenControl implements Initializable {
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 	private Date d = new Date();
 
-
-
 	@FXML
 	private MenuBar menuBarMain;
 
@@ -65,7 +63,6 @@ public class MainScreenControl implements Initializable {
 	private Label txtLoggedAs;
 	@FXML
 	private Label txtLoggedDate;
-	
 
 	@FXML
 	public void onMiChangeUserAction() {
