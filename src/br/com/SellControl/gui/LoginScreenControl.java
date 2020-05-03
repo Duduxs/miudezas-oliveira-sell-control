@@ -62,6 +62,8 @@ public class LoginScreenControl implements Initializable {
 			try {
 				// Hide the loginScreen, hide, not close.
 				Program.getMainStage().hide();
+				txtEmail.setText("");
+				txtPassword.setText("");
 				// Open and get the MainScreenFXML.
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/SellControl/gui/MainScreen.fxml"));
 				// Load the screen and put in root variable.

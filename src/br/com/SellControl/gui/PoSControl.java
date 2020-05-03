@@ -90,22 +90,6 @@ public class PoSControl implements Initializable {
 	@FXML
 	private Button btnPayment;
 
-	public Stage myWindow() {
-
-		try {
-			Parent parent = FXMLLoader.load(getClass().getResource("/br/com/SellControl/gui/PoS.fxml"));
-
-			Stage stage = new Stage();
-			Scene scene = new Scene(parent);
-			stage.setScene(scene);
-			stage.setResizable(false);
-			stage.sizeToScene();
-			return stage;
-
-		} catch (IOException e) {
-			throw new ControlException(e.getMessage(), null, null, null, null, false);
-		}
-	}
 
 	// Test
 	@FXML

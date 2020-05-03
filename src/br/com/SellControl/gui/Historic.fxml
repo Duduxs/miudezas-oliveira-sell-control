@@ -92,7 +92,7 @@
                   <TableColumn fx:id="tableColumnItemSellID" prefWidth="20.0" resizable="false" text="ID" />
                   <TableColumn fx:id="tableColumnProduct" prefWidth="281.0" resizable="false" text="Product" />
                   <TableColumn fx:id="tableColumnQuantityPurchased" minWidth="0.0" prefWidth="115.0" resizable="false" text="Quantity purchased" />
-                  <TableColumn fx:id="tableColumValue" prefWidth="114.0" resizable="false" text="Value" />
+                  <TableColumn fx:id="tableColumValue" prefWidth="113.0" resizable="false" text="Value" />
                   <TableColumn fx:id="tableColumnSubTotal" prefWidth="114.0" resizable="false" text="SubTotal" />
                </columns>
                <columnResizePolicy>
@@ -109,7 +109,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lblWarning" layoutX="703.0" layoutY="282.0" prefHeight="35.0" prefWidth="645.0" text="Click on an item in the table next that w͟a͟s͟ p͟u͟r͟c͟h͟a͟s͟e͟d͟ to see details about it.">
+            <Label fx:id="lblWarning" layoutX="712.0" layoutY="282.0" prefHeight="35.0" prefWidth="636.0" text="Click on an item in the table next that w͟a͟s͟ p͟u͟r͟c͟h͟a͟s͟e͟d͟ to see details about it.">
                <font>
                   <Font size="19.0" />
                </font>

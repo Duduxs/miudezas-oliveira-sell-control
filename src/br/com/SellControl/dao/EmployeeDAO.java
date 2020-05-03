@@ -19,6 +19,7 @@ public class EmployeeDAO {
 
 	private Connection conn = null;
 	private Boolean loginVerification = false;
+	public static Boolean isUser = false;
 
 	public Boolean getLoginVerification() {
 		return loginVerification;
@@ -256,8 +257,16 @@ public class EmployeeDAO {
 
 			if (rs.next()) {
 				loginVerification = true;
-				// Catch the username logged and put in MainScreenControl
-				MainScreenControl.userLogged = rs.getString("name");
+				// If the user by admin type.
+				if (rs.getString("acess_level").equals("Administrator"))
+					// Catch the username logged and put in MainScreenControl
+					MainScreenControl.userLogged = rs.getString("name");
+				// If the user by user type.
+				else {
+					MainScreenControl.userLogged = rs.getString("name");
+					isUser = true;
+				}
+
 			} else
 				Alerts.showAlert("message", null, "Incorrect data", AlertType.ERROR);
 
