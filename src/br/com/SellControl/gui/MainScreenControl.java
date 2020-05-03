@@ -22,8 +22,12 @@ public class MainScreenControl implements Initializable {
 	// For identify the userLogged
 	public static String userLogged;
 	// Format the date in American format.
-		private SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		private Date d = new Date();
+
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+	private Date d = new Date();
+
+
+
 	@FXML
 	private MenuBar menuBarMain;
 
@@ -36,34 +40,32 @@ public class MainScreenControl implements Initializable {
 	@FXML
 	private Menu menuProduct;
 	@FXML
-	public Menu menuSell;
+	private Menu menuSell;
 	@FXML
-	private Menu menuSettings;
+	private Menu menuConfigurations;
 
 	@FXML
-	private MenuItem miClientControl;
+	private MenuItem miConsultClient;
 	@FXML
-	private MenuItem miEmployeeControl;
+	private MenuItem miConsultEmployee;
 	@FXML
-	private MenuItem miProviderControl;
+	private MenuItem miConsultProvider;
 	@FXML
-	private MenuItem miStockControl;
+	private MenuItem miConsultProduct;
 	@FXML
-	private MenuItem miProductConsultation;
-	@FXML
-	private MenuItem miOpenPOS;
+	private MenuItem miPoS;
 	@FXML
 	private MenuItem miSalesHistory;
 	@FXML
 	private MenuItem miChangeUser;
 	@FXML
-	private MenuItem miAbout;
-	@FXML
 	private MenuItem miExit;
+
 	@FXML
 	private Label txtLoggedAs;
 	@FXML
 	private Label txtLoggedDate;
+	
 
 	@FXML
 	public void onMiChangeUserAction() {
@@ -76,10 +78,19 @@ public class MainScreenControl implements Initializable {
 
 	}
 
+	@FXML
+	public void onMiExitAction() {
+		Optional<ButtonType> result = Alerts.showConfirmation("Attention!", "Do you really want to do that?");
+		if (result.get() == ButtonType.OK) {
+			System.exit(1);
+		}
+	}
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+
 		LoginVerification();
-		//Set date
+		// Set date
 		String format = sdf.format(d);
 		txtLoggedDate.setText(format);
 
@@ -97,13 +108,4 @@ public class MainScreenControl implements Initializable {
 			menuSell.setDisable(true);
 		}
 	}
-
-	@FXML
-	public void onMiExitAction() {
-		Optional<ButtonType> result = Alerts.showConfirmation("Attention!", "Do you really want to do that?");
-		if (result.get() == ButtonType.OK) {
-			System.exit(1);
-		}
-	}
-
 }
