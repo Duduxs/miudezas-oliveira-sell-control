@@ -7,6 +7,10 @@ public class ItemSell {
 	private Product product;
 	private Integer quantity;
 	private Double subtotal;
+	@SuppressWarnings("unused")
+	private String productName;
+	@SuppressWarnings("unused")
+	private Double productPrice;
 
 	public Integer getId() {
 		return id;
@@ -30,6 +34,14 @@ public class ItemSell {
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+	public String getProductName() {
+		return product.getDescription();
+	}
+
+	public Double getProductPrice() {
+		return product.getPrice();
 	}
 
 	public Integer getQuantity() {

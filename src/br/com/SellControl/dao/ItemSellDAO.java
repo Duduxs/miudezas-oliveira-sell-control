@@ -10,7 +10,6 @@ import java.util.List;
 import br.com.SellControl.db.DB;
 import br.com.SellControl.model.entities.ItemSell;
 import br.com.SellControl.model.entities.Product;
-import br.com.SellControl.model.entities.Sell;
 import br.com.SellControl.model.exception.DbException;
 
 public class ItemSellDAO {
@@ -59,7 +58,7 @@ public class ItemSellDAO {
 
 		try {
 			query.append("select i.id, p.description, i.qtd, p.price, i.subtotal");
-			query.append(" from tb_itemsell as i inner join tb_product as p");
+			query.append(" from tb_itensell as i inner join tb_product as p");
 			query.append(" on (i.product_id = p.id)");
 			query.append(" where i.sell_id = ?");
 

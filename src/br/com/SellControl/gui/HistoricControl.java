@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import br.com.SellControl.dao.DaoFactory;
+import br.com.SellControl.dao.ItemSellDAO;
 import br.com.SellControl.dao.SellDAO;
 import br.com.SellControl.model.entities.ItemSell;
 import br.com.SellControl.model.entities.Sell;
@@ -18,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -34,7 +36,7 @@ public class HistoricControl implements Initializable {
 	private TextField txtStartDate;
 	@FXML
 	private TextField txtEndDate;
-	
+
 	@FXML
 	private Button btnSearch;
 
@@ -53,22 +55,22 @@ public class HistoricControl implements Initializable {
 	private TableColumn<Sell, Double> tableColumTotalSales;
 	@FXML
 	private TableColumn<Sell, String> tableColumnOBS;
-	
+
 	// Second pane
-	
+
 	@FXML
 	private TextField txtSellDate;
 	@FXML
 	private TextField txtTotalValue;
-	
+
 	@FXML
 	private Button btnSearchByDate;
-	
+
 	@FXML
 	private TableView<ItemSell> tableViewItemSell;
 	@FXML
 	private ObservableList<ItemSell> obsListItemSell;
-	
+
 	@FXML
 	private TableColumn<ItemSell, Integer> tableColumnItemSellID;
 	@FXML
@@ -79,8 +81,12 @@ public class HistoricControl implements Initializable {
 	private TableColumn<ItemSell, Double> tableColumValue;
 	@FXML
 	private TableColumn<ItemSell, String> tableColumnSubTotal;
-	
-	
+
+	@FXML
+	private Label lblWarning;
+	@FXML
+	private Label lblItemDetail;
+
 	// Search data (1 form) (First Pane)
 	@FXML
 	public void onBtnSearchAction() {
@@ -152,13 +158,19 @@ public class HistoricControl implements Initializable {
 	 * columns to save my sell datas.
 	 */
 	private void initializeNodes() {
-
+		// FirstPane
 		// Initialize all columns at the my tableViewClient to insert data later.
 		tableColumnID.setCellValueFactory(new PropertyValueFactory<>("id"));
 		tableColumnSellDate.setCellValueFactory(new PropertyValueFactory<>("dateSell"));
 		tableColumnClientName.setCellValueFactory(new PropertyValueFactory<>("ClientName"));
 		tableColumTotalSales.setCellValueFactory(new PropertyValueFactory<>("totalSell"));
 		tableColumnOBS.setCellValueFactory(new PropertyValueFactory<>("obs"));
+		// Second Pane
+		tableColumnItemSellID.setCellValueFactory(new PropertyValueFactory<>("id"));
+		tableColumnProduct.setCellValueFactory(new PropertyValueFactory<>("ProductName"));
+		tableColumnQuantityPurchased.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+		tableColumValue.setCellValueFactory(new PropertyValueFactory<>("ProductPrice"));
+		tableColumnSubTotal.setCellValueFactory(new PropertyValueFactory<>("subtotal"));
 
 	}
 
@@ -176,4 +188,44 @@ public class HistoricControl implements Initializable {
 
 	}
 
+	// Update my TableView, So, having the data from the columns.
+	private void updateTableViewItemSell() {
+
+		// This function only will be executed if have an element in TableView, so
+		// avoiding an exception.
+		if (tableViewSell.getSelectionModel().getSelectedItem() != null) {
+			// A temporary variable for save the selected cells in TableView.
+			Sell sell = tableViewSell.getSelectionModel().getSelectedItem();
+			// Create a itemSellDao.
+			ItemSellDAO itemSellDAO = DaoFactory.createItemSellDAO();
+			// Create a itemsell list and use sql command selectAllItensbyId;
+			List<ItemSell> list = itemSellDAO.selectAllItensById(sell.getId());
+			// Now load all my ItemSell from insert to the my obsListItemSell.
+			obsListItemSell = FXCollections.observableArrayList(list);
+			// Set my table putting all ItemSell him.
+			tableViewItemSell.setItems(obsListItemSell);
+
+			// If i clicked on item, them make some things appears
+			if (tableViewItemSell.getItems().isEmpty()) {
+				lblItemDetail.setOpacity(0.62);
+				lblWarning.setVisible(true);
+				tableViewItemSell.setOpacity(0.12);
+			} else {
+				// If i not clicked on item, them make some things disappears
+				lblItemDetail.setOpacity(1);
+				lblWarning.setVisible(false);
+				tableViewItemSell.setOpacity(1);
+			}
+
+		}
+	}
+
+	/*
+	 * When the mouse clicked in my TableView in tuple i want to go to other Table
+	 * with values.
+	 */
+	@FXML
+	private void onTableViewSellMouseClicked() {
+		updateTableViewItemSell();
+	}
 }
