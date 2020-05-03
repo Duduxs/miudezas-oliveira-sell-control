@@ -15,7 +15,7 @@ public class Program extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			//Backup
+		
 
 			Parent parent = FXMLLoader.load(getClass().getResource("/br/com/SellControl/gui/LoginScreen.fxml"));
 			Scene scene = new Scene(parent);
