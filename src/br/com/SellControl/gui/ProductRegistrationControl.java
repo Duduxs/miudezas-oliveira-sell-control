@@ -65,12 +65,7 @@ public class ProductRegistrationControl implements Initializable {
 	private TableColumn<Product, Integer> tableColumnProvider;
 
 	@FXML
-	private Tab tabProductStock;
-
-	//Name changed
-	@FXML
-	private Tab tabStockControl;
-
+	private Tab tabConsultProduct;
 	@FXML
 	private Tab tabProductStock;
 
@@ -192,15 +187,10 @@ public class ProductRegistrationControl implements Initializable {
 	}
 
 	@FXML
-	private void onStockProductChanged() {
-
+	private void onConsultProductChanged() {
 		// IF consultCustomer is selected them load my tableView with all my product,
 		// and show them.
-<<<<<<< HEAD
 		if (tabProductStock.isSelected())
-=======
-		if (tabStockControl.isSelected())
->>>>>>> 9d4e633b2ca80cc8fb7638391e80c9549d4ce371
 			updateTableViewProduct();
 	}
 
@@ -283,6 +273,7 @@ public class ProductRegistrationControl implements Initializable {
 		initializeComboBox();
 		initializeConstraints();
 		initializeNodes();
+
 	}
 
 	private void initializeComboBox() {
