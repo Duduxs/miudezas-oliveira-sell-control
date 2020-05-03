@@ -65,9 +65,8 @@ public class ProductRegistrationControl implements Initializable {
 	private TableColumn<Product, Integer> tableColumnProvider;
 
 	@FXML
-
 	private Tab tabProductStock;
-
+	@FXML
 	private Tab tabStockControl;
 
 	@FXML

@@ -146,21 +146,18 @@
                   </AnchorPane>
             </content>
           </Tab>
-<<<<<<< HEAD
-<<<<<<< HEAD
-          <Tab fx:id="tabProductStock" onSelectionChanged="#onProductStockChanged" text="Product Stock">
+
+          <Tab fx:id="tabProductStock" onSelectionChanged="#onStockProductChanged" text="Product Stock">
             <content>
               <AnchorPane layoutX="49.0" layoutY="50.0" maxWidth="1418.0" minHeight="0.0" minWidth="0.0" prefHeight="504.0" prefWidth="1246.0" style="-fx-background-color: #ffffff;">
-=======
+
             <Tab fx:id="tabStockControl" onSelectionChanged="#onStockProductChanged" text="Stock Control">
                <content>
                   <AnchorPane layoutX="49.0" layoutY="50.0" maxWidth="1418.0" minHeight="0.0" minWidth="0.0" prefHeight="504.0" prefWidth="1246.0" style="-fx-background-color: #ffffff;">
->>>>>>> e7fb3d8a961fc6625eb29662acc7acb45c47e495
-=======
+
             <Tab fx:id="tabStockControl" onSelectionChanged="#onStockProductChanged" text="Stock Control">
                <content>
                   <AnchorPane layoutX="49.0" layoutY="50.0" maxWidth="1418.0" minHeight="0.0" minWidth="0.0" prefHeight="504.0" prefWidth="1246.0" style="-fx-background-color: #ffffff;">
->>>>>>> e7fb3d8a961fc6625eb29662acc7acb45c47e495
                      <children>
                         <Label layoutX="14.0" layoutY="42.0" text="Description:">
                            <font>
