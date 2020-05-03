@@ -55,15 +55,18 @@
       </ImageView>
       <Pane layoutY="381.0" prefHeight="31.0" prefWidth="675.0" style="-fx-background-color: #ffffff;">
          <children>
-            <Label layoutX="546.0" layoutY="6.0" text="Date:" />
-            <Label fx:id="txtDate" layoutX="590.0" layoutY="6.0" prefHeight="17.0" prefWidth="82.0" text="2000/04/11" />
+            <Label layoutX="540.0" layoutY="5.0" text="Date:" />
+            <Label fx:id="txtLoggedDate" layoutX="579.0" layoutY="6.0" prefHeight="17.0" prefWidth="82.0" text="2000/04/11">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Label layoutY="5.0" text="Logged as:" />
+            <Label fx:id="txtLoggedAs" layoutX="73.0" layoutY="6.0" prefHeight="17.0" prefWidth="93.0" text="Eduardo José">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
-      <Label layoutY="386.0" text="Logged as:" />
-      <Label fx:id="txtLoggedAs" layoutX="67.0" layoutY="386.0" prefHeight="17.0" prefWidth="93.0" text="Eduardo José">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>
