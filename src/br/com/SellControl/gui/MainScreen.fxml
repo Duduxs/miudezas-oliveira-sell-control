@@ -7,53 +7,60 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.SellControl.gui.MainScreenControl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.SellControl.gui.MainScreenControl">
    <children>
       <MenuBar fx:id="menuBarMain" prefHeight="25.0" prefWidth="675.0">
         <menus>
           <Menu fx:id="menuClient" mnemonicParsing="false" text="Client">
-            <items>
-              <MenuItem fx:id="miClientControl" mnemonicParsing="false" text="Client Control" />
-            </items>
+               <items>
+                  <MenuItem fx:id="miConsultClient" mnemonicParsing="false" text="Consult Client" />
+               </items>
           </Menu>
           <Menu fx:id="menuEmployee" mnemonicParsing="false" text="Employee">
-            <items>
-              <MenuItem fx:id="miEmployeeControl" mnemonicParsing="false" text="Employee Control" />
-            </items>
+               <items>
+                  <MenuItem fx:id="miConsultEmployee" mnemonicParsing="false" text="Consult Employee" />
+               </items>
           </Menu>
           <Menu fx:id="menuProvider" mnemonicParsing="false" text="Provider">
-            <items>
-              <MenuItem fx:id="miProviderControl" mnemonicParsing="false" text="Provider Control" />
-            </items>
+               <items>
+                  <MenuItem fx:id="miConsultProvider" mnemonicParsing="false" text="Consult Provider" />
+               </items>
           </Menu>
             <Menu fx:id="menuProduct" mnemonicParsing="false" text="Product">
                <items>
-                  <MenuItem fx:id="miProductConsultation" mnemonicParsing="false" text="Product Control" />
+                  <MenuItem fx:id="miConsultProduct" mnemonicParsing="false" text="Consult Product" />
                </items>
             </Menu>
             <Menu fx:id="menuSell" mnemonicParsing="false" text="Sell">
                <items>
-                  <MenuItem fx:id="miOpenPOS" mnemonicParsing="false" text="Open PoS" />
+                  <MenuItem fx:id="miPoS" mnemonicParsing="false" text="PoS" />
                   <MenuItem fx:id="miSalesHistory" mnemonicParsing="false" text="Sales History" />
                </items>
             </Menu>
-            <Menu fx:id="menuSettings" mnemonicParsing="false" text="Settings">
+            <Menu fx:id="menuConfigurations" mnemonicParsing="false" text="Configurations">
                <items>
-                  <MenuItem fx:id="miChangeUser" mnemonicParsing="false" onAction="#onMiChangeUserAction" text="Change user" />
+                  <MenuItem fx:id="miChangeUser" mnemonicParsing="false" onAction="#onMiChangeUserAction" text="Change User" />
                   <MenuItem fx:id="miExit" mnemonicParsing="false" onAction="#onMiExitAction" text="Exit" />
                </items>
             </Menu>
         </menus>
       </MenuBar>
-      <ImageView fitHeight="383.0" fitWidth="675.0" layoutY="23.0" pickOnBounds="true">
+      <ImageView fitHeight="387.0" fitWidth="675.0" layoutY="23.0" pickOnBounds="true">
          <image>
             <Image url="@../img/ico/fundo.jpg" />
          </image>
       </ImageView>
+      <Pane layoutY="381.0" prefHeight="31.0" prefWidth="675.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="546.0" layoutY="6.0" text="Date:" />
+            <Label fx:id="txtDate" layoutX="590.0" layoutY="6.0" prefHeight="17.0" prefWidth="82.0" text="2000/04/11" />
+         </children>
+      </Pane>
       <Label layoutY="386.0" text="Logged as:" />
-      <Label fx:id="txtLoggedAs" layoutX="67.0" layoutY="386.0" prefHeight="17.0" prefWidth="93.0" text="Eduardo José" textFill="#f2eeee">
+      <Label fx:id="txtLoggedAs" layoutX="67.0" layoutY="386.0" prefHeight="17.0" prefWidth="93.0" text="Eduardo José">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

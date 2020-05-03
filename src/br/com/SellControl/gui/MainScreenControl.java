@@ -1,6 +1,8 @@
 package br.com.SellControl.gui;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -19,6 +21,9 @@ import javafx.stage.Stage;
 public class MainScreenControl implements Initializable {
 	// For identify the userLogged
 	public static String userLogged;
+	// Format the date in American format.
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+	private Date d = new Date();
 
 	@FXML
 	private MenuBar menuBarMain;
@@ -32,28 +37,31 @@ public class MainScreenControl implements Initializable {
 	@FXML
 	private Menu menuProduct;
 	@FXML
-	public Menu menuSell;
+	private Menu menuSell;
 	@FXML
-	private Menu menuSettings;
+	private Menu menuConfigurations;
 
 	@FXML
-	private MenuItem miClientControl;
+	private MenuItem miConsultClient;
 	@FXML
-	private MenuItem miEmployeeControl;
+	private MenuItem miConsultEmployee;
 	@FXML
-	private MenuItem miProviderControl;
+	private MenuItem miConsultProvider;
 	@FXML
-	private MenuItem miProductConsultation;
+	private MenuItem miConsultProduct;
 	@FXML
-	private MenuItem miOpenPOS;
+	private MenuItem miPoS;
 	@FXML
 	private MenuItem miSalesHistory;
 	@FXML
 	private MenuItem miChangeUser;
 	@FXML
 	private MenuItem miExit;
+
 	@FXML
 	private Label txtLoggedAs;
+	@FXML
+	private Label txtDate;
 
 	@FXML
 	public void onMiChangeUserAction() {
@@ -66,10 +74,22 @@ public class MainScreenControl implements Initializable {
 
 	}
 
+	@FXML
+	public void onMiExitAction() {
+		Optional<ButtonType> result = Alerts.showConfirmation("Attention!", "Do you really want to do that?");
+		if (result.get() == ButtonType.OK) {
+			System.exit(1);
+		}
+	}
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		LoginVerification();
 
+		// Set date
+		String format = sdf.format(d);
+		txtDate.setText(format);
+
+		LoginVerification();
 		// Set the user where i catch in EmployeeDAO logged in screen.
 		txtLoggedAs.setText(userLogged);
 
@@ -84,13 +104,4 @@ public class MainScreenControl implements Initializable {
 			menuSell.setDisable(true);
 		}
 	}
-
-	@FXML
-	public void onMiExitAction() {
-		Optional<ButtonType> result = Alerts.showConfirmation("Attention!", "Do you really want to do that?");
-		if (result.get() == ButtonType.OK) {
-			System.exit(1);
-		}
-	}
-
 }
