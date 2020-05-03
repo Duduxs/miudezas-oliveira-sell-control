@@ -1,21 +1,23 @@
 package br.com.SellControl.gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import br.com.SellControl.application.Program;
 import br.com.SellControl.dao.EmployeeDAO;
 import br.com.SellControl.util.Alerts;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ButtonType;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class MainScreenControl implements Initializable {
@@ -27,46 +29,34 @@ public class MainScreenControl implements Initializable {
 	private Date d = new Date();
 
 	@FXML
-	private MenuBar menuBarMain;
-
+	private Button btnClient;
 	@FXML
-	private Menu menuClient;
+	private Button btnEmployee;
 	@FXML
-	private Menu menuEmployee;
+	private Button btnProvider;
 	@FXML
-	private Menu menuProvider;
+	private Button btnProduct;
 	@FXML
-	private Menu menuProduct;
+	private Button btnPointOfSales;
 	@FXML
-	private Menu menuSell;
+	private Button btnSalesHistory;
 	@FXML
-	private Menu menuConfigurations;
-
-	@FXML
-	private MenuItem miConsultClient;
-	@FXML
-	private MenuItem miConsultEmployee;
-	@FXML
-	private MenuItem miConsultProvider;
-	@FXML
-	private MenuItem miConsultProduct;
-	@FXML
-	private MenuItem miPoS;
-	@FXML
-	private MenuItem miSalesHistory;
-	@FXML
-	private MenuItem miChangeUser;
-	@FXML
-	private MenuItem miExit;
+	private Button btnExit;
 
 	@FXML
 	private Label txtLoggedAs;
-	//From my date
+	// From my date
 	@FXML
 	private Label txtLoggedDate;
 
 	@FXML
-	public void onMiChangeUserAction() {
+	public void onBtnClientAction() {
+		loadView("/br/com/SellControl/gui/ClientRegistration.fxml");
+	}
+	
+	
+	@FXML
+	public void onbtnExitAction() {
 		// Get actual stage (use any object)
 		Stage MainScreen = (Stage) txtLoggedAs.getScene().getWindow();
 		// Close
@@ -74,14 +64,6 @@ public class MainScreenControl implements Initializable {
 		// MainStage show
 		Program.getMainStage().show();
 
-	}
-
-	@FXML
-	public void onMiExitAction() {
-		Optional<ButtonType> result = Alerts.showConfirmation("Attention!", "Do you really want to do that?");
-		if (result.get() == ButtonType.OK) {
-			System.exit(1);
-		}
 	}
 
 	@Override
@@ -100,10 +82,49 @@ public class MainScreenControl implements Initializable {
 	public void LoginVerification() {
 		Boolean isUser = EmployeeDAO.isUser;
 		if (isUser.equals(true)) {
-			menuEmployee.setDisable(true);
-			menuProduct.setDisable(true);
-			menuProvider.setDisable(true);
-			menuSell.setDisable(true);
+			btnEmployee.setDisable(true);
+			btnProduct.setDisable(true);
+			btnProvider.setDisable(true);
+			btnPointOfSales.setDisable(true);
+			btnSalesHistory.setDisable(true);
+		}
+	}
+
+	private synchronized void loadView(String absoluteName) {
+		try {
+			// catch the screen, opening the screen in the parameter.
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
+			// Load the screen (Obsvisouly Anchor bcauz the FXML in the parameter is always a
+			// node AnchorPane).
+			AnchorPane newAnchorPane = loader.load();
+			// Catch the reference of this screen
+			Scene mainScene = txtLoggedAs.getScene();
+			/*
+			 * Catch the reference of AnchorPane Principal Screen getRoot -> Get the first element
+			 * of principal FXMl (AncrollPane) and get their content.
+			 */
+			AnchorPane mainAnchorPane =  ((AnchorPane) mainScene.getRoot());
+			// Save the reference to mainAnchorPane Children. (Vbox and Img)
+			Node mainMenu = mainAnchorPane.getChildren().get(0);
+			Node mainImage = mainAnchorPane.getChildren().get(1);
+			// Clear all children from mainAnchorPane
+			mainAnchorPane.getChildren().clear();
+			/*
+			 * Add the mainMenu (VBox) to principal screen and include all children from
+			 * the screen in parameter
+			 */
+			
+			mainAnchorPane.getChildren().add(mainMenu);
+			mainAnchorPane.getChildren().add(mainImage);
+			mainAnchorPane.getChildren().addAll(newAnchorPane.getChildren());
+			mainAnchorPane.getChildren().get(2).setLayoutX(258.0);
+			mainAnchorPane.getChildren().get(2).setLayoutY(0.0);
+			mainAnchorPane.getChildren().get(3).setLayoutX(258.0);
+			mainAnchorPane.getChildren().get(3).setLayoutY(88.0);
+
+		} catch (IOException e) {
+			Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
+
 		}
 	}
 }
