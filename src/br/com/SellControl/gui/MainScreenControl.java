@@ -1,6 +1,8 @@
 package br.com.SellControl.gui;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -19,7 +21,9 @@ import javafx.stage.Stage;
 public class MainScreenControl implements Initializable {
 	// For identify the userLogged
 	public static String userLogged;
-
+	// Format the date in American format.
+		private SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		private Date d = new Date();
 	@FXML
 	private MenuBar menuBarMain;
 
@@ -58,6 +62,8 @@ public class MainScreenControl implements Initializable {
 	private MenuItem miExit;
 	@FXML
 	private Label txtLoggedAs;
+	@FXML
+	private Label txtLoggedDate;
 
 	@FXML
 	public void onMiChangeUserAction() {
@@ -73,6 +79,9 @@ public class MainScreenControl implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		LoginVerification();
+		//Set date
+		String format = sdf.format(d);
+		txtLoggedDate.setText(format);
 
 		// Set the user where i catch in EmployeeDAO logged in screen.
 		txtLoggedAs.setText(userLogged);

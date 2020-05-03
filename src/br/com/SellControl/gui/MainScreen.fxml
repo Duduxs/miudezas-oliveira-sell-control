@@ -7,10 +7,32 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.SellControl.gui.MainScreenControl">
    <children>
+      <ImageView fitHeight="383.0" fitWidth="675.0" layoutY="23.0" pickOnBounds="true">
+         <image>
+            <Image url="@../img/ico/fundo.jpg" />
+         </image>
+      </ImageView>
+      <Pane layoutX="1.0" layoutY="372.0" prefHeight="36.0" prefWidth="675.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="14.0" layoutY="13.0" text="Logged as:" />
+            <Label fx:id="txtLoggedDate" layoutX="600.0" layoutY="14.0" prefHeight="17.0" prefWidth="75.0" text="2000/04/01">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="txtLoggedAs" layoutX="84.0" layoutY="14.0" prefHeight="17.0" prefWidth="93.0" text="Eduardo José">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="522.0" layoutY="13.0" text="Actual Date:" />
+         </children>
+      </Pane>
       <MenuBar fx:id="menuBarMain" prefHeight="25.0" prefWidth="675.0">
         <menus>
           <Menu fx:id="menuClient" mnemonicParsing="false" text="Client">
@@ -48,16 +70,5 @@
             </Menu>
         </menus>
       </MenuBar>
-      <ImageView fitHeight="383.0" fitWidth="675.0" layoutY="23.0" pickOnBounds="true">
-         <image>
-            <Image url="@../img/ico/fundo.jpg" />
-         </image>
-      </ImageView>
-      <Label layoutY="386.0" text="Logged as:" />
-      <Label fx:id="txtLoggedAs" layoutX="67.0" layoutY="386.0" prefHeight="17.0" prefWidth="93.0" text="Eduardo José" textFill="#f2eeee">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

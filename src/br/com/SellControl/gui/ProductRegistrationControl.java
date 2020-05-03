@@ -67,7 +67,7 @@ public class ProductRegistrationControl implements Initializable {
 	@FXML
 	private Tab tabConsultProduct;
 	@FXML
-	private Tab tabProductData;
+	private Tab tabProductStock;
 
 	@FXML
 	private Button btnClean;
@@ -190,7 +190,7 @@ public class ProductRegistrationControl implements Initializable {
 	private void onConsultProductChanged() {
 		// IF consultCustomer is selected them load my tableView with all my product,
 		// and show them.
-		if (tabConsultProduct.isSelected())
+		if (tabProductStock.isSelected())
 			updateTableViewProduct();
 	}
 
