@@ -94,7 +94,6 @@ public class MainScreenControl implements Initializable {
 		String format = sdf.format(d);
 		txtLoggedDate.setText(format);
 
-		LoginVerification();
 		// Set the user where i catch in EmployeeDAO logged in screen.
 		txtLoggedAs.setText(userLogged);
 
