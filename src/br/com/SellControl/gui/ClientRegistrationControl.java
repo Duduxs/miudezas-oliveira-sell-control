@@ -27,6 +27,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class ClientRegistrationControl implements Initializable {
 
@@ -210,6 +212,22 @@ public class ClientRegistrationControl implements Initializable {
 		// Create a client list and use sql command findClientByName
 		Client c = clientDAO.findClientByName(txtName.getText());
 		setClient(c);
+
+	}
+
+	/*
+	 * When i'm in the first tab and i pressed enter in txtName, this method will be
+	 * throw and it will fill all TextFields on first tab.
+	 */
+	@FXML
+	private void onTxtNameKeyPressed(KeyEvent evt) {
+		if (evt.getCode().equals(KeyCode.ENTER)) {
+			// Create a clientDao.
+			ClientDAO clientDAO = DaoFactory.createClientDAO();
+			// Create a client list and use sql command findClientByName
+			Client c = clientDAO.findClientByName(txtName.getText());
+			setClient(c);
+		}
 
 	}
 

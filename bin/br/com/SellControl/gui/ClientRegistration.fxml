@@ -68,7 +68,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="txtName" maxWidth="386.0" prefHeight="25.0" prefWidth="386.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtName" maxWidth="386.0" onKeyPressed="#onTxtNameKeyPressed" prefHeight="25.0" prefWidth="386.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <Button fx:id="btnSearchPersonalData" mnemonicParsing="false" onAction="#onBtnSearchPersonalDataAction" prefHeight="30.0" prefWidth="63.0" style="-fx-background-radius: 100;" text="Search" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="14.0" />

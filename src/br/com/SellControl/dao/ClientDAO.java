@@ -11,6 +11,7 @@ import br.com.SellControl.db.DB;
 import br.com.SellControl.model.entities.Client;
 import br.com.SellControl.model.exception.ControlException;
 import br.com.SellControl.model.exception.DbException;
+import br.com.SellControl.util.Alerts;
 import javafx.scene.control.Alert.AlertType;
 
 public class ClientDAO {
@@ -91,17 +92,14 @@ public class ClientDAO {
 	public void delete(Client client) {
 
 		PreparedStatement ps = null;
-
+		ResultSet rs = null;
 		try {
 
 			String query = "delete from tb_client where id = ?";
 
 			ps = conn.prepareStatement(query);
-
 			ps.setInt(1, client.getId());
-
 			int rows = ps.executeUpdate();
-
 			if (rows <= 0)
 				throw new DbException("Error, no rows affected!");
 
