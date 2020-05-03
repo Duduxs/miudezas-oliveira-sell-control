@@ -31,7 +31,7 @@
             <Menu fx:id="menuProduct" mnemonicParsing="false" text="Product">
                <items>
                   <MenuItem fx:id="miStockControl" mnemonicParsing="false" text="Stock Control" />
-                  <MenuItem fx:id="miProductConsultation" mnemonicParsing="false" text="Product Consultation" />
+                  <MenuItem fx:id="miProductConsultation" mnemonicParsing="false" text="Product Control" />
                </items>
             </Menu>
             <Menu fx:id="menuSell" mnemonicParsing="false" text="Sell">

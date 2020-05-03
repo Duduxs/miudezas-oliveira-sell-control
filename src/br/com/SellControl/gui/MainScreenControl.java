@@ -32,7 +32,7 @@ public class MainScreenControl implements Initializable {
 	@FXML
 	private Menu menuProduct;
 	@FXML
-	private Menu menuSell;
+	public Menu menuSell;
 	@FXML
 	private Menu menuSettings;
 
