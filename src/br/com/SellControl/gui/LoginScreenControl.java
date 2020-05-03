@@ -65,7 +65,7 @@ public class LoginScreenControl implements Initializable {
 				txtEmail.setText("");
 				txtPassword.setText("");
 				// Open and get the MainScreenFXML.
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/SellControl/gui/MainScreen.fxml"));
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/SellControl/gui/Main.fxml"));
 				// Load the screen and put in root variable.
 				Parent root = (Parent) loader.load();
 

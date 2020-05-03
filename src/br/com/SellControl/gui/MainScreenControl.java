@@ -61,6 +61,7 @@ public class MainScreenControl implements Initializable {
 
 	@FXML
 	private Label txtLoggedAs;
+	//From my date
 	@FXML
 	private Label txtLoggedDate;
 
