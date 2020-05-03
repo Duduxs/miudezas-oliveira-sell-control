@@ -16,7 +16,7 @@ public class Program extends Application {
 	public void start(Stage primaryStage) {
 		try {
 
-			Parent parent = FXMLLoader.load(getClass().getResource("/br/com/SellControl/gui/ProductStockControl.fxml"));
+			Parent parent = FXMLLoader.load(getClass().getResource("/br/com/SellControl/gui/ProductRegistration.fxml"));
 			Scene scene = new Scene(parent);
 			primaryStage.setScene(scene);
 			
