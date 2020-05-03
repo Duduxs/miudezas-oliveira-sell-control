@@ -43,7 +43,6 @@
             <Menu fx:id="menuSettings" mnemonicParsing="false" text="Settings">
                <items>
                   <MenuItem fx:id="miChangeUser" mnemonicParsing="false" onAction="#onMiChangeUserAction" text="Change user" />
-                  <MenuItem fx:id="miAbout" mnemonicParsing="false" text="About" />
                   <MenuItem fx:id="miExit" mnemonicParsing="false" onAction="#onMiExitAction" text="Exit" />
                </items>
             </Menu>

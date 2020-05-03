@@ -86,7 +86,6 @@ public class MainScreenControl implements Initializable {
 			menuProduct.setDisable(true);
 			menuProvider.setDisable(true);
 			menuSell.setDisable(true);
-
 		}
 	}
 
