@@ -38,40 +38,6 @@ public class ProductRegistrationControl implements Initializable {
 	@FXML
 	private TextField txtStock;
 
-	// Pane 3
-
-	@FXML
-	private TextField txtDescriptionPane3;
-	@FXML
-	private TextField txtCurrentStockPane3;
-	@FXML
-	private TextField txtQuantityPane3;
-
-	@FXML
-	private Button btnSearchPane3;
-	@FXML
-	private Button btnAddPane3;
-
-	@FXML
-	private TableView<Product> tableViewProductPane3;
-	@FXML
-	private ObservableList<Product> obsListProductPane3;
-
-	@FXML
-	private TableColumn<Product, Integer> tableColumnCodePane3;
-	@FXML
-	private TableColumn<Product, String> tableColumnDescriptionPane3;
-	@FXML
-	private TableColumn<Product, Double> tableColumnPricePane3;
-	@FXML
-	private TableColumn<Product, Integer> tableColumStockPane3;
-	@FXML
-	private TableColumn<Product, String> tableColumnProviderPane3;
-
-	@FXML
-	private Tab tabStockControl;
-
-	// //
 	@FXML
 	private TextField txtSearch;
 
@@ -99,7 +65,7 @@ public class ProductRegistrationControl implements Initializable {
 	private TableColumn<Product, Integer> tableColumnProvider;
 
 	@FXML
-	private Tab tabConsultProduct;
+	private Tab tabStockControl;
 	@FXML
 	private Tab tabProductData;
 
@@ -221,10 +187,10 @@ public class ProductRegistrationControl implements Initializable {
 	}
 
 	@FXML
-	private void onConsultProductChanged() {
+	private void onStockProductChanged() {
 		// IF consultCustomer is selected them load my tableView with all my product,
 		// and show them.
-		if (tabConsultProduct.isSelected())
+		if (tabStockControl.isSelected())
 			updateTableViewProduct();
 	}
 
@@ -334,13 +300,7 @@ public class ProductRegistrationControl implements Initializable {
 		tableColumnDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
 		tableColumnPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
 		tableColumnStock.setCellValueFactory(new PropertyValueFactory<>("QtdStock"));
-		tableColumnProvider.setCellValueFactory(new PropertyValueFactory<>("ProviderName"));
-		//Pane 3
-		tableColumnCodePane3.setCellValueFactory(new PropertyValueFactory<>("id"));
-		tableColumnDescriptionPane3.setCellValueFactory(new PropertyValueFactory<>("description"));
-		tableColumnPricePane3.setCellValueFactory(new PropertyValueFactory<>("price"));
-		tableColumStockPane3.setCellValueFactory(new PropertyValueFactory<>("QtdStock"));
-		tableColumnProviderPane3.setCellValueFactory(new PropertyValueFactory<>("ProviderName"));
+		tableColumnProvider.setCellValueFactory(new PropertyValueFactory<>("Provider"));
 
 	}
 
@@ -365,71 +325,6 @@ public class ProductRegistrationControl implements Initializable {
 		obsListProduct = FXCollections.observableArrayList(list);
 		// Set my table putting all product him.
 		tableViewProduct.setItems(obsListProduct);
-
-	}
-
-	// Tab 3
-
-	@FXML
-	private void onStockControlChanged() {
-		// IF StockControl is selected them load my tableView with all my product,
-		// and show them.
-		if (tabStockControl.isSelected())
-			updateTableViewProductPane3();
-	}
-
-	// Search a list of product on the btn Search
-	@FXML
-	private void onBtnSearchConsultProductActionPane3() {
-		// Create a productDAO
-		ProductDAO productDAO = DaoFactory.createProductDAO();
-		// Create a product list and use sql command findbyName
-		List<Product> list = productDAO.findbyName(txtDescriptionPane3.getText());
-		// Now load all my product from insert to the my obsListClient.
-		obsListProductPane3 = FXCollections.observableArrayList(list);
-		// Set my table putting all product him.
-		tableViewProductPane3.setItems(obsListProductPane3);
-	}
-
-	// Search a list of product the txtSearch only tipping
-	@FXML
-	private void onTxtSearchKeyPressedActionPane3() {
-		// Create a producttDao.
-		ProductDAO productDAO = DaoFactory.createProductDAO();
-		// Create a product list and use sql command findbyName
-		List<Product> list = productDAO.findbyName(txtDescriptionPane3.getText());
-		// Now load all my product from insert to the my obsListProduct.
-		obsListProductPane3 = FXCollections.observableArrayList(list);
-		// Set my table putting all product him.
-		tableViewProductPane3.setItems(obsListProductPane3);
-	}
-
-	/*
-	 * When the mouse clicked in my TableView in tuple i want to go to personal data
-	 * tab with values.
-	 */
-	@FXML
-	private void onTableViewProductMouseClickedPane3() {
-		// This function only will be executed if have an element in TableView, so
-		// avoiding an exception.
-		if (tableViewProductPane3.getSelectionModel().getSelectedItem() != null) {
-			// A temporary variable for save the selected cells in TableView.
-			Product product = tableViewProductPane3.getSelectionModel().getSelectedItem();
-			// In the personalDataTab i set these items.
-			txtCurrentStockPane3.setText(product.getQtdStock().toString());
-		}
-	}
-
-	// Update my TableView, So, having the data from the columns.
-	private void updateTableViewProductPane3() {
-		// Create a productDAO.
-		ProductDAO productDAO = DaoFactory.createProductDAO();
-		// Create a product list and use sql command findAll.
-		List<Product> list = productDAO.findAll();
-		// Now load all my product from insert to the my obsListProduct.
-		obsListProductPane3 = FXCollections.observableArrayList(list);
-		// Set my table putting all product him.
-		tableViewProductPane3.setItems(obsListProductPane3);
 
 	}
 

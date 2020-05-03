@@ -10,8 +10,6 @@ public class Product {
 	private Double subTotal;
 
 	private Provider provider;
-	@SuppressWarnings("unused")
-	private String providerName;
 
 	public Product() {
 
@@ -71,10 +69,6 @@ public class Product {
 
 	public Double getSubTotal() {
 		return subTotal;
-	}
-
-	public String getProviderName() {
-		return provider.getName();
 	}
 
 }

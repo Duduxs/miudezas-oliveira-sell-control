@@ -146,7 +146,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab fx:id="tabConsultProduct" onSelectionChanged="#onConsultProductChanged" text="Consult Product">
+            <Tab fx:id="tabStockControl" onSelectionChanged="#onStockProductChanged" text="Stock Control">
                <content>
                   <AnchorPane layoutX="49.0" layoutY="50.0" maxWidth="1418.0" minHeight="0.0" minWidth="0.0" prefHeight="504.0" prefWidth="1246.0" style="-fx-background-color: #ffffff;">
                      <children>
@@ -180,84 +180,6 @@
                   </AnchorPane>
                </content>
             </Tab>
-          <Tab fx:id="tabStockControl" onSelectionChanged="#onStockControlChanged" text="Stock Control">
-            <content>
-              <AnchorPane layoutX="49.0" layoutY="50.0" maxWidth="1418.0" minHeight="0.0" minWidth="0.0" prefHeight="504.0" prefWidth="1156.0" style="-fx-background-color: #ffffff;">
-                     <padding>
-                        <Insets top="50.0" />
-                     </padding>
-                     <children>
-                        <Pane layoutX="-14.0" layoutY="-4.0" prefHeight="508.0" prefWidth="1341.0" style="-fx-background-color: #ffffff; -fx-border-style: solid;">
-                           <children>
-                              <TableView fx:id="tableViewProductPane3" layoutX="9.0" layoutY="129.0" onMouseClicked="#onTableViewProductMouseClickedPane3" prefHeight="427.0" prefWidth="1334.0">
-                                 <columns>
-                                    <TableColumn fx:id="tableColumnCodePane3" prefWidth="20.0" resizable="false" text="ID" />
-                                    <TableColumn fx:id="tableColumnDescriptionPane3" prefWidth="666.0" resizable="false" text="Description" />
-                                    <TableColumn fx:id="tableColumnPricePane3" minWidth="0.0" prefWidth="213.0" resizable="false" text="Price" />
-                                    <TableColumn fx:id="tableColumStockPane3" prefWidth="213.0" resizable="false" text="Stock Quantity" />
-                                    <TableColumn fx:id="tableColumnProviderPane3" prefWidth="213.0" resizable="false" text="Provider" />
-                                 </columns>
-                                 <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                 </columnResizePolicy>
-                              </TableView>
-                              <Pane layoutX="296.0" layoutY="20.0" prefHeight="109.0" prefWidth="766.0" style="-fx-border-color: #c6cdcf;">
-                                 <children>
-                                    <HBox alignment="CENTER" layoutX="1.0" layoutY="-6.0" prefHeight="70.0" prefWidth="753.0" spacing="40.0">
-                                       <children>
-                                          <Label text="Description:">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                             <HBox.margin>
-                                                <Insets left="-25.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <TextField fx:id="txtDescriptionPane3" maxWidth="458.0" onKeyPressed="#onTxtSearchKeyPressedActionPane3" prefHeight="25.0" prefWidth="439.0" />
-                                          <Button fx:id="btnSearchPane3" mnemonicParsing="false" onAction="#onBtnSearchConsultProductActionPane3" prefWidth="73.0" style="-fx-background-radius: 100;" text="Search">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                             <HBox.margin>
-                                                <Insets right="-10.0" />
-                                             </HBox.margin>
-                                          </Button>
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER" layoutY="47.0" prefHeight="63.0" prefWidth="746.0" spacing="40.0">
-                                       <children>
-                                          <Label text="Current Stock:">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <TextField fx:id="txtCurrentStockPane3" editable="false" maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" />
-                                          <Label text="Quantity:">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <TextField fx:id="txtQuantityPane3" maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" />
-                                          <Button fx:id="btnAddPane3" mnemonicParsing="false" style="-fx-background-radius: 100;" text="Add">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Button>
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </Pane>
-                              <Label layoutX="612.0" layoutY="2.0" text="Product consultation">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </Pane>
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
         </tabs>
       </TabPane>
    </children>
