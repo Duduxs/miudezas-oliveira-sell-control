@@ -146,7 +146,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab fx:id="tabConsultProduct" onSelectionChanged="#onConsultProductChanged" text="Consult Product">
+          <Tab fx:id="tabProductStock" onSelectionChanged="#onProductStockChanged" text="Product Stock">
             <content>
               <AnchorPane layoutX="49.0" layoutY="50.0" maxWidth="1418.0" minHeight="0.0" minWidth="0.0" prefHeight="504.0" prefWidth="1246.0" style="-fx-background-color: #ffffff;">
                      <children>

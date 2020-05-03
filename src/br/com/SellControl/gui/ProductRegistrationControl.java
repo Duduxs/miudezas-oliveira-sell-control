@@ -65,7 +65,7 @@ public class ProductRegistrationControl implements Initializable {
 	private TableColumn<Product, Integer> tableColumnProvider;
 
 	@FXML
-	private Tab tabConsultProduct;
+	private Tab tabProductStock;
 	@FXML
 	private Tab tabProductData;
 
@@ -187,10 +187,10 @@ public class ProductRegistrationControl implements Initializable {
 	}
 
 	@FXML
-	private void onConsultProductChanged() {
+	private void onProductStockChanged() {
 		// IF consultCustomer is selected them load my tableView with all my product,
 		// and show them.
-		if (tabConsultProduct.isSelected())
+		if (tabProductStock.isSelected())
 			updateTableViewProduct();
 	}
 
