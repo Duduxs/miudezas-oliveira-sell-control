@@ -22,14 +22,12 @@ public class MainScreenControl implements Initializable {
 	// For identify the userLogged
 	public static String userLogged;
 	// Format the date in American format.
-<<<<<<< HEAD
-		private SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		private Date d = new Date();
-=======
+
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 	private Date d = new Date();
 
->>>>>>> 9d4e633b2ca80cc8fb7638391e80c9549d4ce371
+
+
 	@FXML
 	private MenuBar menuBarMain;
 
@@ -66,11 +64,8 @@ public class MainScreenControl implements Initializable {
 	@FXML
 	private Label txtLoggedAs;
 	@FXML
-<<<<<<< HEAD
 	private Label txtLoggedDate;
-=======
-	private Label txtDate;
->>>>>>> 9d4e633b2ca80cc8fb7638391e80c9549d4ce371
+	
 
 	@FXML
 	public void onMiChangeUserAction() {
@@ -93,17 +88,11 @@ public class MainScreenControl implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-<<<<<<< HEAD
-		LoginVerification();
-		//Set date
-		String format = sdf.format(d);
-		txtLoggedDate.setText(format);
-=======
->>>>>>> 9d4e633b2ca80cc8fb7638391e80c9549d4ce371
 
+		LoginVerification();
 		// Set date
 		String format = sdf.format(d);
-		txtDate.setText(format);
+		txtLoggedDate.setText(format);
 
 		LoginVerification();
 		// Set the user where i catch in EmployeeDAO logged in screen.
