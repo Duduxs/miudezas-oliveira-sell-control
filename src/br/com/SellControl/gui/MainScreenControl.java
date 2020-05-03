@@ -43,8 +43,6 @@ public class MainScreenControl implements Initializable {
 	@FXML
 	private MenuItem miProviderControl;
 	@FXML
-	private MenuItem miStockControl;
-	@FXML
 	private MenuItem miProductConsultation;
 	@FXML
 	private MenuItem miOpenPOS;
@@ -52,8 +50,6 @@ public class MainScreenControl implements Initializable {
 	private MenuItem miSalesHistory;
 	@FXML
 	private MenuItem miChangeUser;
-	@FXML
-	private MenuItem miAbout;
 	@FXML
 	private MenuItem miExit;
 	@FXML
