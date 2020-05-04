@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.jfoenix.controls.JFXTabPane;
+
 import br.com.SellControl.dao.ClientDAO;
 import br.com.SellControl.dao.DaoFactory;
 import br.com.SellControl.model.entities.Client;
@@ -22,7 +24,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -70,7 +71,7 @@ public class ClientRegistrationControl implements Initializable {
 	@FXML
 	private TableView<Client> tableViewClient;
 	@FXML
-	private TabPane tabPaneClient;
+	private JFXTabPane tabPaneClient;
 
 	@FXML
 	private TableColumn<Client, Integer> tableColumnCode;

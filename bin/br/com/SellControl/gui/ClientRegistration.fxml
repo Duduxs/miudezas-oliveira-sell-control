@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTabPane?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
@@ -7,7 +8,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -32,8 +32,8 @@
             </Label>
          </children>
       </AnchorPane>
-      <TabPane fx:id="tabPaneClient" layoutY="88.0" prefHeight="533.0" prefWidth="1341.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
+      <JFXTabPane fx:id="tabPaneClient" layoutY="88.0" prefHeight="533.0" prefWidth="1341.0">
+         <tabs>
           <Tab fx:id="tabPersonalData" text="Personal Data">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="504.0" prefWidth="1278.0" style="-fx-background-color: #ffffff;">
@@ -248,7 +248,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-        </tabs>
-      </TabPane>
+         </tabs>
+      </JFXTabPane>
    </children>
 </AnchorPane>
