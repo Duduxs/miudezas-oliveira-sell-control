@@ -7,7 +7,7 @@
 	-fx-background-color : #2A1C42;
 }
 .button:pressed
-{
+{	/*This color will be used also to column tableView and AnchorPane*/
 	-fx-background-color : #7156DD;
 }
 

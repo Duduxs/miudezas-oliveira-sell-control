@@ -54,7 +54,7 @@
                   </Label>
                </children>
             </Pane>
-            <Button fx:id="btnClient" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#onBtnClientAction" prefHeight="47.0" prefWidth="272.0" stylesheets="@myCss.css" text="Client" textFill="WHITE">
+            <Button fx:id="btnClient" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#onBtnClientAction" prefHeight="47.0" prefWidth="272.0" stylesheets="@css/myCss.css" text="Client" textFill="WHITE">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -72,7 +72,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btnEmployee" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="272.0" stylesheets="@myCss.css" text="Employee" textFill="WHITE">
+            <Button fx:id="btnEmployee" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="272.0" stylesheets="@css/myCss.css" text="Employee" textFill="WHITE">
                <padding>
                   <Insets left="30.0" />
                </padding>
@@ -87,7 +87,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btnProvider" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="272.0" stylesheets="@myCss.css" text="Provider" textFill="WHITE">
+            <Button fx:id="btnProvider" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="272.0" stylesheets="@css/myCss.css" text="Provider" textFill="WHITE">
                <padding>
                   <Insets left="30.0" />
                </padding>
@@ -102,7 +102,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btnProduct" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="272.0" stylesheets="@myCss.css" text="Product" textFill="WHITE">
+            <Button fx:id="btnProduct" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="272.0" stylesheets="@css/myCss.css" text="Product" textFill="WHITE">
                <padding>
                   <Insets left="30.0" />
                </padding>
@@ -117,7 +117,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btnPointOfSales" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="272.0" stylesheets="@myCss.css" text="Point of Sales" textFill="WHITE">
+            <Button fx:id="btnPointOfSales" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="272.0" stylesheets="@css/myCss.css" text="Point of Sales" textFill="WHITE">
                <padding>
                   <Insets left="30.0" />
                </padding>
@@ -132,7 +132,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btnSalesHistory" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="272.0" stylesheets="@myCss.css" text="Sales History" textFill="WHITE">
+            <Button fx:id="btnSalesHistory" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="272.0" stylesheets="@css/myCss.css" text="Sales History" textFill="WHITE">
                <padding>
                   <Insets left="30.0" />
                </padding>
@@ -147,7 +147,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btnExit" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#onbtnExitAction" prefHeight="47.0" prefWidth="272.0" stylesheets="@myCss.css" text="Exit" textFill="WHITE">
+            <Button fx:id="btnExit" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#onbtnExitAction" prefHeight="47.0" prefWidth="272.0" stylesheets="@css/myCss.css" text="Exit" textFill="WHITE">
                <padding>
                   <Insets left="30.0" />
                </padding>
