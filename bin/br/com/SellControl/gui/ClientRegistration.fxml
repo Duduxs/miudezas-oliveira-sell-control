@@ -21,13 +21,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1341.0" style="-fx-background-color: #3F2B63;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.SellControl.gui.ClientRegistrationControl">
    <children>
-      <AnchorPane prefHeight="88.0" prefWidth="1341.0" style="-fx-background-color: #2A1C42;">
+      <AnchorPane prefHeight="88.0" prefWidth="1319.0" style="-fx-background-color: #2A1C42;">
          <children>
             <Label layoutX="565.0" layoutY="27.0" text="Client Registration" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
+            <Pane layoutX="700.0" layoutY="88.0" prefHeight="61.0" prefWidth="642.0" style="-fx-background-color: #3F2B63;" />
          </children>
       </AnchorPane>
       <JFXTabPane fx:id="tabPaneClient" layoutY="88.0" prefHeight="533.0" prefWidth="1341.0" stylesheets="@css/Client.css">

@@ -117,9 +117,9 @@ public class MainScreenControl implements Initializable {
 			mainAnchorPane.getChildren().add(mainImage);
 			mainAnchorPane.getChildren().addAll(newAnchorPane.getChildren());
 			//Set the AnchorPane and TabPane X and Y from Other FXML
-			mainAnchorPane.getChildren().get(2).setLayoutX(258.0);
+			mainAnchorPane.getChildren().get(2).setLayoutX(256.0);
 			mainAnchorPane.getChildren().get(2).setLayoutY(0.0);
-			mainAnchorPane.getChildren().get(3).setLayoutX(258.0);
+			mainAnchorPane.getChildren().get(3).setLayoutX(256.0);
 			mainAnchorPane.getChildren().get(3).setLayoutY(88.0);
 
 		} catch (IOException e) {
