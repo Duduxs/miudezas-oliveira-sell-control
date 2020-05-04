@@ -82,7 +82,6 @@ public class MainScreenControl implements Initializable {
 	public void LoginVerification() {
 		Boolean isUser = EmployeeDAO.isUser;
 		if (isUser.equals(true)) {
-			btnEmployee.setDisable(true);
 			btnProduct.setDisable(true);
 			btnProvider.setDisable(true);
 			btnPointOfSales.setDisable(true);

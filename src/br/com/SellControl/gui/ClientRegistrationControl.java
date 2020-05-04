@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXTabPane;
+import com.jfoenix.controls.JFXTextField;
 
 import br.com.SellControl.dao.ClientDAO;
 import br.com.SellControl.dao.DaoFactory;
@@ -34,29 +35,29 @@ import javafx.scene.input.KeyEvent;
 public class ClientRegistrationControl implements Initializable {
 
 	@FXML
-	private TextField txtCode;
+	private JFXTextField txtCode;
 	@FXML
-	private TextField txtName;
+	private JFXTextField txtName;
 	@FXML
-	private TextField txtEmail;
+	private JFXTextField txtEmail;
 	@FXML
-	private TextField txtCEP;
+	private JFXTextField txtCEP;
 	@FXML
-	private TextField txtCPF;
+	private JFXTextField txtCPF;
 	@FXML
-	private TextField txtAddress;
+	private JFXTextField txtAddress;
 	@FXML
-	private TextField txtNeighborhood;
+	private JFXTextField txtNeighborhood;
 	@FXML
-	private TextField txtCity;
+	private JFXTextField txtCity;
 	@FXML
-	private TextField txtPhone;
+	private JFXTextField txtPhone;
 	@FXML
-	private TextField txtCellphone;
+	private JFXTextField txtCellphone;
 	@FXML
-	private TextField txtNumber;
+	private JFXTextField txtNumber;
 	@FXML
-	private TextField txtComplement;
+	private JFXTextField txtComplement;
 
 	@FXML
 	private TextField txtSearch;
@@ -113,10 +114,6 @@ public class ClientRegistrationControl implements Initializable {
 	private Button btnSave;
 	@FXML
 	private Button btnDelete;
-	@FXML
-	private Button btnSearchConsultCustomer;
-	@FXML
-	private Button btnSearchPersonalData;
 
 	@FXML
 	private void onBtnSaveAction() {
@@ -186,33 +183,6 @@ public class ClientRegistrationControl implements Initializable {
 		txtNumber.setText(null);
 		txtComplement.setText(null);
 		comboBoxUF.getSelectionModel().select(null);
-
-	}
-
-	// Search a list of client on the Consult Customer tab at the btn Search
-	@FXML
-	private void onBtnSearchConsultCustomerAction() {
-		// Create a clientDao.
-		ClientDAO clientDAO = DaoFactory.createClientDAO();
-		// Create a client list and use sql command findbyName
-		List<Client> list = clientDAO.findbyName(txtSearch.getText());
-		// Now load all my clients from insert to the my obsListClient.
-		obsListClient = FXCollections.observableArrayList(list);
-		// Set my table putting all clients him.
-		tableViewClient.setItems(obsListClient);
-	}
-
-	/*
-	 * When i'm in the first tab and i click in search, this method will be throw
-	 * and it will fill all TextFields on first tab.
-	 */
-	@FXML
-	private void onBtnSearchPersonalDataAction() {
-		// Create a clientDao.
-		ClientDAO clientDAO = DaoFactory.createClientDAO();
-		// Create a client list and use sql command findClientByName
-		Client c = clientDAO.findClientByName(txtName.getText());
-		setClient(c);
 
 	}
 
