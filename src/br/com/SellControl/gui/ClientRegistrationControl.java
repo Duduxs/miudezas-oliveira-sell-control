@@ -358,8 +358,6 @@ public class ClientRegistrationControl implements Initializable {
 	private void initializeMask() {
 		Mask.maskCEP(txtCEP);
 		Mask.maskCPF(txtCPF);
-		Mask.maskPhone(txtPhone);
-		Mask.maskPhone(txtCellphone);
 
 	}
 
@@ -372,6 +370,16 @@ public class ClientRegistrationControl implements Initializable {
 		Constraints.setTextFieldMaxLength(txtComplement, 60);
 		Constraints.setTextFieldMaxLength(txtNeighborhood, 30);
 		Constraints.setTextFieldMaxLength(txtCity, 25);
+
+		Constraints.setTextFieldInteger(txtNumber);
+		Constraints.setTextFieldInteger(txtPhone);
+		Constraints.setTextFieldInteger(txtCellphone);
+
+		Constraints.setTextFieldMaxLength(txtPhone, 11);
+		Constraints.setTextFieldMaxLength(txtCellphone, 11);
+		Constraints.setTextFieldMaxLength(txtCEP, 9);
+		Constraints.setTextFieldMaxLength(txtCPF, 14);
+
 	}
 
 	// Update my TableView, So, having the data from the columns.

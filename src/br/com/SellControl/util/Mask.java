@@ -99,13 +99,12 @@ public class Mask {
 	public static void maskPhone(TextField textField) {
 
 		textField.setOnKeyTyped((KeyEvent event) -> {
-			// Only numbers
 			if ("0123456789".contains(event.getCharacter()) == false) {
 				event.consume();
 			}
 
-			if (event.getCharacter().trim().length() == 0) { // erasing
-				// divide my string, spare the "-" and "." from numbers in this moment.
+			if (event.getCharacter().trim().length() == 0) { // apagando
+
 				if (textField.getText().length() == 10 && textField.getText().substring(9, 10).equals("-")) {
 					textField.setText(textField.getText().substring(0, 9));
 					textField.positionCaret(textField.getText().length());
@@ -122,41 +121,48 @@ public class Mask {
 					textField.setText("");
 				}
 
-			} else { // typing
-						// this if allow only 15 char in phone (Including the " " )
-				if (textField.getText().length() == 15)
+			} else { // escrevendo
+
+				if (textField.getText().length() == 14)
 					event.consume();
-				// now add "-" in my numbers in correct position.
+
 				if (textField.getText().length() == 0) {
 					textField.setText("(" + event.getCharacter());
 					textField.positionCaret(textField.getText().length());
 					event.consume();
 				}
 				if (textField.getText().length() == 3) {
-					// Set a space " " for better format
-					textField.setText(textField.getText() + ") " + event.getCharacter());
+					textField.setText(textField.getText() + ")" + event.getCharacter());
 					textField.positionCaret(textField.getText().length());
 					event.consume();
 				}
-				if (textField.getText().length() == 9) {
+				if (textField.getText().length() == 8) {
 					textField.setText(textField.getText() + "-" + event.getCharacter());
 					textField.positionCaret(textField.getText().length());
 					event.consume();
 				}
-				if (textField.getText().length() == 10 && textField.getText().substring(9, 10) != "-") {
+				if (textField.getText().length() == 9 && textField.getText().substring(8, 9) != "-") {
 					textField.setText(textField.getText() + "-" + event.getCharacter());
 					textField.positionCaret(textField.getText().length());
 					event.consume();
 				}
-				if (textField.getText().length() == 14 && textField.getText().substring(9, 10).equals("-")) {
-					textField.setText(textField.getText().substring(0, 9) + textField.getText().substring(10, 11) + "-"
-							+ textField.getText().substring(11, 14) + event.getCharacter());
+				if (textField.getText().length() == 13 && textField.getText().substring(8, 9).equals("-")) {
+					textField.setText(textField.getText().substring(0, 8) + textField.getText().substring(9, 10) + "-"
+							+ textField.getText().substring(10, 13) + event.getCharacter());
 					textField.positionCaret(textField.getText().length());
 					event.consume();
 				}
 
 			}
 
+		});
+
+		textField.setOnKeyReleased((KeyEvent evt) -> {
+
+			if (!textField.getText().matches("\\d()-*")) {
+				textField.setText(textField.getText().replaceAll("[^\\d()-]", ""));
+				textField.positionCaret(textField.getText().length());
+			}
 		});
 
 	}
@@ -221,49 +227,50 @@ public class Mask {
 		});
 
 	}
-	
 
-    public static void DateMask(TextField textField){
-    	//Only numbers
-        textField.setOnKeyTyped((KeyEvent event) -> {
-            if("0123456789".contains(event.getCharacter())==false){
-                event.consume();
-            }
-        	// divide my string, spare the spaces
-            if(event.getCharacter().trim().length()==0){ // Erasing
+	public static void DateMask(TextField textField) {
+		// Only numbers
+		textField.setOnKeyTyped((KeyEvent event) -> {
+			if ("0123456789".contains(event.getCharacter()) == false) {
+				event.consume();
+			}
+			// divide my string, spare the spaces
+			if (event.getCharacter().trim().length() == 0) { // Erasing
 
-                if(textField.getText().length()==5){
-                    textField.setText(textField.getText().substring(0,4));
-                    textField.positionCaret(textField.getText().length());
-                }
-                if(textField.getText().length()==8){
-                    textField.setText(textField.getText().substring(0,7));
-                    textField.positionCaret(textField.getText().length());
-                }
+				if (textField.getText().length() == 5) {
+					textField.setText(textField.getText().substring(0, 4));
+					textField.positionCaret(textField.getText().length());
+				}
+				if (textField.getText().length() == 8) {
+					textField.setText(textField.getText().substring(0, 7));
+					textField.positionCaret(textField.getText().length());
+				}
 
-            }else{ // typing
-            	//My date it has to be only ten numbers
-                if(textField.getText().length()==10) event.consume();
-            	// now add "/" in correct position
-                if(textField.getText().length()==4){
-                    textField.setText(textField.getText()+"/");
-                    textField.positionCaret(textField.getText().length());
-                }
-                if(textField.getText().length()==7){
-                    textField.setText(textField.getText()+"/");
-                    textField.positionCaret(textField.getText().length());
-                }
+			} else { // typing
+						// My date it has to be only ten numbers
+				if (textField.getText().length() == 10)
+					event.consume();
+				// now add "/" in correct position
+				if (textField.getText().length() == 4) {
+					textField.setText(textField.getText() + "/");
+					textField.positionCaret(textField.getText().length());
+				}
+				if (textField.getText().length() == 7) {
+					textField.setText(textField.getText() + "/");
+					textField.positionCaret(textField.getText().length());
+				}
 
-            }
-        });
+			}
+		});
 
-        textField.setOnKeyReleased((KeyEvent evt) -> {
+		textField.setOnKeyReleased((KeyEvent evt) -> {
 
-            if(!textField.getText().matches("\\d/*")){
-                textField.setText(textField.getText().replaceAll("[^\\d/]", ""));
-                textField.positionCaret(textField.getText().length());
-            }
-        });
+			if (!textField.getText().matches("\\d/*")) {
+				textField.setText(textField.getText().replaceAll("[^\\d/]", ""));
+				textField.positionCaret(textField.getText().length());
+			}
+		});
 
-    }
+	}
+
 }

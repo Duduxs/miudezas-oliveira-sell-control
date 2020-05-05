@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+
 import br.com.SellControl.dao.DaoFactory;
 import br.com.SellControl.dao.EmployeeDAO;
 import br.com.SellControl.model.entities.Employee;
@@ -20,49 +23,49 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class EmployeeRegistrationControl implements Initializable {
 
 	@FXML
-	private PasswordField txtPassword;
+	private JFXPasswordField txtPassword;
 
 	@FXML
-	private TextField txtOffice;
+	private JFXTextField txtOffice;
 	@FXML
-	private TextField txtCode;
+	private JFXTextField txtCode;
 	@FXML
-	private TextField txtName;
+	private JFXTextField txtName;
 	@FXML
-	private TextField txtEmail;
+	private JFXTextField txtEmail;
 	@FXML
-	private TextField txtCEP;
+	private JFXTextField txtCEP;
 	@FXML
-	private TextField txtCPF;
+	private JFXTextField txtCPF;
 	@FXML
-	private TextField txtAddress;
+	private JFXTextField txtAddress;
 	@FXML
-	private TextField txtNeighborhood;
+	private JFXTextField txtNeighborhood;
 	@FXML
-	private TextField txtCity;
+	private JFXTextField txtCity;
 	@FXML
-	private TextField txtPhone;
+	private JFXTextField txtPhone;
 	@FXML
-	private TextField txtCellphone;
+	private JFXTextField txtCellphone;
 	@FXML
-	private TextField txtNumber;
+	private JFXTextField txtNumber;
 	@FXML
-	private TextField txtComplement;
+	private JFXTextField txtComplement;
 
 	@FXML
-	private TextField txtSearch;
+	private JFXTextField txtSearch;
 
 	@FXML
 	private ComboBox<String> comboBoxUF;
@@ -127,10 +130,6 @@ public class EmployeeRegistrationControl implements Initializable {
 	private Button btnSave;
 	@FXML
 	private Button btnDelete;
-	@FXML
-	private Button btnSearchConsultEmployee;
-	@FXML
-	private Button btnSearchPersonalData;
 
 	@FXML
 	private void onBtnSaveAction() {
@@ -206,30 +205,19 @@ public class EmployeeRegistrationControl implements Initializable {
 
 	}
 
-	// Search a list of employee on the Consult employee tab at the btn Search
-	@FXML
-	private void onBtnSearchConsultEmployeeAction() {
-		// Create a employeeDao.
-		EmployeeDAO employeeDAO = DaoFactory.createEmployeeDAO();
-		// Create a employee list and use sql command findbyName
-		List<Employee> list = employeeDAO.findbyName(txtSearch.getText());
-		// Now load all my employee from insert to the my obsListEmployee.
-		obsListEmployee = FXCollections.observableArrayList(list);
-		// Set my table putting all clients him.
-		tableViewEmployee.setItems(obsListEmployee);
-	}
-
 	/*
-	 * When i'm in the first tab and i click in search, this method will be throw
-	 * and it will fill all TextFields on first tab.
+	 * When i'm in the first tab and i pressed enter in txtName, this method will be
+	 * throw and it will fill all TextFields on first tab.
 	 */
 	@FXML
-	private void onBtnSearchPersonalDataAction() {
-		// Create a employeeDao.
-		EmployeeDAO employeeDAO = DaoFactory.createEmployeeDAO();
-		// Create a client list and use sql command findClientByName
-		Employee e = employeeDAO.findEmployeeByName(txtName.getText());
-		setEmployee(e);
+	private void onTxtNameKeyPressed(KeyEvent evt) {
+		if (evt.getCode().equals(KeyCode.ENTER)) {
+			// Create a clientDao.
+			EmployeeDAO employeeDAO = DaoFactory.createEmployeeDAO();
+			// Create a client list and use sql command findClientByName
+			Employee e = employeeDAO.findEmployeeByName(txtName.getText());
+			setEmployee(e);
+		}
 
 	}
 
@@ -319,7 +307,8 @@ public class EmployeeRegistrationControl implements Initializable {
 		}
 		// If have any field empty, them throw this exception
 		catch (NumberFormatException e) {
-			throw new ControlException(e.getMessage(), "message", null, "fields cannot be empty", AlertType.ERROR, true);
+			throw new ControlException(e.getMessage(), "message", null, "fields cannot be empty", AlertType.ERROR,
+					true);
 		}
 
 	}
@@ -368,8 +357,8 @@ public class EmployeeRegistrationControl implements Initializable {
 		comboBoxUF.setItems(obsList);
 		// PE in comboBox will be select first
 		comboBoxUF.getSelectionModel().select(16);
-		//Include in my list the acess from system.
-		List<String> acess = Arrays.asList("User", "Administrator");
+		// Include in my list the acess from system.
+		List<String> acess = Arrays.asList("User", "Adm");
 
 		obsListAcess = FXCollections.observableArrayList(acess);
 		comboBoxAcess_level.setItems(obsListAcess);
@@ -407,8 +396,6 @@ public class EmployeeRegistrationControl implements Initializable {
 	private void initializeMask() {
 		Mask.maskCEP(txtCEP);
 		Mask.maskCPF(txtCPF);
-		Mask.maskPhone(txtPhone);
-		Mask.maskPhone(txtCellphone);
 
 	}
 
@@ -423,6 +410,16 @@ public class EmployeeRegistrationControl implements Initializable {
 		Constraints.setTextFieldMaxLength(txtCity, 25);
 		Constraints.setTextFieldMaxLength(txtOffice, 15);
 		Constraints.setTextFieldMaxLength(txtPassword, 10);
+
+		Constraints.setTextFieldInteger(txtNumber);
+		Constraints.setTextFieldInteger(txtPhone);
+		Constraints.setTextFieldInteger(txtCellphone);
+
+		Constraints.setTextFieldMaxLength(txtPhone, 11);
+		Constraints.setTextFieldMaxLength(txtCellphone, 11);
+		Constraints.setTextFieldMaxLength(txtCEP, 9);
+		Constraints.setTextFieldMaxLength(txtCPF, 14);
+		
 	}
 
 	// Update my TableView, So, having the data from the columns.
@@ -450,8 +447,7 @@ public class EmployeeRegistrationControl implements Initializable {
 			txtCity.setText(webServiceCep.getCidade());
 			txtNeighborhood.setText(webServiceCep.getBairro());
 			comboBoxUF.getSelectionModel().select(webServiceCep.getUf());
-		}
-		else {
+		} else {
 			throw new ControlException("CEP not found", null, null, null, null, false);
 		}
 	}

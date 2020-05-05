@@ -54,7 +54,11 @@ public class MainScreenControl implements Initializable {
 		loadView("/br/com/SellControl/gui/ClientRegistration.fxml");
 	}
 	
-	
+	@FXML
+	public void onBtnEmployeeAction() {
+		loadView("/br/com/SellControl/gui/EmployeeRegistration.fxml");
+	}
+
 	@FXML
 	public void onbtnExitAction() {
 		// Get actual stage (use any object)
@@ -93,30 +97,31 @@ public class MainScreenControl implements Initializable {
 		try {
 			// catch the screen, opening the screen in the parameter.
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
-			// Load the screen (Obsvisouly Anchor bcauz the FXML in the parameter is always a
+			// Load the screen (Obsvisouly Anchor bcauz the FXML in the parameter is always
+			// a
 			// node AnchorPane).
 			AnchorPane newAnchorPane = loader.load();
 			// Catch the reference of this screen
 			Scene mainScene = txtLoggedAs.getScene();
 			/*
-			 * Catch the reference of AnchorPane Principal Screen getRoot -> Get the first element
-			 * of principal FXMl (AncrollPane) and get their content.
+			 * Catch the reference of AnchorPane Principal Screen getRoot -> Get the first
+			 * element of principal FXMl (AncrollPane) and get their content.
 			 */
-			AnchorPane mainAnchorPane =  ((AnchorPane) mainScene.getRoot());
+			AnchorPane mainAnchorPane = ((AnchorPane) mainScene.getRoot());
 			// Save the reference to mainAnchorPane Children. (Vbox and Img)
 			Node mainMenu = mainAnchorPane.getChildren().get(0);
 			Node mainImage = mainAnchorPane.getChildren().get(1);
 			// Clear all children from mainAnchorPane
 			mainAnchorPane.getChildren().clear();
 			/*
-			 * Add the mainMenu (VBox) to principal screen and include all children from
-			 * the screen in parameter
+			 * Add the mainMenu (VBox) to principal screen and include all children from the
+			 * screen in parameter
 			 */
-			
+
 			mainAnchorPane.getChildren().add(mainMenu);
 			mainAnchorPane.getChildren().add(mainImage);
 			mainAnchorPane.getChildren().addAll(newAnchorPane.getChildren());
-			//Set the AnchorPane and TabPane X and Y from Other FXML
+			// Set the AnchorPane and TabPane X and Y from Other FXML
 			mainAnchorPane.getChildren().get(2).setLayoutX(256.0);
 			mainAnchorPane.getChildren().get(2).setLayoutY(0.0);
 			mainAnchorPane.getChildren().get(3).setLayoutX(256.0);
