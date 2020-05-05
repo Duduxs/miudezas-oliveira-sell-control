@@ -402,6 +402,8 @@ public class EmployeeRegistrationControl implements Initializable {
 	private void initializeMask() {
 		Mask.maskCEP(txtCEP);
 		Mask.maskCPF(txtCPF);
+		Mask.maskPhone(txtPhone);
+		Mask.maskPhone(txtCellphone);
 
 	}
 
@@ -418,11 +420,7 @@ public class EmployeeRegistrationControl implements Initializable {
 		Constraints.setTextFieldMaxLength(txtPassword, 10);
 
 		Constraints.setTextFieldInteger(txtNumber);
-		Constraints.setTextFieldInteger(txtPhone);
-		Constraints.setTextFieldInteger(txtCellphone);
 
-		Constraints.setTextFieldMaxLength(txtPhone, 11);
-		Constraints.setTextFieldMaxLength(txtCellphone, 11);
 		Constraints.setTextFieldMaxLength(txtCEP, 9);
 		Constraints.setTextFieldMaxLength(txtCPF, 14);
 

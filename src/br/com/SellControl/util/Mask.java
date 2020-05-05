@@ -1,5 +1,6 @@
 package br.com.SellControl.util;
 
+import javafx.application.Platform;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 
@@ -96,76 +97,45 @@ public class Mask {
 
 	}
 
-	public static void maskPhone(TextField textField) {
-
-		textField.setOnKeyTyped((KeyEvent event) -> {
-			if ("0123456789".contains(event.getCharacter()) == false) {
-				event.consume();
-			}
-
-			if (event.getCharacter().trim().length() == 0) { // apagando
-
-				if (textField.getText().length() == 10 && textField.getText().substring(9, 10).equals("-")) {
-					textField.setText(textField.getText().substring(0, 9));
-					textField.positionCaret(textField.getText().length());
-				}
-				if (textField.getText().length() == 9 && textField.getText().substring(8, 9).equals("-")) {
-					textField.setText(textField.getText().substring(0, 8));
-					textField.positionCaret(textField.getText().length());
-				}
-				if (textField.getText().length() == 4) {
-					textField.setText(textField.getText().substring(0, 3));
-					textField.positionCaret(textField.getText().length());
-				}
-				if (textField.getText().length() == 1) {
-					textField.setText("");
-				}
-
-			} else { // escrevendo
-
-				if (textField.getText().length() == 14)
-					event.consume();
-
-				if (textField.getText().length() == 0) {
-					textField.setText("(" + event.getCharacter());
-					textField.positionCaret(textField.getText().length());
-					event.consume();
-				}
-				if (textField.getText().length() == 3) {
-					textField.setText(textField.getText() + ")" + event.getCharacter());
-					textField.positionCaret(textField.getText().length());
-					event.consume();
-				}
-				if (textField.getText().length() == 8) {
-					textField.setText(textField.getText() + "-" + event.getCharacter());
-					textField.positionCaret(textField.getText().length());
-					event.consume();
-				}
-				if (textField.getText().length() == 9 && textField.getText().substring(8, 9) != "-") {
-					textField.setText(textField.getText() + "-" + event.getCharacter());
-					textField.positionCaret(textField.getText().length());
-					event.consume();
-				}
-				if (textField.getText().length() == 13 && textField.getText().substring(8, 9).equals("-")) {
-					textField.setText(textField.getText().substring(0, 8) + textField.getText().substring(9, 10) + "-"
-							+ textField.getText().substring(10, 13) + event.getCharacter());
-					textField.positionCaret(textField.getText().length());
-					event.consume();
-				}
-
-			}
-
-		});
-
-		textField.setOnKeyReleased((KeyEvent evt) -> {
-
-			if (!textField.getText().matches("\\d()-*")) {
-				textField.setText(textField.getText().replaceAll("[^\\d()-]", ""));
+	// PHONE
+	private static void positionCaret(TextField textField) {
+		Platform.runLater(() -> {
+			if (textField.getText().length() != 0) {
 				textField.positionCaret(textField.getText().length());
 			}
 		});
-
 	}
+
+	public static void maxField(TextField textField, Integer length) {
+		textField.textProperty().addListener((observableValue, oldValue, newValue) -> {
+			if (newValue == null || newValue.length() > length) {
+				textField.setText(oldValue);
+			}
+		});
+	}
+
+	public static void maskPhone(TextField textField) {
+		Mask.maxField(textField, 14);
+		textField.lengthProperty().addListener((observableValue, number, number2) -> {
+			try {
+				String value = textField.getText();
+				value = value.replaceAll("[^0-9]", "");
+				int tam = value.length();
+				value = value.replaceFirst("(\\d{2})(\\d)", "($1)$2");
+				value = value.replaceFirst("(\\d{4})(\\d)", "$1-$2");
+				if (tam > 10) {
+					value = value.replaceAll("-", "");
+					value = value.replaceFirst("(\\d{5})(\\d)", "$1-$2");
+				}
+				textField.setText(value);
+				Mask.positionCaret(textField);
+
+			} catch (Exception ex) {
+			}
+		});
+	}
+
+	// PHONE
 
 	public static void maskCNPJ(TextField textField) {
 		// Only numbers
