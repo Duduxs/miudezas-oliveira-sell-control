@@ -1,6 +1,7 @@
 package br.com.SellControl.gui;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -357,8 +358,13 @@ public class EmployeeRegistrationControl implements Initializable {
 		comboBoxUF.setItems(obsList);
 		// PE in comboBox will be select first
 		comboBoxUF.getSelectionModel().select(16);
-		// Include in my list the acess from system.
-		List<String> acess = Arrays.asList("User", "Adm");
+		EmployeeDAO employeeDAO = DaoFactory.createEmployeeDAO();
+		List<String> acess = new ArrayList<>();
+		if (employeeDAO.selectADM() == 0) {
+			// Include in my list the acess from system.
+			acess = Arrays.asList("User", "Adm");
+		} else
+			acess = Arrays.asList("User");
 
 		obsListAcess = FXCollections.observableArrayList(acess);
 		comboBoxAcess_level.setItems(obsListAcess);
@@ -419,7 +425,7 @@ public class EmployeeRegistrationControl implements Initializable {
 		Constraints.setTextFieldMaxLength(txtCellphone, 11);
 		Constraints.setTextFieldMaxLength(txtCEP, 9);
 		Constraints.setTextFieldMaxLength(txtCPF, 14);
-		
+
 	}
 
 	// Update my TableView, So, having the data from the columns.

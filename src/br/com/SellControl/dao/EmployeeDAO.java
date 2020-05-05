@@ -301,4 +301,35 @@ public class EmployeeDAO {
 
 	}
 
+	// Only 1 ADM!
+	public Integer selectADM() {
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Integer qtd = 0;
+
+		try {
+			String sql = "select count(*), acess_level from tb_employee where acess_level = 'Administrator'";
+			ps = conn.prepareStatement(sql);
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				qtd = rs.getInt("count(*)");
+
+			}
+			return qtd;
+
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+
+		finally {
+			DB.closePreparedStatement(ps);
+			DB.closeResultSet(rs);
+
+		}
+
+	}
+
 }
