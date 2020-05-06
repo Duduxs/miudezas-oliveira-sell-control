@@ -12,6 +12,7 @@ import br.com.SellControl.model.entities.Provider;
 import br.com.SellControl.model.exception.ControlException;
 import br.com.SellControl.util.Alerts;
 import br.com.SellControl.util.Constraints;
+import br.com.SellControl.util.Mask;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -26,6 +27,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class ProductRegistrationControl implements Initializable {
 
@@ -77,10 +80,6 @@ public class ProductRegistrationControl implements Initializable {
 	private Button btnSave;
 	@FXML
 	private Button btnDelete;
-	@FXML
-	private Button btnSearchConsultProduct;
-	@FXML
-	private Button btnSearchPersonalData;
 
 	@FXML
 	private void onBtnSaveAction() {
@@ -150,26 +149,14 @@ public class ProductRegistrationControl implements Initializable {
 	 * and it will fill all TextFields on first tab.
 	 */
 	@FXML
-	private void onBtnSearchProductDataAction() {
-		// Create a ProductDAO.
-		ProductDAO productDAO = DaoFactory.createProductDAO();
-		// Create a product list and use sql command findProductByName
-		Product p = productDAO.findProductByName(txtDescription.getText());
-		setProduct(p);
-
-	}
-
-	// Search a list of product on the Consult Product tab at the btn Search
-	@FXML
-	private void onBtnSearchConsultProductAction() {
-		// Create a productDAO
-		ProductDAO productDAO = DaoFactory.createProductDAO();
-		// Create a product list and use sql command findbyName
-		List<Product> list = productDAO.findbyName(txtSearch.getText());
-		// Now load all my product from insert to the my obsListClient.
-		obsListProduct = FXCollections.observableArrayList(list);
-		// Set my table putting all product him.
-		tableViewProduct.setItems(obsListProduct);
+	private void onTxtDescriptionKeyPressed(KeyEvent evt) {
+		if (evt.getCode().equals(KeyCode.ENTER)) {
+			// Create a ProductDao.
+			ProductDAO productDAO = DaoFactory.createProductDAO();
+			// Create a client list and use sql command findProductByName
+			Product p = productDAO.findProductByName(txtDescription.getText());
+			setProduct(p);
+		}
 	}
 
 	// Search a list of product on the Consult Product tab at the txtSearch only
@@ -308,8 +295,9 @@ public class ProductRegistrationControl implements Initializable {
 	// Set max lenght for my TextFields
 	private void initializeConstraints() {
 		Constraints.setTextFieldMaxLength(txtDescription, 100);
-		Constraints.setTextFieldMaxLength(txtPrice, 4);
+		Constraints.setTextFieldMaxLength(txtPrice, 7);
 		Constraints.setTextFieldDouble(txtPrice);
+		Mask.maskDouble(txtPrice);
 		Constraints.setTextFieldMaxLength(txtStock, 7);
 		Constraints.setTextFieldInteger(txtStock);
 

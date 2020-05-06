@@ -135,6 +135,22 @@ public class Mask {
 		});
 	}
 
+	public static void maskDouble(TextField textField) {
+		// Only numbers
+		textField.setOnKeyTyped((KeyEvent event) -> {
+
+			if (event.getCharacter().trim().length() != 0) {
+
+				if (textField.getText().length() == 4) {
+					textField.setText(textField.getText() + ".");
+					textField.positionCaret(textField.getText().length());
+				}
+
+			}
+		});
+
+	}
+
 	// PHONE
 
 	public static void maskCNPJ(TextField textField) {
