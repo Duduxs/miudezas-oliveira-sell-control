@@ -57,6 +57,7 @@
                                     <Insets right="55.0" top="-30.0" />
                                  </GridPane.margin>
                               </JFXTextField>
+                              <JFXTextField fx:id="txtName" alignment="TOP_LEFT" labelFloat="true" maxWidth="217.0" onKeyPressed="#onTxtNameKeyPressed" promptText="Name" stylesheets="@css/Client.css" unFocusColor="WHITE" />
                               <ImageView fitHeight="15.0" fitWidth="15.0" nodeOrientation="RIGHT_TO_LEFT" GridPane.halignment="CENTER">
                                  <image>
                                     <Image url="@../../../../../../../../../../../../AppData/Local/Temp/icons8_search_50px_4.png" />
@@ -65,9 +66,16 @@
                                     <Insets left="135.0" />
                                  </GridPane.margin>
                               </ImageView>
-                              <JFXTextField fx:id="txtName" alignment="TOP_LEFT" labelFloat="true" maxWidth="217.0" onKeyPressed="#onTxtNameKeyPressed" promptText="Name" stylesheets="@css/Client.css" unFocusColor="WHITE" />
                               <JFXTextField fx:id="txtEmail" alignment="TOP_LEFT" labelFloat="true" maxWidth="217.0" promptText="Email" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.columnIndex="2" />
                               <JFXTextField fx:id="txtCEP" labelFloat="true" maxWidth="217.0" onAction="#onTxtCepKeyAction" promptText="CEP" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.rowIndex="1" />
+                              <ImageView fitHeight="15.0" fitWidth="15.0" nodeOrientation="RIGHT_TO_LEFT" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                 <image>
+                                    <Image url="@../../../../../../../../../../../../AppData/Local/Temp/icons8_search_50px_4.png" />
+                                 </image>
+                                 <GridPane.margin>
+                                    <Insets left="135.0" />
+                                 </GridPane.margin>
+                              </ImageView>
                               <JFXTextField fx:id="txtCPF" labelFloat="true" maxWidth="217.0" promptText="CPF" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                               <JFXTextField fx:id="txtAddress" labelFloat="true" maxWidth="217.0" promptText="Address" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.rowIndex="2" />
                               <JFXTextField fx:id="txtNumber" labelFloat="true" maxWidth="217.0" promptText="Nº" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
@@ -77,14 +85,6 @@
                               <JFXComboBox fx:id="comboBoxUF" labelFloat="true" promptText="UF" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                               <JFXTextField fx:id="txtCellphone" labelFloat="true" maxWidth="217.0" promptText="Cellphone" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.rowIndex="5" />
                               <JFXTextField fx:id="txtPhone" labelFloat="true" maxWidth="217.0" promptText="Phone" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                              <ImageView fitHeight="15.0" fitWidth="15.0" nodeOrientation="RIGHT_TO_LEFT" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                                 <image>
-                                    <Image url="@../../../../../../../../../../../../AppData/Local/Temp/icons8_search_50px_4.png" />
-                                 </image>
-                                 <GridPane.margin>
-                                    <Insets left="135.0" />
-                                 </GridPane.margin>
-                              </ImageView>
                            </children>
                         </GridPane>
                         <HBox alignment="CENTER" layoutX="297.0" layoutY="417.0" prefHeight="50.0" prefWidth="682.0" spacing="20.0">

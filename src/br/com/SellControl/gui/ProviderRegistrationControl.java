@@ -27,6 +27,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class ProviderRegistrationControl implements Initializable {
 	@FXML
@@ -109,10 +111,6 @@ public class ProviderRegistrationControl implements Initializable {
 	private Button btnSave;
 	@FXML
 	private Button btnDelete;
-	@FXML
-	private Button btnSearchConsultCustomer;
-	@FXML
-	private Button btnSearchPersonalData;
 
 	@FXML
 	private void onBtnSaveAction() {
@@ -185,30 +183,19 @@ public class ProviderRegistrationControl implements Initializable {
 
 	}
 
-	// Search a list of client on the Consult Provider tab at the btn Search
-	@FXML
-	private void onBtnSearchConsultCustomerAction() {
-		// Create a providerDao.
-		ProviderDAO providerDAO = DaoFactory.createProviderDAO();
-		// Create a provider list and use sql command findbyName
-		List<Provider> list = providerDAO.findbyName(txtSearch.getText());
-		// Now load all my providers from insert to the my obsListProvider.
-		obsListProvider = FXCollections.observableArrayList(list);
-		// Set my table putting all provider him.
-		tableViewProvider.setItems(obsListProvider);
-	}
-
 	/*
-	 * When i'm in the first tab and i click in search, this method will be throw
-	 * and it will fill all TextFields on first tab.
+	 * When i'm in the first tab and i pressed enter in txtName, this method will be
+	 * throw and it will fill all TextFields on first tab.
 	 */
 	@FXML
-	private void onBtnSearchPersonalDataAction() {
-		// Create a providerDAO.
-		ProviderDAO providerDAO = DaoFactory.createProviderDAO();
-		// Create a provider list and use sql command findClientByName
-		Provider c = providerDAO.findProviderByName(txtName.getText());
-		setProvider(c);
+	private void onTxtNameKeyPressed(KeyEvent evt) {
+		if (evt.getCode().equals(KeyCode.ENTER)) {
+			// Create a clientDao.
+			ProviderDAO providerDAO = DaoFactory.createProviderDAO();
+			// Create a client list and use sql command findClientByName
+			Provider p = providerDAO.findProviderByName(txtName.getText());
+			setProvider(p);
+		}
 
 	}
 
@@ -382,6 +369,11 @@ public class ProviderRegistrationControl implements Initializable {
 		Constraints.setTextFieldMaxLength(txtComplement, 60);
 		Constraints.setTextFieldMaxLength(txtNeighborhood, 30);
 		Constraints.setTextFieldMaxLength(txtCity, 25);
+
+		Constraints.setTextFieldInteger(txtNumber);
+
+		Constraints.setTextFieldMaxLength(txtCEP, 9);
+		Constraints.setTextFieldMaxLength(txtCNPJ, 18);
 	}
 
 	// Update my TableView, So, having the data from the columns.

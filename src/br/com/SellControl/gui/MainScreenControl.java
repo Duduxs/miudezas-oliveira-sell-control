@@ -53,10 +53,15 @@ public class MainScreenControl implements Initializable {
 	public void onBtnClientAction() {
 		loadView("/br/com/SellControl/gui/ClientRegistration.fxml");
 	}
-	
+
 	@FXML
 	public void onBtnEmployeeAction() {
 		loadView("/br/com/SellControl/gui/EmployeeRegistration.fxml");
+	}
+
+	@FXML
+	public void onBtnProviderAction() {
+		loadView("/br/com/SellControl/gui/ProviderRegistration.fxml");
 	}
 
 	@FXML
