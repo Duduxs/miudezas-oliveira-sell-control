@@ -99,10 +99,13 @@ public class PoSControl implements Initializable {
 	private Button btnBuy;
 
 	@FXML
-	public void onbtnCancelAction() {
-
+	public void onTxtObservationKeyPressed(KeyEvent evt) {
+		if (evt.getCode().equals(KeyCode.ENTER)) {
+			onbtnBuyAction();
+		}
 	}
 
+	// Buy item second form
 	@FXML
 	public void onbtnBuyAction() {
 		// Get the txt
@@ -174,7 +177,32 @@ public class PoSControl implements Initializable {
 
 	@FXML
 	public void onbtnPaymentAction() {
-		txtTotalBuy.setText(txtTotal.getText());
+		if (!(txtTotal.getText().isEmpty())) {
+			txtTotalBuy.setText(txtTotal.getText());
+			txtCash.setEditable(true);
+			txtObservation.setEditable(true);
+		} else {
+			Alerts.showAlert("Message", null, "Put something in the cart before!", AlertType.INFORMATION);
+		}
+
+	}
+
+	@FXML
+	public void onbtnCancelAction() {
+		// Clear all elements in my two lists
+		list.clear();
+		obsListPointOfSell.clear();
+		// Now show in my table view 0 values.
+		tableViewPointOfSell.setItems(obsListPointOfSell);
+
+		txtCode.setText("");
+		txtProduct.setText("");
+		txtPrice.setText("");
+		txtQuantity.setText("");
+		txtCPF.setText("");
+		txtName.setText("");
+		txtEmail.setText("");
+		txtTotal.setText("");
 
 	}
 
@@ -237,35 +265,26 @@ public class PoSControl implements Initializable {
 	public void onTxtQuantityKeyPressed(KeyEvent evt) {
 		// Only if i pressed the enter key.
 		if (evt.getCode().equals(KeyCode.ENTER)) {
-			//Only place if client isn't null.
-			if (!(txtCPF.getText().isEmpty() && txtName.getText().isEmpty() && txtEmail.getText().isEmpty())) {
-				// Get the text in txtQuantity and price for calc
-				quantity = Integer.parseInt(txtQuantity.getText());
-				price = Double.parseDouble(txtPrice.getText());
-				// calc
-				subtotal = quantity * price;
-				total += subtotal;
-
-				// Show in txtTotal
-				txtTotal.setText(total.toString());
-				updateTableViewPoS();
-			} else
-				Alerts.showAlert("message", null, "Place customer data", AlertType.ERROR);
-
+			onBtnAddItemAction();
 		}
 	}
 
 	// Put product in tableView (2 form)
 	@FXML
 	public void onBtnAddItemAction() {
-		//Only place if client isn't null.
+		// Only place if client isn't null.
 		if (!(txtCPF.getText().isEmpty() && txtName.getText().isEmpty() && txtEmail.getText().isEmpty())) {
 			// Get the text in txtQuantity and price for calc
 			quantity = Integer.parseInt(txtQuantity.getText());
 			price = Double.parseDouble(txtPrice.getText());
 			// calc
-			subtotal = quantity * price;
-			total += subtotal;
+			if (quantity * price <= 100000) {
+				subtotal = quantity * price;
+				total += subtotal;
+			} else {
+				subtotal = 1000.00;
+				total = 1000.00;
+			}
 			// Show in txtTotal
 			txtTotal.setText(total.toString());
 			updateTableViewPoS();
@@ -300,7 +319,6 @@ public class PoSControl implements Initializable {
 		Constraints.setTextFieldMaxLength(txtRest, 7);
 
 		Constraints.setTextFieldMaxLength(txtQuantity, 7);
-		Constraints.setTextFieldInteger(txtQuantity);
 		Constraints.setTextFieldInteger(txtCode);
 		Constraints.setTextFieldMaxLength(txtCode, 2);
 		Constraints.setTextFieldMaxLength(txtCPF, 14);

@@ -108,9 +108,17 @@
                           </rowConstraints>
                            <children>
                               <JFXTextField fx:id="txtTotalBuy" alignment="CENTER" editable="false" labelFloat="true" maxWidth="217.0" promptText="Total" unFocusColor="WHITE" GridPane.columnIndex="1" />
-                              <JFXTextField fx:id="txtCash" labelFloat="true" maxWidth="217.0" promptText="Cash" unFocusColor="WHITE" GridPane.rowIndex="1" />
+                              <JFXTextField fx:id="txtCash" editable="false" labelFloat="true" maxWidth="217.0" promptText="Cash" unFocusColor="WHITE" GridPane.rowIndex="1" />
                               <JFXTextField fx:id="txtRest" editable="false" labelFloat="true" maxWidth="217.0" promptText="Rest" unFocusColor="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                              <JFXTextField fx:id="txtObservation" labelFloat="true" maxWidth="217.0" promptText="Observation" unFocusColor="WHITE" GridPane.rowIndex="2" />
+                              <JFXTextField fx:id="txtObservation" editable="false" labelFloat="true" maxWidth="217.0" onKeyPressed="#onTxtObservationKeyPressed" promptText="Observation" unFocusColor="WHITE" GridPane.rowIndex="2" />
+                              <ImageView GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                 <image>
+                                    <Image url="@../../../../../../../../../../../../AppData/Local/Temp/icons8_enter_key_24px.png" />
+                                 </image>
+                                 <GridPane.margin>
+                                    <Insets left="170.0" />
+                                 </GridPane.margin>
+                              </ImageView>
                            </children>
                         </GridPane>
                         <JFXButton fx:id="btnBuy" layoutX="259.0" layoutY="422.0" onAction="#onbtnBuyAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #0da344;" text="Buy" textFill="WHITE" />
