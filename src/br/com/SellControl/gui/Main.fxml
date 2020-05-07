@@ -117,7 +117,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btnPointOfSales" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="272.0" stylesheets="@css/myCss.css" text="Point of Sales" textFill="WHITE">
+            <Button fx:id="btnPointOfSales" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#onBtnPointOfSalesAction" prefHeight="47.0" prefWidth="272.0" stylesheets="@css/myCss.css" text="Point of Sales" textFill="WHITE">
                <padding>
                   <Insets left="30.0" />
                </padding>

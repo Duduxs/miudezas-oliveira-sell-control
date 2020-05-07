@@ -82,16 +82,17 @@ public class PoSControl implements Initializable {
 	public List<Product> list = new ArrayList<>();
 
 	@FXML
-	private Button btnSearchCPF;
-	@FXML
-	private Button btnSearchCode;
-	@FXML
 	private Button btnAddItem;
 	@FXML
 	private Button btnPayment;
+	@FXML
+	private Button btnCancel;
 
-
-	// Test
+	@FXML
+	public void onbtnCancelAction() {
+		
+	}
+	
 	@FXML
 	public void onbtnPaymentAction() {
 		try {
@@ -113,30 +114,7 @@ public class PoSControl implements Initializable {
 		}
 	}
 
-	// Find client by CPF (1 form)
-	@FXML
-	public void onbtnSearchCPFAction() {
-		try {
-			// Create a new client
-			Client client = new Client();
-			// Create a dao
-			ClientDAO clientDAO = DaoFactory.createClientDAO();
-			// Use a new findClientByCPF and put in client
-			client = clientDAO.findClientByCPF(txtCPF.getText());
-			// Return an alert if client not found!
-			if (client.getCpf() == null && txtCPF.getText().length() == 14) {
-				Alerts.showAlert("message", null, "Client not found!", AlertType.ERROR);
-			}
-			// Set my textfields.
-			txtName.setText(client.getName());
-			txtEmail.setText(client.getEmail());
-		} catch (NullPointerException e) {
-			Alerts.showAlert("message", null, "Client not found!", AlertType.ERROR);
-		}
-
-	}
-
-	// Find client by CPF (2 form)
+	// Find client by CPF 
 	@FXML
 	public void onTxtCPFKeyPressed(KeyEvent evt) {
 		// Only if i pressed the enter key.
@@ -159,26 +137,7 @@ public class PoSControl implements Initializable {
 		}
 	}
 
-	// Find product by Code (1 form)
-	@FXML
-	public void onbtnSearchCodeAction() {
-		try {
-			// Create a new product
-			Product product = new Product();
-			// Create a dao
-			ProductDAO productDAO = DaoFactory.createProductDAO();
-			// Use a new findClientByCPF and put in client
-			product = productDAO.findProductByCode(txtCode.getText());
-			// Set my textfields.
-			txtProduct.setText(product.getDescription());
-			txtPrice.setText(product.getPrice().toString());
-		} catch (NullPointerException e) {
-			Alerts.showAlert("message", null, "Product not found!", AlertType.ERROR);
-		}
-
-	}
-
-	// Find product by Code (2 form)
+	// Find product by Code 
 	@FXML
 	public void onTxtCodeKeyPressed(KeyEvent evt) {
 		// Only if i pressed the enter key.
