@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
@@ -11,78 +13,93 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1341.0" style="-fx-background-color: #3F2B63;" stylesheets="@css/Client.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.SellControl.gui.PoSControl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1341.0" style="-fx-background-color: #3F2B63;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.SellControl.gui.PoSControl">
    <children>
-      <AnchorPane prefHeight="88.0" prefWidth="1341.0" style="-fx-background-color: #2A1C42;">
+      <AnchorPane prefHeight="88.0" prefWidth="1319.0" style="-fx-background-color: #2A1C42;">
          <children>
             <Label layoutX="599.0" layoutY="27.0" text="Point of Sell " textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
+            <Pane layoutX="700.0" layoutY="88.0" prefHeight="61.0" prefWidth="642.0" style="-fx-background-color: #3F2B63;" />
          </children>
       </AnchorPane>
-      <GridPane layoutX="21.0" layoutY="100.0" prefHeight="236.0" prefWidth="635.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="471.0" minWidth="10.0" prefWidth="373.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="613.0" minWidth="10.0" prefWidth="262.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="250.0" minHeight="9.0" prefHeight="55.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <JFXTextField fx:id="txtCPF" alignment="TOP_LEFT" labelFloat="true" maxWidth="217.0" onKeyPressed="#onTxtCPFKeyPressed" promptText="CPF" stylesheets="@css/Client.css" unFocusColor="WHITE" />
-            <JFXTextField fx:id="txtDate" alignment="TOP_LEFT" labelFloat="true" maxWidth="217.0" onKeyPressed="#onTxtCPFKeyPressed" promptText="Date" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.rowIndex="3" />
-            <JFXTextField fx:id="txtName" alignment="TOP_LEFT" labelFloat="true" maxWidth="217.0" promptText="Name" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.rowIndex="1" />
-            <JFXTextField fx:id="txtEmail" alignment="TOP_LEFT" labelFloat="true" maxWidth="217.0" promptText="Email" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.rowIndex="2" />
-            <ImageView fitHeight="15.0" fitWidth="15.0" nodeOrientation="RIGHT_TO_LEFT" GridPane.halignment="CENTER">
-               <image>
-                  <Image url="@../../../../../../../../../../../../AppData/Local/Temp/icons8_search_50px_4.png" />
-               </image>
-               <GridPane.margin>
-                  <Insets left="50.0" />
-               </GridPane.margin>
-            </ImageView>
-            <JFXTextField fx:id="txtCode" alignment="TOP_LEFT" labelFloat="true" maxWidth="40.0" onKeyPressed="#onTxtCodeKeyPressed" prefHeight="25.0" prefWidth="90.0" promptText="ID" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.columnIndex="1" />
-            <JFXTextField fx:id="txtProduct" alignment="TOP_LEFT" labelFloat="true" maxWidth="217.0" promptText="Product" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <JFXTextField fx:id="txtPrice" alignment="TOP_LEFT" labelFloat="true" maxWidth="217.0" promptText="Price" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <JFXTextField fx:id="txtQuantity" alignment="TOP_LEFT" labelFloat="true" maxWidth="217.0" onKeyPressed="#onTxtQuantityKeyPressed" promptText="Quantity" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <ImageView fitHeight="15.0" fitWidth="15.0" nodeOrientation="RIGHT_TO_LEFT" GridPane.columnIndex="1" GridPane.halignment="CENTER">
-               <image>
-                  <Image url="@../../../../../../../../../../../../AppData/Local/Temp/icons8_search_50px_4.png" />
-               </image>
-               <GridPane.margin>
-                  <Insets right="195.0" />
-               </GridPane.margin>
-            </ImageView>
-            <ImageView GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
-               <image>
-                  <Image url="@../../../../../../../../../../../../AppData/Local/Temp/icons8_enter_key_24px.png" />
-               </image>
-               <GridPane.margin>
-                  <Insets left="150.0" />
-               </GridPane.margin>
-            </ImageView>
-         </children>
-      </GridPane>
-      <JFXButton fx:id="btnAddItem" layoutX="267.0" layoutY="336.0" onAction="#onBtnAddItemAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #0da344;" text="Add Item" textFill="WHITE" />
-      <JFXTextField fx:id="txtTotal" alignment="TOP_LEFT" labelFloat="true" layoutX="732.0" layoutY="502.0" maxWidth="504.0" prefWidth="635.0" promptText="Total" stylesheets="@css/Client.css" unFocusColor="WHITE" />
-      <TableView fx:id="tableViewPointOfSell" layoutX="640.0" layoutY="100.0" prefHeight="352.0" prefWidth="687.0">
-        <columns>
-          <TableColumn fx:id="tableColumnID" prefWidth="20.0" text="ID" />
-          <TableColumn fx:id="tableColumnDescription" prefWidth="308.0" text="Product " />
-            <TableColumn fx:id="tableColumnQuantity" prefWidth="119.0" text="Quantity" />
-            <TableColumn fx:id="tableColumnPrice" prefWidth="119.0" text="Price" />
-            <TableColumn fx:id="tableColumnSubTotal" prefWidth="119.0" text="SubTotal" />
-        </columns>
-      </TableView>
-      <JFXButton fx:id="btnPayment" layoutX="884.0" layoutY="575.0" onAction="#onbtnPaymentAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #0da344;" text="Payment" textFill="WHITE" />
-      <JFXButton fx:id="btnCancel" layoutX="1035.0" layoutY="575.0" onAction="#onbtnCancelAction" prefHeight="25.0" prefWidth="100.0" ripplerFill="BLACK" style="-fx-background-color: #a32d0d;" text="Cancel" textFill="WHITE" />
+      <JFXTabPane fx:id="tabPaneClient" layoutY="88.0" prefHeight="533.0" prefWidth="1341.0" stylesheets="@css/Client.css">
+         <tabs>
+            <Tab fx:id="tabPersonalData" text="Purchase of Products">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="473.0" prefWidth="813.0" style="-fx-background-color: #3F2B63;">
+                     <children>
+                        <GridPane layoutX="17.0" prefHeight="236.0" prefWidth="618.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="471.0" minWidth="10.0" prefWidth="373.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="613.0" minWidth="10.0" prefWidth="262.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="250.0" minHeight="9.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <JFXTextField fx:id="txtCPF" alignment="TOP_LEFT" labelFloat="true" maxWidth="217.0" onKeyPressed="#onTxtCPFKeyPressed" promptText="CPF" stylesheets="@css/Client.css" unFocusColor="WHITE" />
+                              <JFXTextField fx:id="txtDate" alignment="TOP_LEFT" labelFloat="true" maxWidth="217.0" onKeyPressed="#onTxtCPFKeyPressed" promptText="Date" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.rowIndex="3" />
+                              <JFXTextField fx:id="txtName" alignment="TOP_LEFT" labelFloat="true" maxWidth="217.0" promptText="Name" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.rowIndex="1" />
+                              <JFXTextField fx:id="txtEmail" alignment="TOP_LEFT" labelFloat="true" maxWidth="217.0" promptText="Email" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.rowIndex="2" />
+                              <ImageView fitHeight="15.0" fitWidth="15.0" nodeOrientation="RIGHT_TO_LEFT" GridPane.halignment="CENTER">
+                                 <image>
+                                    <Image url="@../../../../../../../../../../../../AppData/Local/Temp/icons8_search_50px_4.png" />
+                                 </image>
+                                 <GridPane.margin>
+                                    <Insets left="50.0" />
+                                 </GridPane.margin>
+                              </ImageView>
+                              <JFXTextField fx:id="txtCode" alignment="TOP_LEFT" labelFloat="true" maxWidth="40.0" onKeyPressed="#onTxtCodeKeyPressed" prefHeight="25.0" prefWidth="90.0" promptText="ID" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.columnIndex="1" />
+                              <JFXTextField fx:id="txtProduct" alignment="TOP_LEFT" labelFloat="true" maxWidth="217.0" promptText="Product" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <JFXTextField fx:id="txtPrice" alignment="TOP_LEFT" labelFloat="true" maxWidth="217.0" promptText="Price" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <JFXTextField fx:id="txtQuantity" alignment="TOP_LEFT" labelFloat="true" maxWidth="217.0" onKeyPressed="#onTxtQuantityKeyPressed" promptText="Quantity" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <ImageView fitHeight="15.0" fitWidth="15.0" nodeOrientation="RIGHT_TO_LEFT" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                                 <image>
+                                    <Image url="@../../../../../../../../../../../../AppData/Local/Temp/icons8_search_50px_4.png" />
+                                 </image>
+                                 <GridPane.margin>
+                                    <Insets right="195.0" />
+                                 </GridPane.margin>
+                              </ImageView>
+                              <ImageView GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                 <image>
+                                    <Image url="@../../../../../../../../../../../../AppData/Local/Temp/icons8_enter_key_24px.png" />
+                                 </image>
+                                 <GridPane.margin>
+                                    <Insets left="150.0" />
+                                 </GridPane.margin>
+                              </ImageView>
+                           </children>
+                        </GridPane>
+                        <JFXButton fx:id="btnAddItem" layoutX="259.0" layoutY="224.0" onAction="#onBtnAddItemAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #0da344;" text="Add Item" textFill="WHITE" />
+                        <JFXTextField fx:id="txtTotal" alignment="TOP_LEFT" labelFloat="true" layoutX="765.0" layoutY="389.0" maxWidth="504.0" prefWidth="635.0" promptText="Total" stylesheets="@css/Client.css" unFocusColor="WHITE" />
+                        <TableView fx:id="tableViewPointOfSell" layoutX="640.0" layoutY="14.0" prefHeight="352.0" prefWidth="687.0">
+                          <columns>
+                            <TableColumn fx:id="tableColumnID" prefWidth="20.0" text="ID" />
+                            <TableColumn fx:id="tableColumnDescription" prefWidth="308.0" text="Product " />
+                              <TableColumn fx:id="tableColumnQuantity" prefWidth="119.0" text="Quantity" />
+                              <TableColumn fx:id="tableColumnPrice" prefWidth="119.0" text="Price" />
+                              <TableColumn fx:id="tableColumnSubTotal" prefWidth="119.0" text="SubTotal" />
+                          </columns>
+                        </TableView>
+                        <JFXButton fx:id="btnPayment" layoutX="858.0" layoutY="434.0" onAction="#onbtnPaymentAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #0da344;" text="Payment" textFill="WHITE" />
+                        <JFXButton fx:id="btnCancel" layoutX="1031.0" layoutY="434.0" onAction="#onbtnCancelAction" prefHeight="25.0" prefWidth="100.0" ripplerFill="BLACK" style="-fx-background-color: #a32d0d;" text="Cancel" textFill="WHITE" />
+                        <Pane layoutY="-7.0" prefHeight="487.0" prefWidth="9.0" style="-fx-background-color: #392759;" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </JFXTabPane>
    </children>
 </AnchorPane>
