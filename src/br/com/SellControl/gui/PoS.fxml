@@ -48,9 +48,9 @@
                           </rowConstraints>
                            <children>
                               <JFXTextField fx:id="txtCPF" alignment="TOP_LEFT" labelFloat="true" maxWidth="217.0" onKeyPressed="#onTxtCPFKeyPressed" promptText="CPF" stylesheets="@css/Client.css" unFocusColor="WHITE" />
-                              <JFXTextField fx:id="txtDate" alignment="TOP_LEFT" labelFloat="true" maxWidth="217.0" onKeyPressed="#onTxtCPFKeyPressed" promptText="Date" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.rowIndex="3" />
-                              <JFXTextField fx:id="txtName" alignment="TOP_LEFT" labelFloat="true" maxWidth="217.0" promptText="Name" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.rowIndex="1" />
-                              <JFXTextField fx:id="txtEmail" alignment="TOP_LEFT" labelFloat="true" maxWidth="217.0" promptText="Email" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.rowIndex="2" />
+                              <JFXTextField fx:id="txtDate" alignment="TOP_LEFT" editable="false" labelFloat="true" maxWidth="217.0" onKeyPressed="#onTxtCPFKeyPressed" promptText="Date" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.rowIndex="3" />
+                              <JFXTextField fx:id="txtName" alignment="TOP_LEFT" editable="false" labelFloat="true" maxWidth="217.0" promptText="Name" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.rowIndex="1" />
+                              <JFXTextField fx:id="txtEmail" alignment="TOP_LEFT" editable="false" labelFloat="true" maxWidth="217.0" promptText="Email" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.rowIndex="2" />
                               <ImageView fitHeight="15.0" fitWidth="15.0" nodeOrientation="RIGHT_TO_LEFT" GridPane.halignment="CENTER">
                                  <image>
                                     <Image url="@../../../../../../../../../../../../AppData/Local/Temp/icons8_search_50px_4.png" />
@@ -60,8 +60,8 @@
                                  </GridPane.margin>
                               </ImageView>
                               <JFXTextField fx:id="txtCode" alignment="TOP_LEFT" labelFloat="true" maxWidth="40.0" onKeyPressed="#onTxtCodeKeyPressed" prefHeight="25.0" prefWidth="90.0" promptText="ID" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.columnIndex="1" />
-                              <JFXTextField fx:id="txtProduct" alignment="TOP_LEFT" labelFloat="true" maxWidth="217.0" promptText="Product" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <JFXTextField fx:id="txtPrice" alignment="TOP_LEFT" labelFloat="true" maxWidth="217.0" promptText="Price" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <JFXTextField fx:id="txtProduct" alignment="TOP_LEFT" editable="false" labelFloat="true" maxWidth="217.0" promptText="Product" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <JFXTextField fx:id="txtPrice" alignment="TOP_LEFT" editable="false" labelFloat="true" maxWidth="217.0" promptText="Price" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <JFXTextField fx:id="txtQuantity" alignment="TOP_LEFT" labelFloat="true" maxWidth="217.0" onKeyPressed="#onTxtQuantityKeyPressed" promptText="Quantity" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <ImageView fitHeight="15.0" fitWidth="15.0" nodeOrientation="RIGHT_TO_LEFT" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                                  <image>
@@ -95,6 +95,25 @@
                         <JFXButton fx:id="btnPayment" layoutX="858.0" layoutY="434.0" onAction="#onbtnPaymentAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #0da344;" text="Payment" textFill="WHITE" />
                         <JFXButton fx:id="btnCancel" layoutX="1031.0" layoutY="434.0" onAction="#onbtnCancelAction" prefHeight="25.0" prefWidth="100.0" ripplerFill="BLACK" style="-fx-background-color: #a32d0d;" text="Cancel" textFill="WHITE" />
                         <Pane layoutY="-7.0" prefHeight="487.0" prefWidth="9.0" style="-fx-background-color: #392759;" />
+                        <GridPane layoutX="11.0" layoutY="279.0" prefHeight="123.0" prefWidth="597.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="130.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="40.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="130.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <JFXTextField alignment="CENTER" editable="false" labelFloat="true" maxWidth="217.0" promptText="Total" unFocusColor="WHITE" GridPane.columnIndex="1" />
+                              <JFXTextField labelFloat="true" maxWidth="217.0" promptText="Cash" unFocusColor="WHITE" GridPane.rowIndex="1" />
+                              <JFXTextField editable="false" labelFloat="true" maxWidth="217.0" promptText="Rest" unFocusColor="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <JFXTextField labelFloat="true" maxWidth="217.0" promptText="Observation" unFocusColor="WHITE" GridPane.rowIndex="2" />
+                           </children>
+                        </GridPane>
+                        <JFXButton layoutX="259.0" layoutY="422.0" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #0da344;" text="Buy" textFill="WHITE" />
                      </children>
                   </AnchorPane>
                </content>

@@ -134,9 +134,6 @@ public class PaymentControl implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		txtCash.setText("0");
-		txtCard.setText("0");
-		txtCheck.setText("0");
 		txtTotal.setText(PoSControl.total.toString());
 		client = PoSControl.client;
 		tableViewShopping = PoSControl.tableViewPointOfSell2;
