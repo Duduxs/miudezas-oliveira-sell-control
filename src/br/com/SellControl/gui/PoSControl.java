@@ -41,7 +41,6 @@ public class PoSControl implements Initializable {
 	private Double totalPay = 0.0, totalSell = 0.0;
 
 	private Client client = new Client();
-
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 	@FXML
@@ -87,6 +86,7 @@ public class PoSControl implements Initializable {
 
 	@FXML
 	public ObservableList<Product> obsListPointOfSell;
+
 	public List<Product> list = new ArrayList<>();
 
 	@FXML
@@ -97,7 +97,20 @@ public class PoSControl implements Initializable {
 	private Button btnCancel;
 	@FXML
 	private Button btnBuy;
+	@FXML
+	private Button btnCancelPay;
 
+	@FXML
+	public void onTxtCashKeyReleased() {
+		// Get the txt
+		totalPay = Double.parseDouble(txtCash.getText());
+		totalSell = Double.parseDouble(txtTotal.getText());
+		// Calc the rest
+		txtRest.setText(String.format("%.2f", totalPay - totalSell).replace(",", "."));
+	}
+	
+	
+	// Buy item first form
 	@FXML
 	public void onTxtObservationKeyPressed(KeyEvent evt) {
 		if (evt.getCode().equals(KeyCode.ENTER)) {
@@ -112,8 +125,6 @@ public class PoSControl implements Initializable {
 		totalPay = Double.parseDouble(txtCash.getText());
 		totalSell = Double.parseDouble(txtTotal.getText());
 
-		// Calc the rest
-		txtRest.setText(String.format("%.2f", totalPay - totalSell).replace(",", "."));
 		// Get the client ID
 		Sell sell = new Sell();
 		SellDAO sellDAO = DaoFactory.createSellDAO();
@@ -172,7 +183,26 @@ public class PoSControl implements Initializable {
 			ItemSellDAO itemSellDAO = DaoFactory.createItemSellDAO();
 			itemSellDAO.insert(item);
 
+			// Desactive after a shopping
+			txtTotalBuy.setText("");
+			txtRest.setText("");
+			txtCash.setText("");
+			txtObservation.setText("");
+			txtCash.setEditable(false);
+			txtObservation.setEditable(false);
+
 		}
+	}
+
+	@FXML
+	public void onBtnCancelPayAction() {
+		// Desactive
+		txtTotalBuy.setText("");
+		txtRest.setText("");
+		txtCash.setText("");
+		txtObservation.setText("");
+		txtCash.setEditable(false);
+		txtObservation.setEditable(false);
 	}
 
 	@FXML

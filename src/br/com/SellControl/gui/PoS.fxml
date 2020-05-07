@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
@@ -92,8 +93,6 @@
                               <TableColumn fx:id="tableColumnSubTotal" prefWidth="119.0" text="SubTotal" />
                           </columns>
                         </TableView>
-                        <JFXButton fx:id="btnPayment" layoutX="858.0" layoutY="434.0" onAction="#onbtnPaymentAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #0da344;" text="Payment" textFill="WHITE" />
-                        <JFXButton fx:id="btnCancel" layoutX="1031.0" layoutY="434.0" onAction="#onbtnCancelAction" prefHeight="25.0" prefWidth="100.0" ripplerFill="BLACK" style="-fx-background-color: #a32d0d;" text="Cancel" textFill="WHITE" />
                         <Pane layoutY="-7.0" prefHeight="487.0" prefWidth="9.0" style="-fx-background-color: #392759;" />
                         <GridPane layoutX="11.0" layoutY="279.0" prefHeight="123.0" prefWidth="597.0">
                           <columnConstraints>
@@ -108,7 +107,7 @@
                           </rowConstraints>
                            <children>
                               <JFXTextField fx:id="txtTotalBuy" alignment="CENTER" editable="false" labelFloat="true" maxWidth="217.0" promptText="Total" unFocusColor="WHITE" GridPane.columnIndex="1" />
-                              <JFXTextField fx:id="txtCash" editable="false" labelFloat="true" maxWidth="217.0" promptText="Cash" unFocusColor="WHITE" GridPane.rowIndex="1" />
+                              <JFXTextField fx:id="txtCash" editable="false" labelFloat="true" maxWidth="217.0" onKeyReleased="#onTxtCashKeyReleased" promptText="Cash" unFocusColor="WHITE" GridPane.rowIndex="1" />
                               <JFXTextField fx:id="txtRest" editable="false" labelFloat="true" maxWidth="217.0" promptText="Rest" unFocusColor="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                               <JFXTextField fx:id="txtObservation" editable="false" labelFloat="true" maxWidth="217.0" onKeyPressed="#onTxtObservationKeyPressed" promptText="Observation" unFocusColor="WHITE" GridPane.rowIndex="2" />
                               <ImageView GridPane.halignment="CENTER" GridPane.rowIndex="2">
@@ -121,7 +120,18 @@
                               </ImageView>
                            </children>
                         </GridPane>
-                        <JFXButton fx:id="btnBuy" layoutX="259.0" layoutY="422.0" onAction="#onbtnBuyAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #0da344;" text="Buy" textFill="WHITE" />
+                        <HBox alignment="CENTER" layoutX="761.0" layoutY="426.0" prefHeight="43.0" prefWidth="507.0" spacing="100.0">
+                           <children>
+                              <JFXButton fx:id="btnPayment" onAction="#onbtnPaymentAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #0da344;" text="Payment" textFill="WHITE" />
+                              <JFXButton fx:id="btnCancel" onAction="#onbtnCancelAction" prefHeight="25.0" prefWidth="100.0" ripplerFill="BLACK" style="-fx-background-color: #a32d0d;" text="Cancel" textFill="WHITE" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="106.0" layoutY="426.0" prefHeight="43.0" prefWidth="507.0" spacing="100.0">
+                           <children>
+                              <JFXButton fx:id="btnBuy" onAction="#onbtnBuyAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #0da344;" text="Buy" textFill="WHITE" />
+                              <JFXButton fx:id="btnCancelPay" onAction="#onBtnCancelPayAction" prefHeight="25.0" prefWidth="100.0" ripplerFill="BLACK" style="-fx-background-color: #a32d0d;" text="Cancel" textFill="WHITE" />
+                           </children>
+                        </HBox>
                      </children>
                   </AnchorPane>
                </content>
