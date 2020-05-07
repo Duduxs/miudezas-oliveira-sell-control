@@ -1,6 +1,5 @@
 package br.com.SellControl.gui;
 
-import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -10,20 +9,20 @@ import java.util.ResourceBundle;
 
 import br.com.SellControl.dao.ClientDAO;
 import br.com.SellControl.dao.DaoFactory;
+import br.com.SellControl.dao.ItemSellDAO;
 import br.com.SellControl.dao.ProductDAO;
+import br.com.SellControl.dao.SellDAO;
 import br.com.SellControl.model.entities.Client;
+import br.com.SellControl.model.entities.ItemSell;
 import br.com.SellControl.model.entities.Product;
-import br.com.SellControl.model.exception.ControlException;
+import br.com.SellControl.model.entities.Sell;
 import br.com.SellControl.util.Alerts;
 import br.com.SellControl.util.Constraints;
 import br.com.SellControl.util.Mask;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -32,16 +31,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
 
 public class PoSControl implements Initializable {
 
 	// For calc my subTotal and total in txtField
 	private Integer quantity = 0;
-	protected static Double total = 0.0;
-	private Double subtotal = 0.0, price = 0.0;
+	private Double total = 0.0, subtotal = 0.0, price = 0.0;
+	// For buy part
+	private Double totalPay = 0.0, totalSell = 0.0;
 
-	protected static Client client = new Client();
+	private Client client = new Client();
+
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 	@FXML
 	private TextField txtDate;
@@ -61,6 +62,14 @@ public class PoSControl implements Initializable {
 	private TextField txtPrice;
 	@FXML
 	private TextField txtTotal;
+	@FXML
+	private TextField txtTotalBuy;
+	@FXML
+	private TextField txtCash;
+	@FXML
+	private TextField txtRest;
+	@FXML
+	private TextField txtObservation;
 
 	@FXML
 	private TableColumn<Integer, Product> tableColumnID;
@@ -75,7 +84,6 @@ public class PoSControl implements Initializable {
 
 	@FXML
 	public TableView<Product> tableViewPointOfSell;
-	public static TableView<Product> tableViewPointOfSell2;
 
 	@FXML
 	public ObservableList<Product> obsListPointOfSell;
@@ -87,6 +95,8 @@ public class PoSControl implements Initializable {
 	private Button btnPayment;
 	@FXML
 	private Button btnCancel;
+	@FXML
+	private Button btnBuy;
 
 	@FXML
 	public void onbtnCancelAction() {
@@ -94,24 +104,78 @@ public class PoSControl implements Initializable {
 	}
 
 	@FXML
-	public void onbtnPaymentAction() {
-		try {
+	public void onbtnBuyAction() {
+		// Get the txt
+		totalPay = Double.parseDouble(txtCash.getText());
+		totalSell = Double.parseDouble(txtTotal.getText());
 
-			// Open and get the PaymentScreenFXML
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/SellControl/gui/Payment.fxml"));
-			// Load the screen and put in root variable.
-			Parent root = (Parent) loader.load();
+		// Calc the rest
+		txtRest.setText(String.format("%.2f", totalPay - totalSell).replace(",", "."));
+		// Get the client ID
+		Sell sell = new Sell();
+		SellDAO sellDAO = DaoFactory.createSellDAO();
+		// Set my sell datas
+		sell.setClient(client);
+		sell.setDateSell(sdf.format(new Date()));
+		sell.setTotalSell(totalSell);
+		sell.setObs(txtObservation.getText());
 
-			Stage stage = new Stage();
-			Scene scene = new Scene(root);
-			stage.setScene(scene);
-			// Not resize screen and size my screen to scene
-			stage.setResizable(false);
-			stage.sizeToScene();
-			stage.show();
-		} catch (IOException e) {
-			throw new ControlException(e.getMessage(), null, null, null, null, false);
+		if (totalPay >= totalSell) {
+			sellDAO.insert(sell);
+			Alerts.showAlert("Message", null, "Items purchased!", AlertType.INFORMATION);
+		} else
+			Alerts.showAlert("Message", null, "Enough balance!", AlertType.ERROR);
+
+		sell.setId(sellDAO.selectLastSell());
+
+		// Get the itens for TableView
+
+		// get the Columns tableview
+		TableColumn<Product, ?> col1 = tableViewPointOfSell.getColumns().get(0);
+		TableColumn<Product, ?> col2 = tableViewPointOfSell.getColumns().get(2);
+		TableColumn<Product, ?> col3 = tableViewPointOfSell.getColumns().get(4);
+
+		// Register products table itemSell
+		for (int i = 0; i < tableViewPointOfSell.getItems().size(); i++) {
+
+			int qtd_stock, qtd_buy, qtd_att;
+
+			Product product = tableViewPointOfSell.getItems().get(i);
+			ProductDAO productDAO = DaoFactory.createProductDAO();
+
+			// Get the rows Tableview
+
+			ItemSell item = new ItemSell();
+			item.setSell(sell);
+			// Set the row and columns
+			product.setId((Integer) col1.getCellObservableValue(product).getValue());
+			item.setProduct(product);
+			item.setQuantity((Integer) col2.getCellObservableValue(product).getValue());
+			item.setSubtotal((Double) col3.getCellObservableValue(product).getValue());
+
+			// Decrease my stock//
+
+			// Get the actual qtd in stock
+			qtd_stock = productDAO.returnActualStock(product.getId());
+			// qtd_buy is equals a tableViewShopping, i mean qtd_actual in tableView in the
+			// PoSControl.
+			qtd_buy = (Integer) col2.getCellObservableValue(product).getValue();
+			// qtd att is equal a actual qtd in stock minus stock in tableview.
+			qtd_att = qtd_stock - qtd_buy;
+			// Finally decrease my stock.
+			productDAO.decreaseStock(product.getId(), qtd_att);
+
+			// Insert them in my BD
+			ItemSellDAO itemSellDAO = DaoFactory.createItemSellDAO();
+			itemSellDAO.insert(item);
+
 		}
+	}
+
+	@FXML
+	public void onbtnPaymentAction() {
+		txtTotalBuy.setText(txtTotal.getText());
+
 	}
 
 	// Find client by CPF
@@ -132,7 +196,7 @@ public class PoSControl implements Initializable {
 				txtCPF.setText("");
 				txtName.setText("");
 				txtEmail.setText("");
-				
+
 			}
 			// Set my textfields.
 			txtName.setText(client.getName());
@@ -159,7 +223,7 @@ public class PoSControl implements Initializable {
 
 			} catch (NullPointerException e) {
 				Alerts.showAlert("message", null, "Product not found!", AlertType.ERROR);
-			// put my txt blank, because i don't want their datas yet.
+				// put my txt blank, because i don't want their datas yet.
 				txtCode.setText("");
 				txtProduct.setText("");
 				txtPrice.setText("");
@@ -173,32 +237,42 @@ public class PoSControl implements Initializable {
 	public void onTxtQuantityKeyPressed(KeyEvent evt) {
 		// Only if i pressed the enter key.
 		if (evt.getCode().equals(KeyCode.ENTER)) {
-			// Get the text in txtQuantity and price for calc
-			quantity = Integer.parseInt(txtQuantity.getText());
-			price = Double.parseDouble(txtPrice.getText());
-			// calc
-			subtotal = quantity * price;
-			total += subtotal;
+			//Only place if client isn't null.
+			if (!(txtCPF.getText().isEmpty() && txtName.getText().isEmpty() && txtEmail.getText().isEmpty())) {
+				// Get the text in txtQuantity and price for calc
+				quantity = Integer.parseInt(txtQuantity.getText());
+				price = Double.parseDouble(txtPrice.getText());
+				// calc
+				subtotal = quantity * price;
+				total += subtotal;
 
-			// Show in txtTotal
-			txtTotal.setText(total.toString());
-			updateTableViewPoS();
+				// Show in txtTotal
+				txtTotal.setText(total.toString());
+				updateTableViewPoS();
+			} else
+				Alerts.showAlert("message", null, "Place customer data", AlertType.ERROR);
+
 		}
 	}
 
 	// Put product in tableView (2 form)
 	@FXML
 	public void onBtnAddItemAction() {
+		//Only place if client isn't null.
+		if (!(txtCPF.getText().isEmpty() && txtName.getText().isEmpty() && txtEmail.getText().isEmpty())) {
+			// Get the text in txtQuantity and price for calc
+			quantity = Integer.parseInt(txtQuantity.getText());
+			price = Double.parseDouble(txtPrice.getText());
+			// calc
+			subtotal = quantity * price;
+			total += subtotal;
+			// Show in txtTotal
+			txtTotal.setText(total.toString());
+			updateTableViewPoS();
 
-		// Get the text in txtQuantity and price for calc
-		quantity = Integer.parseInt(txtQuantity.getText());
-		price = Double.parseDouble(txtPrice.getText());
-		// calc
-		subtotal = quantity * price;
-		total += subtotal;
-		// Show in txtTotal
-		txtTotal.setText(total.toString());
-		updateTableViewPoS();
+		} else
+			Alerts.showAlert("message", null, "Place customer data", AlertType.ERROR);
+
 	}
 
 	@Override
@@ -218,6 +292,13 @@ public class PoSControl implements Initializable {
 		Constraints.setTextFieldMaxLength(txtPrice, 7);
 		Constraints.setTextFieldDouble(txtPrice);
 		Mask.maskDouble(txtPrice);
+
+		Constraints.setTextFieldMaxLength(txtCash, 7);
+		Constraints.setTextFieldDouble(txtCash);
+		Mask.maskDouble(txtCash);
+
+		Constraints.setTextFieldMaxLength(txtRest, 7);
+
 		Constraints.setTextFieldMaxLength(txtQuantity, 7);
 		Constraints.setTextFieldInteger(txtQuantity);
 		Constraints.setTextFieldInteger(txtCode);
@@ -250,8 +331,6 @@ public class PoSControl implements Initializable {
 		obsListPointOfSell = FXCollections.observableArrayList(list);
 		// Set my table putting all pointOfSell him.
 		tableViewPointOfSell.setItems(obsListPointOfSell);
-		// Variable for use in PaymentControl.
-		tableViewPointOfSell2 = tableViewPointOfSell;
 
 	}
 

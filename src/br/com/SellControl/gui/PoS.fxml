@@ -29,9 +29,9 @@
             <Pane layoutX="700.0" layoutY="88.0" prefHeight="61.0" prefWidth="642.0" style="-fx-background-color: #3F2B63;" />
          </children>
       </AnchorPane>
-      <JFXTabPane fx:id="tabPaneClient" layoutY="88.0" prefHeight="533.0" prefWidth="1341.0" stylesheets="@css/Client.css">
+      <JFXTabPane layoutY="88.0" prefHeight="533.0" prefWidth="1341.0" stylesheets="@css/Client.css">
          <tabs>
-            <Tab fx:id="tabPersonalData" text="Purchase of Products">
+            <Tab text="Purchase of Products">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="473.0" prefWidth="813.0" style="-fx-background-color: #3F2B63;">
                      <children>
@@ -82,7 +82,7 @@
                            </children>
                         </GridPane>
                         <JFXButton fx:id="btnAddItem" layoutX="259.0" layoutY="224.0" onAction="#onBtnAddItemAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #0da344;" text="Add Item" textFill="WHITE" />
-                        <JFXTextField fx:id="txtTotal" alignment="TOP_LEFT" labelFloat="true" layoutX="765.0" layoutY="389.0" maxWidth="504.0" prefWidth="635.0" promptText="Total" stylesheets="@css/Client.css" unFocusColor="WHITE" />
+                        <JFXTextField fx:id="txtTotal" alignment="TOP_LEFT" editable="false" labelFloat="true" layoutX="765.0" layoutY="389.0" maxWidth="504.0" prefWidth="635.0" promptText="Total" stylesheets="@css/Client.css" unFocusColor="WHITE" />
                         <TableView fx:id="tableViewPointOfSell" layoutX="640.0" layoutY="14.0" prefHeight="352.0" prefWidth="687.0">
                           <columns>
                             <TableColumn fx:id="tableColumnID" prefWidth="20.0" text="ID" />
@@ -107,13 +107,13 @@
                             <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <JFXTextField alignment="CENTER" editable="false" labelFloat="true" maxWidth="217.0" promptText="Total" unFocusColor="WHITE" GridPane.columnIndex="1" />
-                              <JFXTextField labelFloat="true" maxWidth="217.0" promptText="Cash" unFocusColor="WHITE" GridPane.rowIndex="1" />
-                              <JFXTextField editable="false" labelFloat="true" maxWidth="217.0" promptText="Rest" unFocusColor="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                              <JFXTextField labelFloat="true" maxWidth="217.0" promptText="Observation" unFocusColor="WHITE" GridPane.rowIndex="2" />
+                              <JFXTextField fx:id="txtTotalBuy" alignment="CENTER" editable="false" labelFloat="true" maxWidth="217.0" promptText="Total" unFocusColor="WHITE" GridPane.columnIndex="1" />
+                              <JFXTextField fx:id="txtCash" labelFloat="true" maxWidth="217.0" promptText="Cash" unFocusColor="WHITE" GridPane.rowIndex="1" />
+                              <JFXTextField fx:id="txtRest" editable="false" labelFloat="true" maxWidth="217.0" promptText="Rest" unFocusColor="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <JFXTextField fx:id="txtObservation" labelFloat="true" maxWidth="217.0" promptText="Observation" unFocusColor="WHITE" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
-                        <JFXButton layoutX="259.0" layoutY="422.0" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #0da344;" text="Buy" textFill="WHITE" />
+                        <JFXButton fx:id="btnBuy" layoutX="259.0" layoutY="422.0" onAction="#onbtnBuyAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #0da344;" text="Buy" textFill="WHITE" />
                      </children>
                   </AnchorPane>
                </content>
