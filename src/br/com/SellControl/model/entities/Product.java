@@ -32,7 +32,7 @@ public class Product {
 	}
 
 	public String getDescription() {
-		return description;
+		return description;	
 	}
 
 	public void setDescription(String description) {
@@ -40,7 +40,7 @@ public class Product {
 	}
 
 	public Double getPrice() {
-	
+
 		return price;
 	}
 

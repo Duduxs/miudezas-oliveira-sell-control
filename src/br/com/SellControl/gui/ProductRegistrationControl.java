@@ -140,7 +140,7 @@ public class ProductRegistrationControl implements Initializable {
 		txtDescription.setText(null);
 		txtPrice.setText(null);
 		txtStock.setText(null);
-		comboBoxProvider.getSelectionModel().select(null);
+		comboBoxProvider.getSelectionModel().select(0);
 
 	}
 
@@ -217,7 +217,7 @@ public class ProductRegistrationControl implements Initializable {
 		try {
 			// The code don't need a value from textField.
 			Integer code = Integer.parseInt("1");
-			String description = txtDescription.getText();
+			String description = txtDescription.getText().trim();
 			Double price = Double.parseDouble(txtPrice.getText());
 			Integer StockQuantity = Integer.parseInt(txtStock.getText());
 

@@ -264,7 +264,7 @@ public class ClientRegistrationControl implements Initializable {
 		try {
 			// The code don't need a value from textField.
 			Integer code = Integer.parseInt("1");
-			String name = txtName.getText();
+			String name = txtName.getText().trim();
 			String cpf = txtCPF.getText();
 			String email = txtEmail.getText();
 			String phone = txtPhone.getText();
