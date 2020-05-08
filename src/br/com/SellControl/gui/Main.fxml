@@ -214,7 +214,7 @@
             </HBox>
          </children>
       </VBox>
-      <ImageView fitHeight="621.0" fitWidth="1340.0" layoutX="256.0" pickOnBounds="true">
+      <ImageView fitHeight="621.0" fitWidth="1340.0" layoutX="259.0" pickOnBounds="true">
          <image>
             <Image url="@../img/Logo%20Miudezas%20Oliveira.png" />
          </image>

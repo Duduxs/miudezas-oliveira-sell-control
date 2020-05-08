@@ -25,9 +25,11 @@ public class MainScreenControl implements Initializable {
 	// For identify the userLogged
 	public static String userLogged;
 	// Format the date in American format.
+	
 
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 	private Date d = new Date();
+
 
 	@FXML
 	private Button btnClient;
@@ -51,6 +53,8 @@ public class MainScreenControl implements Initializable {
 	// From my date
 	@FXML
 	private Label txtLoggedDate;
+	
+
 
 	@FXML
 	public void onBtnClientAction() {
@@ -84,7 +88,7 @@ public class MainScreenControl implements Initializable {
 
 	@FXML
 	public void onPanelLogoClicked() {
-		loadView("/br/com/SellControl/gui/Main.fxml", true);	
+		loadView("/br/com/SellControl/gui/Main.fxml", true);
 	}
 
 	@FXML
@@ -100,7 +104,8 @@ public class MainScreenControl implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+	
+		
 		LoginVerification();
 		// Set date
 		String format = sdf.format(d);
@@ -150,11 +155,11 @@ public class MainScreenControl implements Initializable {
 			mainAnchorPane.getChildren().add(mainImage);
 			mainAnchorPane.getChildren().addAll(newAnchorPane.getChildren());
 			// Set the AnchorPane and TabPane X and Y from Other FXML
-			if(isMain == false) {
-			mainAnchorPane.getChildren().get(2).setLayoutX(256.0);
-			mainAnchorPane.getChildren().get(2).setLayoutY(0.0);
-			mainAnchorPane.getChildren().get(3).setLayoutX(256.0);
-			mainAnchorPane.getChildren().get(3).setLayoutY(88.0);
+			if (isMain == false) {
+				mainAnchorPane.getChildren().get(2).setLayoutX(256.0);
+				mainAnchorPane.getChildren().get(2).setLayoutY(0.0);
+				mainAnchorPane.getChildren().get(3).setLayoutX(256.0);
+				mainAnchorPane.getChildren().get(3).setLayoutY(88.0);
 			}
 
 		} catch (IOException e) {
