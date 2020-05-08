@@ -10,13 +10,14 @@ import javafx.stage.Stage;
 
 public class Program extends Application {
 
+	
 	private static Stage mainStage;
 
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 
-			Parent parent = FXMLLoader.load(getClass().getResource("/br/com/SellControl/gui/Main.fxml"));
+			Parent parent = FXMLLoader.load(getClass().getResource("/br/com/SellControl/gui/LoginScreen.fxml"));
 			Scene scene = new Scene(parent);
 			primaryStage.setScene(scene);
 

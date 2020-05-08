@@ -77,8 +77,6 @@ public class LoginScreenControl implements Initializable {
 				stage.sizeToScene();
 				stage.show();
 
-				Alerts.showAlert("message", null, "Welcome!", AlertType.INFORMATION);
-
 			} catch (IOException e) {
 				throw new ControlException(e.getMessage(), null, null, null, null, false);
 			}

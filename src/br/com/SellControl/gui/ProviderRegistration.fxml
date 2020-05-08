@@ -60,7 +60,7 @@
                               <JFXTextField fx:id="txtName" alignment="TOP_LEFT" labelFloat="true" maxWidth="217.0" onKeyPressed="#onTxtNameKeyPressed" promptText="Name" stylesheets="@css/Client.css" unFocusColor="WHITE" />
                               <ImageView fitHeight="15.0" fitWidth="15.0" nodeOrientation="RIGHT_TO_LEFT" GridPane.halignment="CENTER">
                                  <image>
-                                    <Image url="@../../../../../../../../../../../../AppData/Local/Temp/icons8_search_50px_4.png" />
+                                    <Image url="@../img/ico/icons8_search_50px_4.png" />
                                  </image>
                                  <GridPane.margin>
                                     <Insets left="135.0" />
@@ -70,7 +70,7 @@
                               <JFXTextField fx:id="txtCEP" labelFloat="true" maxWidth="217.0" onAction="#onTxtCepKeyAction" promptText="CEP" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.rowIndex="1" />
                               <ImageView fitHeight="15.0" fitWidth="15.0" nodeOrientation="RIGHT_TO_LEFT" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                                  <image>
-                                    <Image url="@../../../../../../../../../../../../AppData/Local/Temp/icons8_search_50px_4.png" />
+                                    <Image url="@../img/ico/icons8_search_50px_4.png" />
                                  </image>
                                  <GridPane.margin>
                                     <Insets left="135.0" />
@@ -108,7 +108,7 @@
                         <JFXTextField fx:id="txtSearch" alignment="TOP_LEFT" labelFloat="true" layoutX="478.0" layoutY="40.0" maxWidth="386.0" onKeyPressed="#onTxtSearchKeyPressedAction" prefHeight="25.0" prefWidth="386.0" promptText="Enter Provider Name" stylesheets="@css/Client.css" unFocusColor="WHITE" />
                         <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="850.0" layoutY="50.0" nodeOrientation="RIGHT_TO_LEFT">
                            <image>
-                              <Image url="@../../../../../../../../../../../../AppData/Local/Temp/icons8_search_50px_4.png" />
+                              <Image url="@../img/ico/icons8_search_50px_4.png" />
                            </image>
                         </ImageView>
                         <TableView fx:id="tableViewProvider" layoutY="84.0" onMouseClicked="#onTableViewProviderMouseClicked" prefHeight="421.0" prefWidth="1341.0">

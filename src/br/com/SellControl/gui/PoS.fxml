@@ -54,7 +54,7 @@
                               <JFXTextField fx:id="txtEmail" alignment="TOP_LEFT" editable="false" labelFloat="true" maxWidth="217.0" promptText="Email" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.rowIndex="2" />
                               <ImageView fitHeight="15.0" fitWidth="15.0" nodeOrientation="RIGHT_TO_LEFT" GridPane.halignment="CENTER">
                                  <image>
-                                    <Image url="@../../../../../../../../../../../../AppData/Local/Temp/icons8_search_50px_4.png" />
+                                    <Image url="@../img/ico/icons8_search_50px_4.png" />
                                  </image>
                                  <GridPane.margin>
                                     <Insets left="50.0" />
@@ -66,7 +66,7 @@
                               <JFXTextField fx:id="txtQuantity" alignment="TOP_LEFT" labelFloat="true" maxWidth="217.0" onKeyPressed="#onTxtQuantityKeyPressed" promptText="Quantity" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <ImageView fitHeight="15.0" fitWidth="15.0" nodeOrientation="RIGHT_TO_LEFT" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                                  <image>
-                                    <Image url="@../../../../../../../../../../../../AppData/Local/Temp/icons8_search_50px_4.png" />
+                                    <Image url="@../img/ico/icons8_search_50px_4.png" />
                                  </image>
                                  <GridPane.margin>
                                     <Insets right="195.0" />
@@ -74,7 +74,7 @@
                               </ImageView>
                               <ImageView GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                                  <image>
-                                    <Image url="@../../../../../../../../../../../../AppData/Local/Temp/icons8_enter_key_24px.png" />
+                                    <Image url="@../img/ico/icons8_enter_key_24px.png" />
                                  </image>
                                  <GridPane.margin>
                                     <Insets left="150.0" />
@@ -112,7 +112,7 @@
                               <JFXTextField fx:id="txtObservation" editable="false" labelFloat="true" maxWidth="217.0" onKeyPressed="#onTxtObservationKeyPressed" promptText="Observation" unFocusColor="WHITE" GridPane.rowIndex="2" />
                               <ImageView GridPane.halignment="CENTER" GridPane.rowIndex="2">
                                  <image>
-                                    <Image url="@../../../../../../../../../../../../AppData/Local/Temp/icons8_enter_key_24px.png" />
+                                    <Image url="@../img/ico/icons8_enter_key_24px.png" />
                                  </image>
                                  <GridPane.margin>
                                     <Insets left="170.0" />

@@ -50,7 +50,7 @@
                               <JFXTextField fx:id="txtEndDate" maxWidth="160.0" onKeyPressed="#onTxtEndDateKeyPressed" prefHeight="25.0" prefWidth="167.0" promptText="End Date" unFocusColor="WHITE" />
                               <ImageView>
                                  <image>
-                                    <Image url="@../../../../../../../../../../../../AppData/Local/Temp/icons8_enter_key_24px.png" />
+                                    <Image url="@../img/ico/icons8_enter_key_24px.png" />
                                  </image>
                                  <HBox.margin>
                                     <Insets left="-65.0" />
@@ -81,7 +81,7 @@
                               <JFXTextField fx:id="txtSellDate" maxWidth="160.0" onKeyPressed="#onTxtSellDateKeyPressed" prefHeight="25.0" prefWidth="167.0" promptText="Sell Date" unFocusColor="WHITE" />
                               <ImageView>
                                  <image>
-                                    <Image url="@../../../../../../../../../../../../AppData/Local/Temp/icons8_enter_key_24px.png" />
+                                    <Image url="@../img/ico/icons8_enter_key_24px.png" />
                                  </image>
                                  <HBox.margin>
                                     <Insets left="-55.0" />
