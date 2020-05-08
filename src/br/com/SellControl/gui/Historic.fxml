@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -12,114 +17,87 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1341.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.SellControl.gui.HistoricControl">
    <children>
-      <AnchorPane layoutY="-6.0" prefHeight="70.0" prefWidth="1341.0" style="-fx-background-color: #0066cc;" />
-      <Pane layoutX="-6.0" layoutY="64.0" prefHeight="556.0" prefWidth="1352.0" style="-fx-background-color: #ffffff; -fx-border-style: solid;">
+      <AnchorPane prefHeight="88.0" prefWidth="1319.0" style="-fx-background-color: #2A1C42;">
          <children>
-            <TableView fx:id="tableViewSell" layoutX="8.0" layoutY="128.0" onMouseClicked="#onTableViewSellMouseClicked" prefHeight="427.0" prefWidth="686.0">
-               <columns>
-                  <TableColumn fx:id="tableColumnID" prefWidth="20.0" resizable="false" text="ID" />
-                  <TableColumn fx:id="tableColumnSellDate" prefWidth="68.0" resizable="false" text="Sell Date" />
-                  <TableColumn fx:id="tableColumnClientName" minWidth="0.0" prefWidth="160.0" resizable="false" text="Client" />
-                  <TableColumn fx:id="tableColumTotalSales" prefWidth="160.0" resizable="false" text="Total Sales" />
-                  <TableColumn fx:id="tableColumnOBS" prefWidth="277.0" resizable="false" text="Observation" />
-               </columns>
-               <columnResizePolicy>
-                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-               </columnResizePolicy>
-            </TableView>
-            <Pane layoutX="8.0" layoutY="9.0" prefHeight="95.0" prefWidth="686.0" style="-fx-border-color: #c6cdcf;">
-               <children>
-                  <Label layoutX="14.0" layoutY="4.0" text="Query by Date">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <HBox alignment="CENTER" layoutX="4.0" layoutY="32.0" prefHeight="70.0" prefWidth="694.0" spacing="40.0">
-               <children>
-                  <Label text="Start Date:">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="txtStartDate" maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" />
-                  <Label text="End Date:">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="txtEndDate" maxWidth="160.0" onKeyPressed="#onTxtEndDateKeyPressed" prefHeight="25.0" prefWidth="167.0" />
-                  <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#onBtnSearchAction" style="-fx-background-radius: 100;" text="Search">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
-            <Pane layoutX="702.0" layoutY="9.0" prefHeight="95.0" prefWidth="645.0" style="-fx-border-color: #c6cdcf;">
-               <children>
-                  <Label layoutX="14.0" layoutY="4.0" text="Total Sales by Date">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <HBox alignment="CENTER" layoutX="-3.0" layoutY="22.0" prefHeight="70.0" prefWidth="652.0" spacing="30.0">
+            <Label layoutX="599.0" layoutY="27.0" text="Sales History" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Pane layoutX="700.0" layoutY="88.0" prefHeight="61.0" prefWidth="642.0" style="-fx-background-color: #3F2B63;" />
+         </children></AnchorPane>
+      <JFXTabPane layoutY="88.0" prefHeight="533.0" prefWidth="1341.0" stylesheets="@css/Client.css">
+         <tabs>
+            <Tab text="Sales made">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="473.0" prefWidth="813.0" style="-fx-background-color: #3F2B63;">
                      <children>
-                        <Label text="Sell Date:">
+                        <TableView fx:id="tableViewSell" layoutX="10.0" layoutY="46.0" onMouseClicked="#onTableViewSellMouseClicked" prefHeight="427.0" prefWidth="686.0">
+                           <columns>
+                              <TableColumn fx:id="tableColumnID" editable="false" prefWidth="20.0" resizable="false" text="ID" />
+                              <TableColumn fx:id="tableColumnSellDate" editable="false" prefWidth="68.0" resizable="false" text="Sell Date" />
+                              <TableColumn fx:id="tableColumnClientName" editable="false" minWidth="0.0" prefWidth="160.0" resizable="false" text="Client" />
+                              <TableColumn fx:id="tableColumTotalSales" editable="false" prefWidth="160.0" resizable="false" text="Total Sales" />
+                              <TableColumn fx:id="tableColumnOBS" editable="false" prefWidth="277.0" resizable="false" text="Observation" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                        <HBox alignment="CENTER" layoutX="14.0" prefHeight="35.0" prefWidth="694.0" spacing="40.0">
+                           <children>
+                              <JFXTextField fx:id="txtStartDate" maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" promptText="Start Date" unFocusColor="WHITE" />
+                              <JFXTextField fx:id="txtEndDate" maxWidth="160.0" onKeyPressed="#onTxtEndDateKeyPressed" prefHeight="25.0" prefWidth="167.0" promptText="End Date" unFocusColor="WHITE" />
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../../../../../../../../../../../AppData/Local/Temp/icons8_enter_key_24px.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets left="-65.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <JFXButton fx:id="btnSearch" onAction="#onBtnSearchAction" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #4287f5;" text="Search sales history" textFill="WHITE" />
+                           </children>
+                        </HBox>
+                        <TableView fx:id="tableViewItemSell" layoutX="706.0" layoutY="46.0" opacity="0.12" prefHeight="427.0" prefWidth="635.0">
+                           <columns>
+                              <TableColumn fx:id="tableColumnItemSellID" editable="false" prefWidth="20.0" resizable="false" text="ID" />
+                              <TableColumn fx:id="tableColumnProduct" editable="false" prefWidth="281.0" resizable="false" text="Product" />
+                              <TableColumn fx:id="tableColumnQuantityPurchased" editable="false" minWidth="0.0" prefWidth="115.0" resizable="false" text="Quantity purchased" />
+                              <TableColumn fx:id="tableColumValue" editable="false" prefWidth="113.0" resizable="false" text="Value" />
+                              <TableColumn fx:id="tableColumnSubTotal" editable="false" prefWidth="114.0" resizable="false" text="SubTotal" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                        <Label fx:id="lblWarning" layoutX="707.0" layoutY="253.0" prefHeight="28.0" prefWidth="688.0" text="Click on an item in the table next that w͟a͟s͟ p͟u͟r͟c͟h͟a͟s͟e͟d͟ to see details about it." textFill="WHITE">
                            <font>
-                              <Font size="14.0" />
+                              <Font size="19.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtSellDate" maxWidth="160.0" onKeyPressed="#onTxtSellDateKeyPressed" prefHeight="25.0" prefWidth="167.0" />
-                        <Button fx:id="btnSearchByDate" mnemonicParsing="false" onAction="#onBtnSearchByDateAction" style="-fx-background-radius: 100;" text="Search">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                        <Label text="Total value:">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="txtTotalValue" editable="false" maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" />
+                        <HBox alignment="CENTER" layoutX="686.0" prefHeight="35.0" prefWidth="694.0" spacing="30.0">
+                           <children>
+                              <JFXTextField fx:id="txtSellDate" maxWidth="160.0" onKeyPressed="#onTxtSellDateKeyPressed" prefHeight="25.0" prefWidth="167.0" promptText="Sell Date" unFocusColor="WHITE" />
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../../../../../../../../../../../AppData/Local/Temp/icons8_enter_key_24px.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets left="-55.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <JFXButton fx:id="btnSearchByDate" onAction="#onBtnSearchByDateAction" prefHeight="25.0" prefWidth="206.0" style="-fx-background-color: #4287f5;" text="Search the value of all sales by date" textFill="WHITE" />
+                              <JFXTextField fx:id="txtTotalValue" editable="false" maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" promptText="Total Value" unFocusColor="WHITE" />
+                           </children>
+                        </HBox>
+                        <Pane layoutX="-79.0" prefHeight="475.0" prefWidth="88.0" style="-fx-background-color: #2A1C42;" />
+                        <Pane layoutX="696.0" layoutY="-1.0" prefHeight="492.0" prefWidth="9.0" style="-fx-background-color: #2A1C42;" />
                      </children>
-                  </HBox>
-               </children>
-            </Pane>
-            <TableView fx:id="tableViewItemSell" layoutX="707.0" layoutY="128.0" opacity="0.12" prefHeight="427.0" prefWidth="645.0">
-               <columns>
-                  <TableColumn fx:id="tableColumnItemSellID" prefWidth="20.0" resizable="false" text="ID" />
-                  <TableColumn fx:id="tableColumnProduct" prefWidth="281.0" resizable="false" text="Product" />
-                  <TableColumn fx:id="tableColumnQuantityPurchased" minWidth="0.0" prefWidth="115.0" resizable="false" text="Quantity purchased" />
-                  <TableColumn fx:id="tableColumValue" prefWidth="113.0" resizable="false" text="Value" />
-                  <TableColumn fx:id="tableColumnSubTotal" prefWidth="114.0" resizable="false" text="SubTotal" />
-               </columns>
-               <columnResizePolicy>
-                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-               </columnResizePolicy>
-            </TableView>
-            <Label fx:id="lblItemDetail" layoutX="990.0" layoutY="105.0" opacity="0.62" prefWidth="66.0" text="Item detail">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="318.0" layoutY="105.0" text="Sell Detail">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblWarning" layoutX="712.0" layoutY="282.0" prefHeight="35.0" prefWidth="636.0" text="Click on an item in the table next that w͟a͟s͟ p͟u͟r͟c͟h͟a͟s͟e͟d͟ to see details about it.">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-      <Label layoutX="24.0" layoutY="21.0" text="Sales History" textFill="WHITE">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </JFXTabPane>
    </children>
 </AnchorPane>

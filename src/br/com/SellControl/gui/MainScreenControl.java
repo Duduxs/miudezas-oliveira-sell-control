@@ -73,6 +73,11 @@ public class MainScreenControl implements Initializable {
 	public void onBtnPointOfSalesAction() {
 		loadView("/br/com/SellControl/gui/PoS.fxml");
 	}
+	
+	@FXML
+	public void onBtnSalesOfHistoryAction() {
+		loadView("/br/com/SellControl/gui/Historic.fxml");
+	}
 
 	@FXML
 	public void onbtnExitAction() {

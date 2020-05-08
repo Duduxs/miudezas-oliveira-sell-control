@@ -84,8 +84,6 @@ public class HistoricControl implements Initializable {
 
 	@FXML
 	private Label lblWarning;
-	@FXML
-	private Label lblItemDetail;
 
 	// Search data (1 form) (First Pane)
 	@FXML
@@ -101,10 +99,7 @@ public class HistoricControl implements Initializable {
 	public void onTxtEndDateKeyPressed(KeyEvent evt) {
 		// Show my tableView if i pressed Enter
 		if (evt.getCode().equals(KeyCode.ENTER)) {
-			updateTableViewSell();
-			// If tableView isEmpty, them show a message.
-			if (tableViewSell.getItems().isEmpty())
-				Alerts.showAlert("Message", null, "History not found!", AlertType.INFORMATION);
+			onBtnSearchAction();
 
 		}
 
@@ -130,16 +125,7 @@ public class HistoricControl implements Initializable {
 	public void onTxtSellDateKeyPressed(KeyEvent evt) {
 		// Show my TotalValue if i pressed Enter
 		if (evt.getCode().equals(KeyCode.ENTER)) {
-			LocalDate sellDate = LocalDate.parse(txtSellDate.getText(), format);
-			// Create sellDAO
-			SellDAO sellDAO = DaoFactory.createSellDAO();
-			// Use the method and save in Double variable
-			Double totalValue = sellDAO.selectTotalSalesByDate(sellDate);
-			// Set text
-			txtTotalValue.setText(totalValue.toString());
-			// If txtTotalValue after find is empty, them throw an alert.
-			if (txtTotalValue.getText().equals("0.0"))
-				Alerts.showAlert("Message", null, "Value on this Date not found!", AlertType.INFORMATION);
+			onBtnSearchByDateAction();
 		}
 	}
 
@@ -207,12 +193,10 @@ public class HistoricControl implements Initializable {
 
 			// If i clicked on item, them make some things appears
 			if (tableViewItemSell.getItems().isEmpty()) {
-				lblItemDetail.setOpacity(0.62);
 				lblWarning.setVisible(true);
 				tableViewItemSell.setOpacity(0.12);
 			} else {
 				// If i not clicked on item, them make some things disappears
-				lblItemDetail.setOpacity(1);
 				lblWarning.setVisible(false);
 				tableViewItemSell.setOpacity(1);
 			}
