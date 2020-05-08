@@ -108,8 +108,7 @@ public class PoSControl implements Initializable {
 		// Calc the rest
 		txtRest.setText(String.format("%.2f", totalPay - totalSell).replace(",", "."));
 	}
-	
-	
+
 	// Buy item first form
 	@FXML
 	public void onTxtObservationKeyPressed(KeyEvent evt) {
@@ -303,7 +302,10 @@ public class PoSControl implements Initializable {
 	@FXML
 	public void onBtnAddItemAction() {
 		// Only place if client isn't null.
-		if (!(txtCPF.getText().isEmpty() && txtName.getText().isEmpty() && txtEmail.getText().isEmpty())) {
+		if (txtCPF.getText().length() != 14 || txtName.getText().isEmpty() || txtEmail.getText().isEmpty() || (!client.getCpf().equals(txtCPF.getText())))
+			Alerts.showAlert("message", null, "Place customer data", AlertType.ERROR);
+
+		else {
 			// Get the text in txtQuantity and price for calc
 			quantity = Integer.parseInt(txtQuantity.getText());
 			price = Double.parseDouble(txtPrice.getText());
@@ -319,8 +321,7 @@ public class PoSControl implements Initializable {
 			txtTotal.setText(total.toString());
 			updateTableViewPoS();
 
-		} else
-			Alerts.showAlert("message", null, "Place customer data", AlertType.ERROR);
+		}
 
 	}
 
