@@ -18,6 +18,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class MainScreenControl implements Initializable {
@@ -42,6 +43,8 @@ public class MainScreenControl implements Initializable {
 	private Button btnSalesHistory;
 	@FXML
 	private Button btnExit;
+	@FXML
+	private Pane panelLogo;
 
 	@FXML
 	private Label txtLoggedAs;
@@ -51,32 +54,37 @@ public class MainScreenControl implements Initializable {
 
 	@FXML
 	public void onBtnClientAction() {
-		loadView("/br/com/SellControl/gui/ClientRegistration.fxml");
+		loadView("/br/com/SellControl/gui/ClientRegistration.fxml", false);
 	}
 
 	@FXML
 	public void onBtnEmployeeAction() {
-		loadView("/br/com/SellControl/gui/EmployeeRegistration.fxml");
+		loadView("/br/com/SellControl/gui/EmployeeRegistration.fxml", false);
 	}
 
 	@FXML
 	public void onBtnProviderAction() {
-		loadView("/br/com/SellControl/gui/ProviderRegistration.fxml");
+		loadView("/br/com/SellControl/gui/ProviderRegistration.fxml", false);
 	}
 
 	@FXML
 	public void onBtnProductAction() {
-		loadView("/br/com/SellControl/gui/ProductRegistration.fxml");
+		loadView("/br/com/SellControl/gui/ProductRegistration.fxml", false);
 	}
-	
+
 	@FXML
 	public void onBtnPointOfSalesAction() {
-		loadView("/br/com/SellControl/gui/PoS.fxml");
+		loadView("/br/com/SellControl/gui/PoS.fxml", false);
 	}
-	
+
 	@FXML
 	public void onBtnSalesOfHistoryAction() {
-		loadView("/br/com/SellControl/gui/Historic.fxml");
+		loadView("/br/com/SellControl/gui/Historic.fxml", false);
+	}
+
+	@FXML
+	public void onPanelLogoClicked() {
+		loadView("/br/com/SellControl/gui/Main.fxml", true);	
 	}
 
 	@FXML
@@ -113,7 +121,7 @@ public class MainScreenControl implements Initializable {
 		}
 	}
 
-	private synchronized void loadView(String absoluteName) {
+	private synchronized void loadView(String absoluteName, Boolean isMain) {
 		try {
 			// catch the screen, opening the screen in the parameter.
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
@@ -142,15 +150,15 @@ public class MainScreenControl implements Initializable {
 			mainAnchorPane.getChildren().add(mainImage);
 			mainAnchorPane.getChildren().addAll(newAnchorPane.getChildren());
 			// Set the AnchorPane and TabPane X and Y from Other FXML
-			
+			if(isMain == false) {
 			mainAnchorPane.getChildren().get(2).setLayoutX(256.0);
 			mainAnchorPane.getChildren().get(2).setLayoutY(0.0);
 			mainAnchorPane.getChildren().get(3).setLayoutX(256.0);
 			mainAnchorPane.getChildren().get(3).setLayoutY(88.0);
+			}
 
 		} catch (IOException e) {
 			Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
-			
 
 		}
 	}

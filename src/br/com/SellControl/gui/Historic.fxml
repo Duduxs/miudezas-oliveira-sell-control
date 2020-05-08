@@ -91,8 +91,8 @@
                               <JFXTextField fx:id="txtTotalValue" editable="false" maxWidth="160.0" prefHeight="25.0" prefWidth="167.0" promptText="Total Value" unFocusColor="WHITE" />
                            </children>
                         </HBox>
-                        <Pane layoutX="-79.0" prefHeight="475.0" prefWidth="88.0" style="-fx-background-color: #2A1C42;" />
-                        <Pane layoutX="696.0" layoutY="-1.0" prefHeight="492.0" prefWidth="9.0" style="-fx-background-color: #2A1C42;" />
+                        <Pane layoutX="-79.0" prefHeight="475.0" prefWidth="88.0" style="-fx-background-color: #392759;" />
+                        <Pane layoutX="696.0" layoutY="-1.0" prefHeight="492.0" prefWidth="9.0" style="-fx-background-color: #392759;" />
                      </children>
                   </AnchorPane>
                </content>
