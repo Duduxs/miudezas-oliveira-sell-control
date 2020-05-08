@@ -16,7 +16,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
@@ -37,11 +36,10 @@ public class LoginScreenControl implements Initializable {
 
 	@FXML
 	private Button btnLogin;
-	@FXML
-	private Button btnExit;
+
 
 	@FXML
-	public void onBtnExitAction() {
+	public void onXMouseClickedAction() {
 
 		Optional<ButtonType> result = Alerts.showConfirmation("Attention!", "Do you really want to do that?");
 		if (result.get() == ButtonType.OK) {
