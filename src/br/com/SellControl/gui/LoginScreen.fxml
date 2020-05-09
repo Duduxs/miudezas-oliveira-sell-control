@@ -16,7 +16,24 @@
 
 <AnchorPane fx:id="anchorPaneLoginScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#setOnMousePressed" onMouseDragged="#setOnMouseDragged" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #3F2B63;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.SellControl.gui.LoginScreenControl">
 	<children>
-      <Pane fx:id="pane" onMouseDragged="#setOnMouseDragged" onMousePressed="#setOnMousePressed" prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: #392759;" />
+      <Pane fx:id="pane" onMouseDragged="#setOnMouseDragged" onMousePressed="#setOnMousePressed" prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: #392759;">
+         <children>
+            <Label fx:id="lblOne" layoutX="33.0" layoutY="82.0" text="Welcome Back !" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="38.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTwo" layoutX="41.0" layoutY="173.0" prefHeight="44.0" prefWidth="342.0" text="Welcome back to the system." textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblThree" layoutX="41.0" layoutY="206.0" prefHeight="44.0" prefWidth="342.0" text="Have a good experience." textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children></Pane>
       <ImageView fx:id="imgMen" layoutX="459.0" layoutY="20.0">
          <image>
             <Image url="@../img/ico/icons8_user_account_128px.png" />

@@ -88,6 +88,17 @@ public class LoginScreenControl implements Initializable {
 
 	@FXML
 	private ImageView imgMen;
+	
+	//Lbl panel
+	@FXML
+	private Label lblOne;
+	@FXML
+	private Label lblTwo;
+	@FXML
+	private Label lblThree;
+	
+	
+	//Lbl panel
 
 	// gets
 	public static Stage getMainScreenStage() {
@@ -180,9 +191,10 @@ public class LoginScreenControl implements Initializable {
 		// Create a employee in Dao
 		EmployeeDAO employeeDAO = DaoFactory.createEmployeeDAO();
 		// Use SQL Command
-		employeeDAO.insertLoginScreen(employee);
+		employeeDAO.insert(employee);
 		// Clean the elements in TextField.
 		onBtnCleanAction();
+		initializeComboBox();
 		// Show a success message
 		Alerts.showAlert("Message", null, "Registered user!", AlertType.INFORMATION);
 	}
@@ -190,15 +202,20 @@ public class LoginScreenControl implements Initializable {
 	// Switch Pane
 	@FXML
 	public void onLblSignUpMouseClicked() {
-		//Set pane X to (345.0 ->) and all Items from SignIn invisible and all items from signUp Visible.
+		// Set pane X to (345.0 ->) and all Items from SignIn invisible and all items
+		// from signUp Visible.
+
 		pane.setLayoutX(345.0);
+		lblOne.setText("Hello, Friend !");
+		lblTwo.setText("Enter your personal details");
+		lblThree.setText("and start journey with us");
 		imgMen.setVisible(false);
 		lblUserLogin.setVisible(false);
 		txtEmail.setVisible(false);
 		txtPassword.setVisible(false);
 		btnLogin.setVisible(false);
 		lblSignUp.setVisible(false);
-		
+
 		imgWomen.setVisible(true);
 		lblUserRegister.setVisible(true);
 		txtRegisterEmail.setVisible(true);
@@ -207,14 +224,19 @@ public class LoginScreenControl implements Initializable {
 		comboBoxAcess_level.setVisible(true);
 		btnCreateAccount.setVisible(true);
 		lblSignIn.setVisible(true);
-		//On changed, clear all txt too.
+		// On changed, clear all txt too.
 		onBtnCleanAction();
+
 	}
 
 	@FXML
 	public void onLblSignInMouseClicked() {
-		//Set pane X (0.0 <-) and all Items from SignUp invisible and all items from signIn Visible.
+		// Set pane X (0.0 <-) and all Items from SignUp invisible and all items from
+		// signIn Visible.
 		pane.setLayoutX(0.0);
+		lblOne.setText("Welcome Back !");
+		lblTwo.setText("Welcome back to the system.");
+		lblThree.setText("Have a good experience.");
 		imgWomen.setVisible(false);
 		lblUserRegister.setVisible(false);
 		txtRegisterEmail.setVisible(false);
@@ -223,14 +245,14 @@ public class LoginScreenControl implements Initializable {
 		comboBoxAcess_level.setVisible(false);
 		btnCreateAccount.setVisible(false);
 		lblSignIn.setVisible(false);
-		
+
 		imgMen.setVisible(true);
 		lblUserLogin.setVisible(true);
 		txtEmail.setVisible(true);
 		txtPassword.setVisible(true);
 		btnLogin.setVisible(true);
 		lblSignUp.setVisible(true);
-		//On changed, clear all txt too.
+		// On changed, clear all txt too.
 		onBtnCleanAction();
 	}
 	// Switch Pane
@@ -244,8 +266,8 @@ public class LoginScreenControl implements Initializable {
 			String email = txtRegisterEmail.getText();
 			String acess_level = comboBoxAcess_level.getSelectionModel().getSelectedItem();
 
-			return new Employee(null, name, null, email, password, null, acess_level, null, null, null, null, null,
-					null, null, null, null);
+			return new Employee(1, name, "111-111-111.11", email, password, "1", acess_level, "(11)1111-1111",
+					"(11)1111-1111", "11111-111", "1", 1, "1", "1", "1", "1");
 		}
 		// If have any field empty, them throw this exception
 		catch (NumberFormatException e) {

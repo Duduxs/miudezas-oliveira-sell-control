@@ -29,34 +29,6 @@ public class EmployeeDAO {
 		this.conn = conn;
 	}
 	
-	public void insertLoginScreen(Employee employee) {
-
-		PreparedStatement ps = null;
-
-		try {
-			StringBuilder query = new StringBuilder();
-			query.append( "insert into tb_employee (name,password, email,acess_level) values (?,?,?,?)");
-
-
-			ps = conn.prepareStatement(query.toString());
-
-			ps.setString(1, employee.getName());
-			ps.setString(2, employee.getPassword());
-			ps.setString(3, employee.getEmail());
-			ps.setString(4, employee.getAcess_level());
-			int rows = ps.executeUpdate();
-
-			if (rows <= 0)
-				throw new DbException("Error, no rows affected!");
-
-		} catch (SQLException e) {
-			throw new DbException(e.getMessage());
-
-		} finally {
-			DB.closePreparedStatement(ps);
-		}
-
-	}
 
 	public void insert(Employee employee) {
 
@@ -287,9 +259,10 @@ public class EmployeeDAO {
 			if (rs.next()) {
 				loginVerification = true;
 				// If the user by admin type.
-				if (rs.getString("acess_level").equals("Administrator"))
-					// Catch the username logged and put in MainScreenControl
+				if (rs.getString("acess_level").equals("Adm")) {
 					MainScreenControl.userLogged = rs.getString("name");
+					isUser = false;
+				}
 				// If the user by user type.
 				else {
 					MainScreenControl.userLogged = rs.getString("name");
@@ -338,7 +311,7 @@ public class EmployeeDAO {
 		Integer qtd = 0;
 
 		try {
-			String sql = "select count(*), acess_level from tb_employee where acess_level = 'Administrator'";
+			String sql = "select count(*), acess_level from tb_employee where acess_level = 'Adm'";
 			ps = conn.prepareStatement(sql);
 
 			rs = ps.executeQuery();

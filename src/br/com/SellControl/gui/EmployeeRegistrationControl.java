@@ -253,30 +253,37 @@ public class EmployeeRegistrationControl implements Initializable {
 		// This function only will be executed if have an element in TableView, so
 		// avoiding an exception.
 		if (tableViewEmployee.getSelectionModel().getSelectedItem() != null) {
+			Boolean isUser = EmployeeDAO.isUser;
 
 			// Set the tab and change them.
 			SingleSelectionModel<Tab> selectionModel = tabPaneEmployee.getSelectionModel();
 			selectionModel.select(0);
 
 			// A temporary variable for save the selected cells in TableView.
+
 			Employee employee = tableViewEmployee.getSelectionModel().getSelectedItem();
+
 			// In the personalDataTab i set these items.
-			txtCode.setText(employee.getId().toString());
-			txtName.setText(employee.getName().toString());
-			txtCPF.setText(employee.getCpf().toString());
-			txtEmail.setText(employee.getEmail().toString());
-			txtPassword.setText(employee.getPassword().toString());
-			txtOffice.setText(employee.getOffice().toString());
-			comboBoxAcess_level.setValue(employee.getAcess_level());
-			txtPhone.setText(employee.getPhone().toString());
-			txtCellphone.setText(employee.getCellphone().toString());
-			txtCEP.setText(employee.getCep().toString());
-			txtAddress.setText(employee.getAddress().toString());
-			txtNumber.setText(employee.getNumber().toString());
-			txtComplement.setText(employee.getComplement().toString());
-			txtNeighborhood.setText(employee.getNeighborhood().toString());
-			txtCity.setText(employee.getCity().toString());
-			comboBoxUF.setValue(employee.getState());
+			// Only set itens if the user isn't an adm
+			if (isUser.equals(true) && tableViewEmployee.getSelectionModel().isSelected(0)) {
+			} else {
+				txtCode.setText(employee.getId().toString());
+				txtName.setText(employee.getName().toString());
+				txtCPF.setText(employee.getCpf().toString());
+				txtEmail.setText(employee.getEmail().toString());
+				txtPassword.setText(employee.getPassword().toString());
+				txtOffice.setText(employee.getOffice().toString());
+				comboBoxAcess_level.setValue(employee.getAcess_level());
+				txtPhone.setText(employee.getPhone().toString());
+				txtCellphone.setText(employee.getCellphone().toString());
+				txtCEP.setText(employee.getCep().toString());
+				txtAddress.setText(employee.getAddress().toString());
+				txtNumber.setText(employee.getNumber().toString());
+				txtComplement.setText(employee.getComplement().toString());
+				txtNeighborhood.setText(employee.getNeighborhood().toString());
+				txtCity.setText(employee.getCity().toString());
+				comboBoxUF.setValue(employee.getState());
+			}
 
 		}
 	}
@@ -360,6 +367,7 @@ public class EmployeeRegistrationControl implements Initializable {
 		comboBoxUF.getSelectionModel().select(16);
 		EmployeeDAO employeeDAO = DaoFactory.createEmployeeDAO();
 		List<String> acess = new ArrayList<>();
+
 		if (employeeDAO.selectADM() == 0) {
 			// Include in my list the acess from system.
 			acess = Arrays.asList("User", "Adm");
@@ -370,6 +378,7 @@ public class EmployeeRegistrationControl implements Initializable {
 		comboBoxAcess_level.setItems(obsListAcess);
 		// User in comboBox will be select first
 		comboBoxAcess_level.getSelectionModel().select(0);
+
 	}
 
 	/*
