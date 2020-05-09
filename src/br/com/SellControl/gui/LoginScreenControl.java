@@ -8,7 +8,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 
 import br.com.SellControl.application.Program;
 import br.com.SellControl.dao.DaoFactory;
@@ -25,11 +28,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -49,18 +49,18 @@ public class LoginScreenControl implements Initializable {
 	private AnchorPane anchorPaneLoginScreen;
 
 	@FXML
-	private TextField txtEmail;
+	private JFXTextField txtEmail;
 	@FXML
-	private TextField txtPassword;
+	private JFXPasswordField txtPassword;
 	// User Register//
 	@FXML
-	private TextField txtName;
+	private JFXTextField txtName;
 	@FXML
 	private JFXPasswordField txtRegisterPassword;
 	@FXML
-	private TextField txtRegisterEmail;
+	private JFXTextField txtRegisterEmail;
 	@FXML
-	ComboBox<String> comboBoxAcess_level;
+	JFXComboBox<String> comboBoxAcess_level;
 	// Variable for save all my AcessLevel in comboBox.
 	private ObservableList<String> obsListAcess;
 
@@ -72,7 +72,7 @@ public class LoginScreenControl implements Initializable {
 	private ImageView imgWomen;
 
 	@FXML
-	private Button btnCreateAccount;
+	private JFXButton btnCreateAccount;
 
 	// User Register //
 
@@ -84,7 +84,7 @@ public class LoginScreenControl implements Initializable {
 	private Pane pane;
 
 	@FXML
-	private Button btnLogin;
+	private JFXButton btnLogin;
 
 	@FXML
 	private ImageView imgMen;
