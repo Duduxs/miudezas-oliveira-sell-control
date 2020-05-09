@@ -28,6 +28,35 @@ public class EmployeeDAO {
 	public EmployeeDAO(Connection conn) {
 		this.conn = conn;
 	}
+	
+	public void insertLoginScreen(Employee employee) {
+
+		PreparedStatement ps = null;
+
+		try {
+			StringBuilder query = new StringBuilder();
+			query.append( "insert into tb_employee (name,password, email,acess_level) values (?,?,?,?)");
+
+
+			ps = conn.prepareStatement(query.toString());
+
+			ps.setString(1, employee.getName());
+			ps.setString(2, employee.getPassword());
+			ps.setString(3, employee.getEmail());
+			ps.setString(4, employee.getAcess_level());
+			int rows = ps.executeUpdate();
+
+			if (rows <= 0)
+				throw new DbException("Error, no rows affected!");
+
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+
+		} finally {
+			DB.closePreparedStatement(ps);
+		}
+
+	}
 
 	public void insert(Employee employee) {
 

@@ -16,7 +16,40 @@
 
 <AnchorPane fx:id="anchorPaneLoginScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#setOnMousePressed" onMouseDragged="#setOnMouseDragged" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #3F2B63;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.SellControl.gui.LoginScreenControl">
 	<children>
-      <Pane layoutX="7.0" layoutY="6.0" onMouseDragged="#setOnMouseDragged" onMousePressed="#setOnMousePressed" prefHeight="500.0" prefWidth="350.0" />
+      <Pane fx:id="pane" onMouseDragged="#setOnMouseDragged" onMousePressed="#setOnMousePressed" prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: #392759;" />
+      <ImageView fx:id="imgMen" layoutX="459.0" layoutY="20.0">
+         <image>
+            <Image url="@../img/ico/icons8_user_account_128px.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblUserLogin" layoutX="432.0" layoutY="146.0" text="User Login" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtEmail" labelFloat="true" layoutX="396.0" layoutY="231.0" maxWidth="217.0" onKeyPressed="#onEnterPressed" prefHeight="25.0" prefWidth="217.0" promptText="Email" stylesheets="@css/Client.css" unFocusColor="WHITE" />
+      <JFXPasswordField fx:id="txtPassword" layoutX="396.0" layoutY="284.0" onKeyPressed="#onEnterPressed" prefWidth="217.0" promptText="Password" stylesheets="@css/Client.css" unFocusColor="WHITE" />
+      <JFXButton fx:id="btnLogin" layoutX="436.0" layoutY="351.0" onAction="#onBtnLoginAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #0da344;" text="Login" textFill="WHITE" />
+      <Label fx:id="lblSignUp" layoutX="452.0" layoutY="464.0" onMouseClicked="#onLblSignUpMouseClicked" text="Sign up" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="662.0" layoutY="14.0" onMouseClicked="#onXMouseClickedAction" prefHeight="25.0" prefWidth="24.0" text="X" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="imgWomen" fitHeight="170.0" fitWidth="172.0" layoutX="96.0" layoutY="-1.0" visible="false">
+         <image>
+            <Image url="@../img/ico/icons8_user_account_200px.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblUserRegister" layoutX="70.0" layoutY="146.0" text="User Register" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
       <GridPane layoutX="74.0" layoutY="211.0" prefHeight="184.0" prefWidth="217.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="337.0" minWidth="10.0" prefWidth="177.0" />
@@ -28,50 +61,17 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <JFXTextField labelFloat="true" maxWidth="217.0" prefHeight="25.0" prefWidth="217.0" promptText="Name" stylesheets="@css/Client.css" unFocusColor="WHITE" />
-            <JFXTextField labelFloat="true" maxWidth="217.0" prefHeight="25.0" prefWidth="137.0" promptText="Email" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.rowIndex="2" />
-            <JFXComboBox labelFloat="true" maxWidth="83.0" prefHeight="25.0" prefWidth="83.0" promptText="AcessLevel" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.rowIndex="3" />
-            <JFXPasswordField prefWidth="217.0" promptText="Password" stylesheets="@css/Client.css" unFocusColor="WHITE" GridPane.rowIndex="1" />
+            <JFXTextField fx:id="txtName" labelFloat="true" maxWidth="217.0" prefHeight="25.0" prefWidth="217.0" promptText="Name" stylesheets="@css/Client.css" unFocusColor="WHITE" visible="false" />
+            <JFXPasswordField fx:id="txtRegisterPassword" prefWidth="217.0" promptText="Password" stylesheets="@css/Client.css" unFocusColor="WHITE" visible="false" GridPane.rowIndex="1" />
+            <JFXTextField fx:id="txtRegisterEmail" labelFloat="true" maxWidth="217.0" prefHeight="25.0" prefWidth="137.0" promptText="Email" stylesheets="@css/Client.css" unFocusColor="WHITE" visible="false" GridPane.rowIndex="2" />
+            <JFXComboBox fx:id="comboBoxAcess_level" labelFloat="true" maxWidth="83.0" prefHeight="25.0" prefWidth="83.0" promptText="AcessLevel" stylesheets="@css/Client.css" unFocusColor="WHITE" visible="false" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <ImageView layoutX="459.0" layoutY="20.0">
-         <image>
-            <Image url="@../../../../../../../../../../../../AppData/Local/Temp/icons8_user_account_128px.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="432.0" layoutY="146.0" text="User Login" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="36.0" />
-         </font>
-      </Label>
-      <JFXTextField fx:id="txtEmail" labelFloat="true" layoutX="396.0" layoutY="231.0" maxWidth="217.0" onKeyPressed="#onEnterPressed" prefHeight="25.0" prefWidth="217.0" promptText="Email" stylesheets="@css/Client.css" unFocusColor="WHITE" />
-      <JFXPasswordField fx:id="txtPassword" layoutX="396.0" layoutY="284.0" onKeyPressed="#onEnterPressed" prefWidth="217.0" promptText="Password" stylesheets="@css/Client.css" unFocusColor="WHITE" />
-      <Label layoutX="662.0" layoutY="14.0" onMouseClicked="#onXMouseClickedAction" prefHeight="25.0" prefWidth="24.0" text="X" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="21.0" />
-         </font>
-      </Label>
-      <JFXButton fx:id="btnLogin" layoutX="436.0" layoutY="351.0" onAction="#onBtnLoginAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #0da344;" text="Login" textFill="WHITE" />
-      <Label layoutX="452.0" layoutY="464.0" text="Sign up" textFill="WHITE">
+      <JFXButton fx:id="btnCreateAccount" layoutX="117.0" layoutY="407.0" onAction="#onbtnCreateAccountAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #0da344;" text="Create Account" textFill="WHITE" visible="false" />
+      <Label fx:id="lblSignIn" layoutX="129.0" layoutY="464.0" onMouseClicked="#onLblSignInMouseClicked" text="Sign in" textFill="WHITE" visible="false">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="70.0" layoutY="146.0" text="User Register" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="36.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="170.0" fitWidth="172.0" layoutX="96.0" layoutY="-1.0">
-         <image>
-            <Image url="@../../../../../../../../../../../../AppData/Local/Temp/icons8_user_account_200px.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="129.0" layoutY="464.0" text="Sign in" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <JFXButton layoutX="117.0" layoutY="407.0" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #0da344;" text="Create Account" textFill="WHITE" />
 	</children>
 </AnchorPane>
