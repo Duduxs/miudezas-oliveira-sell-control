@@ -26,6 +26,8 @@ public class MainScreenControl implements Initializable {
 	public static String userLogged;
 	// Format the date in American format.
 	
+	private Double posX = 0.0;
+	private Double posY = 0.0;
 
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 	private Date d = new Date();
@@ -55,6 +57,27 @@ public class MainScreenControl implements Initializable {
 	private Label txtLoggedDate;
 	
 
+	@FXML
+	public void setOnMousePressed() {
+		LoginScreenControl.getMainScreenScene().setOnMousePressed(event -> {
+		
+			posX = LoginScreenControl.getMainScreenStage().getX() - event.getScreenX();
+			posY = LoginScreenControl.getMainScreenStage().getY() - event.getScreenY();
+		});
+		
+	
+	}
+
+	@FXML
+	public void setOnMouseDragged() {
+		LoginScreenControl.getMainScreenScene().setOnMouseDragged(event -> {
+		
+			LoginScreenControl.getMainScreenStage().setX(event.getScreenX() + posX);
+			LoginScreenControl.getMainScreenStage().setY(event.getScreenY() + posY);
+		});
+		
+	
+	}
 
 	@FXML
 	public void onBtnClientAction() {
@@ -160,6 +183,33 @@ public class MainScreenControl implements Initializable {
 				mainAnchorPane.getChildren().get(2).setLayoutY(0.0);
 				mainAnchorPane.getChildren().get(3).setLayoutX(256.0);
 				mainAnchorPane.getChildren().get(3).setLayoutY(88.0);
+				
+				//Drag and pressed from children
+				
+				mainAnchorPane.getChildren().get(2).setOnMousePressed(event -> {
+					
+					posX = LoginScreenControl.getMainScreenStage().getX() - event.getScreenX();
+					posY = LoginScreenControl.getMainScreenStage().getY() - event.getScreenY();
+				});
+				
+				mainAnchorPane.getChildren().get(2).setOnMouseDragged(event -> {
+					
+					LoginScreenControl.getMainScreenStage().setX(event.getScreenX() + posX);
+					LoginScreenControl.getMainScreenStage().setY(event.getScreenY() + posY);
+				});
+				
+				mainAnchorPane.getChildren().get(3).setOnMousePressed(event -> {
+					
+					posX = LoginScreenControl.getMainScreenStage().getX() - event.getScreenX();
+					posY = LoginScreenControl.getMainScreenStage().getY() - event.getScreenY();
+				});
+				
+				mainAnchorPane.getChildren().get(3).setOnMouseDragged(event -> {
+					
+					LoginScreenControl.getMainScreenStage().setX(event.getScreenX() + posX);
+					LoginScreenControl.getMainScreenStage().setY(event.getScreenY() + posY);
+				});
+				
 			}
 
 		} catch (IOException e) {

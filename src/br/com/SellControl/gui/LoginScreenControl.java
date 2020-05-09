@@ -23,9 +23,15 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class LoginScreenControl implements Initializable {
-
+	private Double posX = 0.0;
+	private Double posY = 0.0;
+	
+	private static Stage mainScreenStage;
+	private static Scene mainScreenScene;
+	
 	@FXML
 	private AnchorPane anchorPaneLoginScreen;
 
@@ -36,7 +42,36 @@ public class LoginScreenControl implements Initializable {
 
 	@FXML
 	private Button btnLogin;
+	
+	public static Stage getMainScreenStage() {
+		return mainScreenStage;
+	}
+	
+	public static Scene getMainScreenScene() {
+		return mainScreenScene;
+	}
 
+	@FXML
+	public void setOnMousePressed() {
+		Program.getMainScene().setOnMousePressed(event -> {
+		
+			posX = Program.getMainStage().getX() - event.getScreenX();
+			posY = Program.getMainStage().getY() - event.getScreenY();
+		});
+		
+	
+	}
+
+	@FXML
+	public void setOnMouseDragged() {
+		Program.getMainScene().setOnMouseDragged(event -> {
+		
+			Program.getMainStage().setX(event.getScreenX() + posX);
+			Program.getMainStage().setY(event.getScreenY() + posY);
+		});
+		
+	
+	}
 
 	@FXML
 	public void onXMouseClickedAction() {
@@ -63,16 +98,16 @@ public class LoginScreenControl implements Initializable {
 				txtEmail.setText("");
 				txtPassword.setText("");
 				// Open and get the MainScreenFXML.
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/SellControl/gui/Main.fxml"));
-				// Load the screen and put in root variable.
-				Parent root = (Parent) loader.load();
+				Parent parent = FXMLLoader.load(getClass().getResource("/br/com/SellControl/gui/Main.fxml"));
+				
 
 				Stage stage = new Stage();
-				Scene scene = new Scene(root);
+				mainScreenStage = stage;
+				Scene scene = new Scene(parent);
+				mainScreenScene = scene;
+				removeBar();
 				stage.setScene(scene);
-				// Not resize screen and size my screen to scene
-				stage.setResizable(false);
-				stage.sizeToScene();
+				stage.initStyle(StageStyle.TRANSPARENT);
 				stage.show();
 
 			} catch (IOException e) {
@@ -80,6 +115,11 @@ public class LoginScreenControl implements Initializable {
 			}
 		}
 
+	}
+	public void removeBar() {
+		mainScreenStage.resizableProperty().setValue(Boolean.FALSE);
+		mainScreenStage.initStyle(StageStyle.UTILITY);
+		mainScreenStage.initStyle(StageStyle.UNDECORATED);
 	}
 
 	// Second form Login (Pressed Enter in TXT or btn login)
