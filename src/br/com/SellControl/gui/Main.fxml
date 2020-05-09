@@ -182,7 +182,7 @@
                         <Insets right="30.0" />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="txtLoggedDate" prefHeight="17.0" prefWidth="82.0" text="2000/04/11">
+                  <Label fx:id="txtLoggedDate" prefHeight="17.0" prefWidth="82.0" text="2000/04/11" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -202,7 +202,7 @@
                         <Insets left="64.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label prefHeight="21.0" prefWidth="62.0" text="Duduxs">
+                  <Label prefHeight="21.0" prefWidth="62.0" text="Duduxs" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
