@@ -26,22 +26,12 @@
   </p>
 </p>
 
-<!-- TABLE OF CONTENTS -->
-## Índice
-
-  * [Feito com](#feito-com)
-  * [Instalação](#instalação)
-* [Licença](#licença)
-* [Contato](#contato)
-
-[![Tela do Controle de Estoque][product-screenshot]](https://github.com/Duduxs/MiudezasOliveiraSellControl/blob/master/img/Animacao.gif)
-
 ### Feito com
 
 O Controle de Estoque foi implementado usando esses recursos.
 
 * [Java](https://www.oracle.com/java/) - Linguagem Usada (*JDK 9.0.4*)
-* [JavaFX](https://www.oracle.com/technetwork/java/javase/downloads/javafxscenebuilder-info-2157684.html) - Criação da GUI (*FX 11.0.1*)
+* [JavaFX](https://www.oracle.com/technetwork/java/javase/downloads/javafxscenebuilder-info-2157684.html) - Criação da GUI (*JavaFX 11.0.1*)
 * [JDBC](https://dev.mysql.com/downloads/connector/j/) - Para receber e enviar dados para o MySQL. (*Servidor local*)
 * [JFoenix](http://www.jfoenix.com/) - Usado para a criação de um front-end mais amigável. (*JFoenix 9*)
 * [ViaCEP](https://viacep.com.br/) - Web Service Utilizado para busca automática do CEP usuário. (*CEP 1.6.1*)
@@ -53,7 +43,7 @@ O Controle de Estoque foi implementado usando esses recursos.
 ```sh
 https://github.com/Duduxs/MiudezasOliveiraSellControl.git
 ```
-2. Vá até --- essa é a pasta na qual está todas as dependências, inclusive o DUMP para você conseguir usar o DB.
+2. Vá até https://drive.google.com/open?id=1zutOK3bHagCjjtKYM150wi9hiInY-Irl essa é a pasta na qual está todas as dependências, inclusive o DUMP para você conseguir usar o DB.
 
 3. Baixe a pasta e siga os procedimentos que está no "Instalation.txt".
 
